@@ -28,7 +28,7 @@
     position: fixed;
     left: 250px;
     width: 0;
-    height: 70%;
+    height: 100%;
     margin-left: -250px;
     overflow-y: auto;
     background: white;
@@ -75,13 +75,13 @@
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #343434;
+    color: #263238;
 }
 
 .sidebar-nav li a:hover {
     text-decoration: none;
     color: white;
-    background: #454444;
+    background: #263238;
 }
 
 .sidebar-nav li a:active,
@@ -93,7 +93,7 @@
     height: 65px;
     font-size: 18px;
     line-height: 60px;
-    background-color: #393939;
+    background-color: #263238;
     color:white;
 }
 
