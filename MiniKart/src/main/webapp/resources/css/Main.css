@@ -6,6 +6,12 @@ body
 {
     height: 100%;
 }
+hr
+{
+    height: 1px;
+    background-color: #f65819;
+    width: 100%;
+}
 
 /*    NAVIGATION STYLING    */
 .body
@@ -14,11 +20,11 @@ body
 }
 li:hover
 {
-    background-color: #ff7600;   
+    background-color: #f65819;   
 }
 .navbar-inverse
 {  
-	background-color: #1d1d1d;
+	background-color: #263238;
 	border-radius: 0px;
 	border-color: black;
 }
@@ -26,7 +32,7 @@ li:hover
     color: white;
 }
 .navbar-inverse .navbar-brand {
-    color: #ff7600;
+    color: #f65819;
 }
 
 .navbar-inverse .navbar-nav>.open>a:hover
@@ -71,7 +77,7 @@ li:hover
 
 #custom-search-input button{
     
-    background: #1d1d1d;
+    background: #263238;
     color: white;
     border: 0px;
     margin-top: -5px;
@@ -156,8 +162,44 @@ width:100%;
   padding-top:20px;
 }
 
+.searchbar
+{
+    background-color:#f65819; top:50px; position:fixed; z-index:99;
+}
 
 
 
 
+/* SOCIAL ICON STYLING */
+.social:hover {
+     -webkit-transform: scale(1.1);
+     -moz-transform: scale(1.1);
+     -o-transform: scale(1.1);
+ }
+ .social {
+     -webkit-transform: scale(0.8);
+     /* Browser Variations: */
+     color: #f65819;
+     -moz-transform: scale(0.8);
+     -o-transform: scale(0.8);
+     -webkit-transition-duration: 0.1s;
+     -moz-transition-duration: 0.1s;
+     -o-transition-duration: 0.1s;
+ }
 
+/*
+    Multicoloured Hover Variations
+*/
+ 
+ #social-fb:hover {
+     color: #3B5998;
+ }
+ #social-tw:hover {
+     color: #4099FF;
+ }
+ #social-gp:hover {
+     color: #d34836;
+ }
+ #social-em:hover {
+     color: #f39c12;
+ }

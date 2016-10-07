@@ -9,16 +9,16 @@ import javax.persistence.Id;
 public class Category {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String categoryId;
+	private int categoryId;
 	private String categoryName;
 	private String categoryDescription;
 	
 	
-	public String getCategoryId() {
+	public int getCategoryId() {
 		return categoryId;
 	}
-	public void setCategoryID(String categoryID) {
-		this.categoryId = "CAT"+categoryID;
+	public void setCategoryID(int categoryID) {
+		this.categoryId = categoryID;
 	}
 	public String getCategoryName() {
 		return categoryName;

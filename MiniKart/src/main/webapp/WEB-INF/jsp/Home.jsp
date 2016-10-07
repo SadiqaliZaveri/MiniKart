@@ -46,9 +46,9 @@
           
 <!--    PRODUCT ELEMENTS  --><div class="container-fluid">
          <div class="row" style="margin-top:10px;">
-<div class="title"><div class="col-xs-12"><h3>Featured Products</h3></div>
-             <legend></legend>
-    </div></div>
+<div class="col-xs-12"><h3>Featured Products</h3>
+             
+    </div></div><hr>
                     <div class="col-sm-4 col-lg-4 col-md-4 col-xs-6">
                         <div class="thumbnail">
                             <img src="resources/images/altimg.png" alt="">
@@ -116,9 +116,9 @@
                     </div>
 
          <div class="row" style="margin-top:10px;">
-<div class="title"><div class="col-xs-12"><h3>On Sale Products</h3></div>
-             <legend></legend>
-             </div></div>
+<div class="col-xs-12"><h3>On Sale Products</h3>
+             
+             </div></div><hr>
                     <div class="col-sm-4 col-lg-4 col-md-4 col-xs-6">
                         <div class="thumbnail">
                             <img src="resources/images/altimg.png" alt="">
@@ -274,13 +274,7 @@
           
 <!--      FOOTER STARTS     -->
 
-<div id="wrap">
-  <div id="main" class="container-fluid clear-top">
-    <legend></legend>
-        <div class="col-xs-6" style="padding-left:20px;"> @Copyright 2016 - 2017. Sadiqali Zaveri. All Rights Reserved.</div> <div  class=" col-xs-6" style="padding-right:20px;"><p class="pull-right"><a href="#">Privacy</a> | <a href="#">ToS</a> | <a href="#">Contact</a></p></div>
-  </div>
-</div>
-<footer class="footer"></footer>
+<%@include file="Footer.jsp" %>
 		
 	     
 <!--      FOOTER ENDS     -->
@@ -297,52 +291,10 @@
 <!--  MODAL/POPUPBOXES  -->
     
 <!--        Signup Form Popup   -->
-    <div class="container">
-      <div class="modal fade" id="signup" role="dialog">
-        <div class="modal-dialog">
-
-          <!-- Modal content-->
-
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Registration Form</h4>
-            </div>
-            <div class="modal-body">
-              <p>Some text in the modal.</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
+    <%@include file="RegistrationForm.jsp" %>
 <!--        Signup Form Popup ends   -->
 <!--        Login Form Popup    -->
-    <div class="container">
-      <div class="modal fade" id="login" role="dialog">
-        <div class="modal-dialog">
-
-          <!-- Modal content-->
-
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Login</h4>
-            </div>
-            <div class="modal-body">
-              <p>Some text in the modal.</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
+    <%@include file="LoginForm.jsp" %>
 <!--        Login Form Popup ends    -->
 <!--  MODAL/POPUPBOXES ENDS -->
 
@@ -350,8 +302,10 @@
       
 
       <script>
+      
+     
 //          Toggle Button Script 
-      $("#menu-toggle").click(function(e) {
+      $("#menu-toggle, #menu-toggle-2").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
       });

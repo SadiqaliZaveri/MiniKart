@@ -10,11 +10,9 @@
     <link href="resources/css/bootstrap.min.css" rel="stylesheet" />
     <script src="resources/js/bootstrap.min.js"></script>
     <script src="resources/js/bootstrap-hover-dropdown.min.js"></script>
-
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="resources/css/simple-sidebar.css" rel="stylesheet">
     <link href="resources/css/Main.css" rel="stylesheet" />
-
-
     <title>MiniKart</title>
   </head>
 
@@ -55,8 +53,8 @@
               </ul>
               
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" data-toggle="modal" data-target="#signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#signup" data-backdrop="static" data-keyboard="false"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#login" data-backdrop="static" data-keyboard="false"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
               </ul>
                
             </div>
@@ -67,7 +65,7 @@
 <!--   Second Div Bar/Search Bar   -->
       <div class="container-fluid">
           <div class="row">
-              <div class="col-xs-12" style="background-color:orange; top:50px; position:fixed; z-index:99;">
+              <div class="col-xs-12 searchbar">
                  
                   <div class="container">
 	<div class="row">
@@ -103,31 +101,4 @@
     <div id="wrapper">
         
 <!--    SIDE BAR  -->
-      <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-          <li class="sidebar-brand">
-            Filters
-          </li>
-          <li>
-            <a href="#">Dashboard</a>
-          </li>
-          <li>
-            <a href="#">Shortcuts</a>
-          </li>
-          <li>
-            <a href="#">Overview</a>
-          </li>
-          <li>
-            <a href="#">Events</a>
-          </li>
-          <li>
-            <a href="#">About</a>
-          </li>
-          <li>
-            <a href="#">Services</a>
-          </li>
-          <li>
-            <a href="#">Contact</a>
-          </li>
-        </ul>
-      </div>    
+      <%@include file="CategorySidebar.jsp" %>

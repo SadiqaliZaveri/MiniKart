@@ -19,16 +19,17 @@
 }
 
 #wrapper.toggled {
-    padding-left: 255px;
+    padding-left: 250px;
 }
 
 #sidebar-wrapper {
+    overflow-x: hidden;
     z-index: 1;
     position: fixed;
     left: 250px;
     width: 0;
     height: 70%;
-    margin-left: -255px;
+    margin-left: -250px;
     overflow-y: auto;
     background: white;
     -webkit-transition: all 0.5s ease;
@@ -37,7 +38,7 @@
     transition: all 0.5s ease;
     top: 120px;
 /*    border-right: 5px solid #ff7600;*/
-    border-bottom: 5px solid #ff7600;
+    border-bottom: 5px solid #f65819;
 }
 
 #wrapper.toggled #sidebar-wrapper {

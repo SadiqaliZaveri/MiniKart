@@ -1,43 +1,34 @@
 package com.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.model.Category;
-
+import com.service.*;
+@Controller
 public class CategoryController {
-	@SuppressWarnings("unused")
 	@Autowired
-	private Category categoryservice;
+	private CategoryService categoryservice;
 	
-	public void setCategoryservice(Category categoryservice) {
-		this.categoryservice = categoryservice;
-	}
-	
-	@RequestMapping("/category")
+	@RequestMapping("/Categories")
 	public String category(Model model)
 	{
+		//model.addAttribute("categorylist", this.categoryservice.listCategory());
 		model.addAttribute("category", new Category());
-		return "Category";
+		model.addAttribute("categoryList",this.categoryservice.stringCategory());
+		return "Categories";
 	
 	}
-	@RequestMapping(value= "/category/add", method = RequestMethod.POST)
+	@RequestMapping(value= "/add/categories", method = RequestMethod.POST)
 	public String addPerson(@ModelAttribute("category") Category category){
-		
-		
-		return "redirect:/Category";
+		this.categoryservice.addCategory(category);
+		return "redirect:/Categories";
 		
 	}
-	
-	@RequestMapping("/remove/{id}")
-    public String removePerson(@PathVariable("id") int id){
-		
-       
-        return "redirect:/Category";
-    }
+
 	
 }
