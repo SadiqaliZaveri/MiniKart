@@ -28,7 +28,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> MiniKart</a>
+              <a class="navbar-brand" href="data"><i class="glyphicon glyphicon-shopping-cart"></i> MiniKart</a>
 
               <a class="navbar-brand" href="#" id="menu-toggle"><i class="glyphicon glyphicon-transfer"></i></a>
 

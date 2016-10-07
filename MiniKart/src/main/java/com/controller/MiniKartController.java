@@ -10,4 +10,9 @@ public String HomePage()
 {
 	return "Home";
 }
+	@RequestMapping("/data")
+	public String DataPage()
+	{
+		return "Datacall";
+	}	
 }

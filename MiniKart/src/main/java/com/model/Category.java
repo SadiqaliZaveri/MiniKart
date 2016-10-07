@@ -1,0 +1,45 @@
+package com.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Category {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private String categoryId;
+	private String categoryName;
+	private String categoryDescription;
+	
+	
+	public String getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryID(String categoryID) {
+		this.categoryId = "CAT"+categoryID;
+	}
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+	public String getCategoryDescription() {
+		return categoryDescription;
+	}
+	public void setCategoryDescription(String categoryDescription) {
+		this.categoryDescription = categoryDescription;
+	}
+	
+	
+	@Override
+	public String toString() {
+		
+		return "categoryId="+categoryId+", categoryName="+categoryName+", categoryDescription="+categoryDescription;
+	}
+	
+	
+
+}
