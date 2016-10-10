@@ -1,3 +1,5 @@
+//MAIN QUERIES ARE WRITTEN HERE ALONG WITH LOGIC. THE METHODS ARE JUST CREATED HERE NOT EXECUTED
+
 package com.DAOImplementation;
 
 
@@ -28,11 +30,25 @@ public class CategoryDAOImplementation implements CategoryDAO {
 
 	
 	@SuppressWarnings("unchecked")
-	public String stringCategory() {
+	public String listCategoryViaJson() {
 		Gson gson = new Gson();
 		List<Category> categoryList = sessionFactory.getCurrentSession().createQuery("from Category").getResultList();
 		String g = gson.toJson(categoryList);
 		return g;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Category getIdFromName(String categoryName) {
+		String query = "from Category WHERE categoryName = '"+categoryName+"'";
+		List<Category> CategoryList= sessionFactory.getCurrentSession().createQuery(query).getResultList();
+		if(CategoryList!=null && !CategoryList.isEmpty())
+		{
+			return CategoryList.get(0);	
+		}else
+		{
+			return null;
+		}
+		
 	}
 	
 }

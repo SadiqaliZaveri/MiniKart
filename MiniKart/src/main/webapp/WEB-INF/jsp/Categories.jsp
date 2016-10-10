@@ -1,44 +1,109 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>  
-    <%@ page isELIgnored="false" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<script src="resources/js/jquery-3.1.1.min.js"></script>    
-<script type="text/javascript" src="resources/js/angular.min.js"></script>
-<script type="text/javascript" src="resources/js/getting.data.js"></script>
-<script type="text/javascript"> var getcategorylist = '${categoryList}';</script>
-<title>Insert title here</title>
-</head>
-<body>
-        
+<%@include file="Header.jsp" %>
+      
+
+
+
+<blockquote><h3>Admin Panel</h3></blockquote>   
+<hr>
+<blockquote><h4>Add Category</h4></blockquote>
 <form:form method="POST" action="add/categories" modelAttribute="category">
-<label>CategoryName</label>
-<form:input path="categoryName"/>
-<label>CategoryDescription</label>
-<form:input path="categoryDescription"/>
-<input type="submit" value="submit"/>
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-3 col-xs-6"><label for="Category Name">Category Name:</label><form:input path="categoryName" class="form-control" id="Category Name"/></div>
+<div class="col-sm-3 col-xs-12 "><label for="Category Description">Category Description:</label><form:input path="categoryDescription" class="form-control" id="Category Description"/></div>
+<div class="col-sm-1 col-xs-12"><label style="visibility: hidden;">Submit Button:</label><button type="submit" class="btn btn-warning">Submit</button></div>
+</div>
+</div>
 </form:form>
 
 
+<hr>
+<blockquote><h4>Add Sub-Category</h4></blockquote>
+<form:form method="POST" action="add/subcategories" modelAttribute="subCategory">
+<!-- <div ng-app="getStringCategory" ng-controller="getStringCategoryController"> -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-3 col-xs-6">
+<label for="Sub-Category Name">Sub-Category Name:</label>
+<form:input path="subCategoryName" class="form-control" id="Sub-Category Name" /></div>
+<div class="col-sm-3 col-xs-12 "><label>Select Category:</label><form:select cssClass="form-control" path="category.categoryName" items="${categoryListNormal}" itemValue="categoryName" itemLabel="categoryName"> 
+</form:select></div>
+<div class="col-sm-1 col-xs-12 "><label style="visibility: hidden;">Submit Button:</label><button type="submit" class="btn btn-warning">Submit</button></div>
+</div>
+</div>
+<!-- </div> -->
+</form:form>
+
+<hr>
+<blockquote><h4>Add Product</h4></blockquote>
+<form:form method="POST" action="add/products" modelAttribute="product">
+<!-- <div ng-app="getStringCategory" ng-controller="getStringCategoryController"> -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-3 col-xs-6">
+<label for="Product Name">Product Name:</label>
+<form:input path="productName" class="form-control" id="Product Name" /></div>
+<div class="col-sm-3 col-xs-12 ">
+<label>Select Category:</label>
+<%-- <form:form method="POST" action="add/subcategories" modelAttribute="subCategory"> --%>
+<form:select cssClass="form-control" path="category.categoryName" items="${categoryListNormal}" itemValue="categoryName" itemLabel="categoryName"> 
+</form:select>
+<%-- </form:form> --%>
+</div>
+<div class="col-sm-3 col-xs-12 ">
+<label>Select Sub-Category:</label>
+<form:select cssClass="form-control" path="subCategory.subCategoryName" items="${subCategoryListNormal}" itemValue="subCategoryName" itemLabel="subCategoryName"> 
+</form:select></div>
+<div class="col-sm-1 col-xs-12 ">
+<label style="visibility: hidden;">Submit Button:</label>
+<button type="submit" class="btn btn-warning">Submit</button></div>
+</div>
+</div>
+<!-- </div> -->
+</form:form>
+   
+    
+  
+  
+  
+  
+  
+  
+
+
+
 
     
-    
-<div ng-app="getStringCategory" ng-controller="getStringCategoryController">
-  <ul>
-    <li ng-repeat="c in getcategory track by $index">
-        {{c.categoryName}}
-    </li>
-  </ul>
-</div>
-<!--
-<script type="text/javascript">var app = angular.module('getStringCategory', []);
-var modelAttributeName = ${categoryList};
-app.controller('getStringCategoryController', function($scope) {
+ 
+
+<%-- <c:forEach var="SC" items="${subCategoryListNormal}" > --%>
+<%--    Item <c:out value="${SC.subCategoryName}"/><p> --%>
+<%-- </c:forEach> --%>
+
+<script type="text/javascript">
+var app = angular.module('Category', []);
+var modelAttributeName = ${categoryListJson};
+app.controller('CategoryController', function($scope) {
   $scope.getcategory = modelAttributeName;
-});</script>
--->
-</body>
-</html>
+});
+
+var app = angular.module('SubCategory', []);
+var modelAttributeName = ${subCategoryListJson};
+app.controller('SubCategoryController', function($scope) {
+  $scope.getsubcategory = modelAttributeName;
+});
+</script>
+
+<!--      FOOTER STARTS     -->
+
+<%@include file="Footer.jsp" %>
+		
+	     
+<!--      FOOTER ENDS     -->
+          
+      </div>
+<!--    PAGE CONTENT WRAPPER ENDS   -->
+
+    </div>
+<!--    SIDE BAR WRAPPER ENDS  -->
+
