@@ -111,6 +111,25 @@
 </form:form>
 </div>
 
+<hr>
+<blockquote><h4>Add ProductSpecification</h4></blockquote>
+<div class="container-fluid">
+<form:form cssClass="form-inline" method="POST" action="add/productspecification" modelAttribute="productSpecification">
+<div class="form-group">
+<label class="labelspace">Select ProductId:</label>
+<form:select cssClass="form-control" path="Product.productId" items="${productListNormal}" itemValue="productId" itemLabel="productId"> 
+</form:select>
+</div>
+<div class="form-group">
+<button type="submit" class="btn btn-warning">Submit</button>
+</div>
+<div class="form-group">
+<button href="#productSpecificationModal" data-toggle="modal" type="button" class="btn btn-success">Check</button>
+</div>
+</form:form>
+</div>
+
+
   
   
   

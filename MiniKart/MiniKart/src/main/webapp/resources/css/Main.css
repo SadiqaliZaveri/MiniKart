@@ -4,12 +4,17 @@ html
 }
 body
 {
-    height: 100%;
+	background: url("seamlessPattern.png");
+	background-repeat: repeat;
+	height: 100%;
+    
+    
 }
 hr
 {
     height: 1px;
     background-color: #f65819;
+    border:  #f65819;
     width: 100%;
 }
 
@@ -74,104 +79,62 @@ li:hover
     padding: 2px;
     margin-left: 10px;
 }
+/* Marquee */
+
+.marquee
+{
+	
+	position:fixed;
+	top:60px;
+}
 
 /*    SEARCH BOX STYLING    */
-#custom-search-input{
-    
-    border-radius: 0px;
+
+.logobtn{
+	background:none;
+}
+.SearchIcon
+{
+    color:#fff;  
+}
+.SearchButton
+{
+    background-color:#263238;
+    border-radius:1px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.SearchButton:hover{
+    background-color:#263238;
 }
 
-#custom-search-input button{
-    
-    background: #263238;
-    color: white;
-    border: 0px;
-    margin-top: -5px;
-    margin-left: 1px;
+.SearchBar{
+width: 100%;
 
 }
 
-
-/* SEARCH BOX DROP DOWN CSS*/
-
-.twitter-typeahead{
-width:100%;
+/*	BOTTOM NAVIGATION BAR	*/
+.bottomnav
+{
+	width: 100%;
+	bottom: 0px;
+	position:fixed;
+	background-color:#263238;
+	height: auto;
+	z-index: 99;
+	color: #f65819;
 }
 
-.twitter-typeahead .tt-query,
-.twitter-typeahead .tt-hint {
-  margin-bottom: 0;
-}
-.tt-dropdown-menu {
-  min-width: 160px;
-  margin-top: 2px;
-  padding: 5px 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0,0,0,.2);
-  *border-right-width: 2px;
-  *border-bottom-width: 2px;
-  -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;
-  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-          box-shadow: 0 5px 10px rgba(0,0,0,.2);
-  -webkit-background-clip: padding-box;
-     -moz-background-clip: padding;
-          background-clip: padding-box;
-  width:100%;        
-}
 
-.tt-suggestion {
-  display: block;
-  padding: 3px 20px;
-}
+/* HEADER STYLING */
 
-.tt-suggestion.tt-is-under-cursor {
-  color: black;
-  background-color: #cecccb;
-  background-image: -moz-linear-gradient(top, #ffffff, #cecccb);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#cecccb));
-  background-image: -webkit-linear-gradient(top, #ffffff, #cecccb);
-  background-image: -o-linear-gradient(top, #ffffff, #cecccb);
-  background-image: linear-gradient(to bottom, #ffffff, #cecccb);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0)
-}
-
-.tt-suggestion.tt-is-under-cursor a {
-  color: #fff;
-}
-
-.tt-suggestion p {
-  margin: 0;
-}
 
 
 /*  FOOTER STYLING    */
 
-#wrap {
-  min-height: 100%;
-}
 
-#main {
-  overflow:auto;
-  padding-bottom:20px; /* this needs to be bigger than footer height*/
-}
 
-.footer {
-  position: relative;
-  margin-top: -150px; /* negative value of footer height */
-  height: 10px;
-  clear:both;
-  padding-top:20px;
-}
 
-.searchbar
-{
-    background-color:#f65819; top:50px; position:fixed; z-index:99;
-}
 
 
 

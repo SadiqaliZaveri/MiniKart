@@ -6,12 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dao.UserDAO;
-import com.model.BillingAddress;
 import com.model.Cart;
-import com.model.ShippingAddress;
 import com.model.User;
 import com.model.UserDetails;
-import com.model.UserRole;
+
+
 
 @Repository
 public class UserDAOImplementation implements UserDAO{
@@ -31,17 +30,22 @@ public class UserDAOImplementation implements UserDAO{
 		Cart cart = new Cart();
 		cart.setCartId(userDetails.getUserId());
 		cart.setUserId(userDetails.getUserId());
-		session.saveOrUpdate(cart);
+		session.saveOrUpdate(cart);	
+		
+		System.out.println("Saving");
 		
 		
+		userDetails.getBillingaddress().setUserDetails(userDetails);	
 		
-		userDetails.setShippingAddressId(shippingAddress.getShippingAddressId());
+		userDetails.getShippingaddress().setUserDetails(userDetails);	
 		
+		userDetails.getUserRole().setUserDetails(userDetails);
 		
-		userDetails.setBillingAddressId(billingAddress.getBillingAddressId());
+		session.saveOrUpdate(userDetails.getUserRole());
+		session.saveOrUpdate(userDetails.getBillingaddress());
+		session.saveOrUpdate(userDetails.getShippingaddress());
+		session.saveOrUpdate(userDetails);
 		
-		
-		userDetails.setRoleId(userRole.getRoleId());
 		
 	}
 

@@ -23,6 +23,33 @@ public class UserDetails {
 	private int billingAddressId;
 	
 	@OneToOne
+	private Cart cart;
+	
+	public Cart getCart() {
+		return cart;
+	}
+
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
+
+	@OneToOne
+	private UserRole userRole;
+	
+
+	public UserRole getUserRole() {
+		return userRole;
+	}
+
+
+	public void setUserRole(UserRole userRole) {
+		this.userRole = userRole;
+	}
+
+
+	@OneToOne
 	@JoinColumn(name="shippingAddressId", nullable=false,insertable=false,updatable=false)
 	private ShippingAddress shippingaddress;
 	

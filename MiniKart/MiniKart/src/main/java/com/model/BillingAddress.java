@@ -12,6 +12,20 @@ public class BillingAddress {
 @Id
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 private int billingAddressId;
+private String city;
+private String state;
+private String pinCode;
+private String district;
+private String landmark;
+@OneToOne
+private UserDetails userDetails;
+
+public UserDetails getUserDetails() {
+	return userDetails;
+}
+public void setUserDetails(UserDetails userDetails) {
+	this.userDetails = userDetails;
+}
 public int getBillingAddressId() {
 	return billingAddressId;
 }
@@ -48,11 +62,4 @@ public String getLandmark() {
 public void setLandmark(String landmark) {
 	this.landmark = landmark;
 }
-private String city;
-private String state;
-private String pinCode;
-private String district;
-private String landmark;
-@OneToOne
-private UserDetails userDetails;
 }

@@ -1,13 +1,15 @@
  <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
-        <a id="menu-toggle" href="#" style="color:#f65819" class="btn btn-sm pull-right"><i class="glyphicon glyphicon-transfer"></i></a>
+        <a id="menu-toggle" href="#" style="color:#f65819" class="btn btn-sm pull-right"><i class="glyphicon glyphicon-resize-full"></i></a>
           <li class="sidebar-brand">
-            
+           
             Filters
+           
              
           </li>
-            <hr><hr> <li>
-          <div class="panel-group">
+          <hr><hr>
+             <li>
+          <div class="panel-group filters">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
@@ -24,7 +26,7 @@
     </div>
   </div></li>
             <li>
-          <div class="panel-group">
+          <div class="panel-group filters">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
@@ -41,7 +43,7 @@
     </div>
   </div></li>
   <li>
-          <div class="panel-group">
+          <div class="panel-group filters">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">

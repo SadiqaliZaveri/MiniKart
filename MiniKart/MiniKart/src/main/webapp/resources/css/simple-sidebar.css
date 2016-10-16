@@ -31,7 +31,7 @@
     height: 80%;
     margin-left: -250px;
     overflow-y: auto;
-    background: white;
+    background: #263238;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -94,7 +94,7 @@
     font-size: 18px;
     line-height: 60px;
     background-color: #263238;
-    color:white;
+    color:#f65819;
 }
 
 .sidebar-nav > .sidebar-brand a {
@@ -104,6 +104,10 @@
 .sidebar-nav > .sidebar-brand a:hover {
     color:white;
    
+}
+.filters
+{
+	margin:5px;
 }
 
 @media(min-width:768px) {

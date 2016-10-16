@@ -9,6 +9,18 @@ import javax.persistence.OneToOne;
 @Entity
 public class ShippingAddress {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int shippingAddressId;
+	private String city;
+	private String state;
+	private String pinCode;
+	private String district;
+	private String landmark;
+	
+	@OneToOne
+	private UserDetails userDetails;
+	
 public int getShippingAddressId() {
 		return shippingAddressId;
 	}
@@ -45,14 +57,11 @@ public int getShippingAddressId() {
 	public void setLandmark(String landmark) {
 		this.landmark = landmark;
 	}
-@Id
-@GeneratedValue(strategy=GenerationType.IDENTITY)
-private int shippingAddressId;
-private String city;
-private String state;
-private String pinCode;
-private String district;
-private String landmark;
-@OneToOne
-private UserDetails userDetails;
+
+public UserDetails getUserDetails() {
+	return userDetails;
+}
+public void setUserDetails(UserDetails userDetails) {
+	this.userDetails = userDetails;
+}
 }

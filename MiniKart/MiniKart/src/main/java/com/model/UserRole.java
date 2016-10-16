@@ -13,11 +13,24 @@ public class UserRole {
 	
 	@OneToOne
 	@JoinColumn(name="userId", nullable=false,insertable=false,updatable=false)
-	private UserDetails userDetails;
+	private User user;
 	
 	@OneToOne
 	@JoinColumn(name="roleId", nullable=false,insertable=false,updatable=false)
 	private Role role;
+	
+	@OneToOne
+	UserDetails userDetails;
+	
+	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public UserDetails getUserDetails() {
 		return userDetails;
