@@ -54,39 +54,4 @@ public class CategoryController {
 		return "redirect:/admin";
 		
 	}
-
-//     @RequestMapping("/edit/{bookId}")
-//    public String editBook(
-//        @PathVariable("bookId")Integer bookId,
-//        Map<String, Object> map)
-//    {
-//        map.put("book", bookService.getBookById(bookId));
-//        map.put("bookList", bookService.listBooks());
-//        return "book";
-//    }
-//	 
-//
-//    @RequestMapping("/delete/{bookId}")
-//    public String deleteBook(@PathVariable("bookId") Integer bookId)
-//    {
-//        bookService.removeBook(bookId);
-//        return "redirect:/index";
-//    }
-
-//	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-//    public ModelAndView editUser(HttpServletRequest request) 
-//	{
-//        int userId = Integer.parseInt(request.getParameter("id"));
-//        User user = userDao.get(userId);
-//        ModelAndView model = new ModelAndView("UserForm");
-//        model.addObject("user", user);
-//        return model;      
-//    }
-//     
-//    @RequestMapping(value = "/delete", method = RequestMethod.GET)
-//    public ModelAndView deleteUser(HttpServletRequest request) {
-//        int userId = Integer.parseInt(request.getParameter("id"));
-//        userDao.delete(userId);
-//        return new ModelAndView("redirect:/");     
-//    }
 }

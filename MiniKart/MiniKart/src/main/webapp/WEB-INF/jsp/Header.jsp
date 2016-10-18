@@ -2,6 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +34,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="home"><i class="glyphicon glyphicon-shopping-cart"></i> MiniKart</a>
+              <a class="navbar-brand" href="home"><i class="glyphicon glyphicon-shopping-cart"></i>
+              <c:if test="${pageContext.request.userPrincipal.name != null}">
+              ${pageContext.request.userPrincipal.name}
+			  </c:if>
+              <c:if test="${pageContext.request.userPrincipal.name == null}">
+               MiniKart
+               </c:if>
+               </a>
 
               <a class="navbar-brand" href="#" id="menu-toggle"><i class="glyphicon glyphicon-resize-full"></i></a>
 
@@ -61,10 +69,23 @@
               
               <ul class="nav navbar-nav navbar-right">
               	<li style="border-right: 2px solid orange; border-left: 2px solid orange; background-color:#f65819;"><a href="cart"><img alt="Logo" src="resources/images/logo.png" width="25" height="15"> Cart</a></li>
-                <li><a href="register"  ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-              </ul>
+                
+                
+              <c:if test="${pageContext.request.userPrincipal.name != null}">
+              <sec:authorize access="hasRole('ROLE_ADMIN')">
+              <li><a href="admin"  ><span class="glyphicon glyphicon-user"></span> Admin Panel</a></li>
+              </sec:authorize>
+              	<li><a href="perform_logout" ><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+              	
+			  </c:if>
+              <c:if test="${pageContext.request.userPrincipal.name == null}">
+              	<li><a href="register"  ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              	<li><a href="login" ><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+              </c:if>
                
+                
+                
+              </ul>
             </div>
           </div>
         </nav>
@@ -76,7 +97,7 @@
 <div class="container" style="margin-top: 5px; margin-bottom: 5px; ">
 <div class="row">
 
-<div class="col-xs-12 col-md-12 btn">
+<div class="col-xs-12 col-md-12">
     <div class="input-group">
       <input type="text" class="form-control SearchBar" placeholder="Search for...">
       <span class="input-group-btn">

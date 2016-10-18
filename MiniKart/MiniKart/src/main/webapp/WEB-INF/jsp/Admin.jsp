@@ -168,6 +168,8 @@ app.controller('CallerController', function($scope) {
 <%@include file="SupplierListModal.jsp" %>
 
 <%@include file="ProductListModal.jsp" %>
+
+
 <!--      FOOTER STARTS     -->
 
 <%@include file="Footer.jsp" %>

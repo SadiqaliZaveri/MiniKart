@@ -1,0 +1,35 @@
+<b:beans xmlns="http://www.springframework.org/schema/security"
+		 xmlns:b="http://www.springframework.org/schema/beans"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+						
+						
+						<authentication-manager>
+						<authentication-provider>
+						<jdbc-user-service data-source-ref="dataSource"
+						users-by-username-query="select username,password,enabled from User where username=?;"
+						authorities-by-username-query="select u.username,r.roleName from User u, UserRole ur, Role r where u.userId = ur.userId and ur.roleId = r.roleId and u.username=?;"/>
+						</authentication-provider>
+						</authentication-manager>
+						
+							
+						<http auto-config="true" use-expressions="true">
+						<intercept-url pattern="/home" access="permitAll"/>
+						<access-denied-handler error-page="/403"/>
+						<form-login
+						login-page="/login"
+						default-target-url="/home"
+						login-processing-url="/perform_login"
+						authentication-failure-url="/login?error"
+						username-parameter="username"
+						password-parameter="password"
+						/>
+						<logout logout-success-url="/perform_logout" />
+
+						<csrf disabled="true"/>
+						</http>
+					
+						
+</b:beans>
+						

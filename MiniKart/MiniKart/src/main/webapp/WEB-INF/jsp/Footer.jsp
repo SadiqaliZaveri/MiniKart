@@ -11,7 +11,7 @@
 					·
 					<a href="#">About</a>
 					·
-					<a href="#">Faq</a>
+					<a href="#">FAQ</a>
 					·
 					<a href="#">Contact</a>
 				</p>

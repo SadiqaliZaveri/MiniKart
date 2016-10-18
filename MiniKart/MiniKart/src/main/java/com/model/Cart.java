@@ -13,7 +13,7 @@ private int userId;
 
 @OneToOne
 @JoinColumn(name="userId", nullable=false,insertable=false,updatable=false)
-private UserDetails userDetails;
+private User user;
 
 public int getCartId() {
 	return cartId;
@@ -35,15 +35,13 @@ public void setUserId(int userId) {
 }
 
 
-public UserDetails getUserDetails() {
-	return userDetails;
+public User getUser() {
+	return user;
 }
 
 
-public void setUserDetails(UserDetails userDetails) {
-	this.userDetails = userDetails;
+public void setUser(User user) {
+	this.user = user;
 }
-
-
 
 }

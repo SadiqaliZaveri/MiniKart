@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.daoimplementation.UserDAOImplementation;
+import com.model.User;
 import com.model.UserDetails;
 
 @Service
@@ -15,4 +16,12 @@ public class UserService {
 	public void saveOrUpdate(UserDetails userDetails) {
 		userDAOImplementation.saveOrUpdate(userDetails);
 	}
+	@Transactional
+	   public void saveOrUpdateUser(User user) 
+		{
+		userDAOImplementation.saveOrUpdateUser(user);
+		}
+	
+	
+	
 }

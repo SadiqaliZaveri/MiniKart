@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 public class UserDetails {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int userId;
+	private int userDetailsId;
 	private String username;
 	private String password;
 	private String firstName;
@@ -18,54 +18,77 @@ public class UserDetails {
 	private String contactNo;
 	private String emailId;
 	private int cartId;
-	private int roleId;
-	private int shippingAddressId;
-	private int billingAddressId;
+	private int userId;
+	
+
+	@OneToOne
+	@JoinColumn(name="userId", nullable=false,insertable=false,updatable=false)
+	private User user;
 	
 	@OneToOne
+	@JoinColumn(name="userRoleId")
+	private UserRole userRole;
+
+
+	@OneToOne
+	@JoinColumn(name="shippingAddressId")
+	private ShippingAddress shippingaddress;
+	
+
+	@OneToOne
+	@JoinColumn(name="billingAddressId")
+	private BillingAddress billingaddress;
+	
+	@OneToOne
+	@JoinColumn(name="cartId", nullable=false,insertable=false,updatable=false)
 	private Cart cart;
+	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	
+	public int getUserDetailsId() {
+		return userDetailsId;
+	}
+
+	public void setUserDetailsId(int userDetailsId) {
+		this.userDetailsId = userDetailsId;
+	}
+
+	public int getCartId() {
+		return cartId;
+	}
+
+	public void setCartId(int cartId) {
+		this.cartId = cartId;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 	public Cart getCart() {
 		return cart;
 	}
 
-
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-
-
-	@OneToOne
-	private UserRole userRole;
-	
 
 	public UserRole getUserRole() {
 		return userRole;
 	}
 
-
 	public void setUserRole(UserRole userRole) {
 		this.userRole = userRole;
-	}
-
-
-	@OneToOne
-	@JoinColumn(name="shippingAddressId", nullable=false,insertable=false,updatable=false)
-	private ShippingAddress shippingaddress;
-	
-
-	@OneToOne
-	@JoinColumn(name="billingAddressId", nullable=false,insertable=false,updatable=false)
-	private BillingAddress billingaddress;
-
-
-	public int getUserId() {
-		return userId;
-	}
-
-
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 
 
@@ -126,46 +149,6 @@ public class UserDetails {
 
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
-	}
-
-
-	public int getCartId() {
-		return cartId;
-	}
-
-
-	public void setCartId(int cartId) {
-		this.cartId = cartId;
-	}
-
-
-	public int getRoleId() {
-		return roleId;
-	}
-
-
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
-	}
-
-
-	public int getShippingAddressId() {
-		return shippingAddressId;
-	}
-
-
-	public void setShippingAddressId(int shippingAddressId) {
-		this.shippingAddressId = shippingAddressId;
-	}
-
-
-	public int getBillingAddressId() {
-		return billingAddressId;
-	}
-
-
-	public void setBillingAddressId(int billingAddressId) {
-		this.billingAddressId = billingAddressId;
 	}
 
 

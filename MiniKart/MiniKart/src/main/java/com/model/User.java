@@ -1,20 +1,17 @@
 package com.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 @Entity
 public class User {
 @Id
+@GeneratedValue(strategy=GenerationType.IDENTITY)
 private int userId;
 private String username;
 private String password;
 private boolean enabled;
-
-@OneToOne
-@JoinColumn(name="userId", nullable=false,insertable=false,updatable=false)
-private UserDetails userDetails;
 
 
 public int getUserId() {

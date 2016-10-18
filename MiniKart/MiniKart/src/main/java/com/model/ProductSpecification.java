@@ -8,25 +8,26 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 @Entity
 public class ProductSpecification {
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+@Id
+@GeneratedValue(strategy=GenerationType.AUTO)
 private int productSpecificationId;
 private int productId;
 @OneToOne
-@JoinColumn(name="ProductId", nullable=false, insertable=false, updatable=false)
+@JoinColumn(name="productId", nullable=false, insertable=false, updatable=false)
 private Product product;
 private String productWeight;
+private String productWarranty;
+public String getProductWarranty() {
+	return productWarranty;
+}
+public void setProductWarranty(String productWarranty) {
+	this.productWarranty = productWarranty;
+}
 private String productInches;
 private String productColor;
 private String productRam;
 private String productNetworkType;
 private String productScreenSize;
-public Product getProduct() {
-	return product;
-}
-public void setProduct(Product product) {
-	this.product = product;
-}
 private String productBatteryCapacity;
 private String productCamera;
 private String productSecondaryCamera;
@@ -38,7 +39,12 @@ private String productPortType;
 private String productConnectivityFeatures;
 private String productResolution;
 
-
+public Product getProduct() {
+	return product;
+}
+public void setProduct(Product product) {
+	this.product = product;
+}
 public int getProductSpecificationId() {
 	return productSpecificationId;
 }

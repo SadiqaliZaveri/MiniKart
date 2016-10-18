@@ -30,8 +30,8 @@
             <td>{{x.subCategoryId}}</td>
             <td>{{x.categoryId}}</td>
             <td>{{x.subCategoryName}}</td>
-            <td><a href="editsub-{{s.subCategoryId}}">Edit</a></td>
-            <td><a href="deletesub-{{s.subCategoryId}}">Delete</a></td>
+            <td><a href="editsub-{{x.subCategoryId}}">Edit</a></td>
+            <td><a href="deletesub-{{x.subCategoryId}}">Delete</a></td>
             </tr>
             </tbody>
           </table>

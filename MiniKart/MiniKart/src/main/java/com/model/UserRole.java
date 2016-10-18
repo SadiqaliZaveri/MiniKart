@@ -1,6 +1,8 @@
 package com.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -8,6 +10,8 @@ import javax.persistence.OneToOne;
 @Entity
 public class UserRole {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int userRoleId;
 	private int userId;
 	private int roleId;
 	
@@ -20,9 +24,16 @@ public class UserRole {
 	private Role role;
 	
 	@OneToOne
-	UserDetails userDetails;
+	private UserDetails userDetails;
 	
 	
+	public UserDetails getUserDetails() {
+		return userDetails;
+	}
+
+	public void setUserDetails(UserDetails userDetails) {
+		this.userDetails = userDetails;
+	}
 
 	public User getUser() {
 		return user;
@@ -31,15 +42,17 @@ public class UserRole {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	public UserDetails getUserDetails() {
-		return userDetails;
-	}
-
-	public void setUserDetails(UserDetails userDetails) {
-		this.userDetails = userDetails;
-	}
 	
+	
+
+	public int getUserRoleId() {
+		return userRoleId;
+	}
+
+	public void setUserRoleId(int userRoleId) {
+		this.userRoleId = userRoleId;
+	}
+
 	public int getUserId() {
 		return userId;
 	}
