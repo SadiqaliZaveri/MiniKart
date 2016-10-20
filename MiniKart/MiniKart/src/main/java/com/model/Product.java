@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Entity
@@ -15,6 +17,15 @@ public class Product {
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 private int productId;
 
+private int supplierId;
+
+private int subCategoryId;
+
+private int categoryId;
+
+private String productName;
+
+private int productStock;
 
 @ManyToOne
 @JoinColumn(name = "subCategoryId", nullable=false, insertable=false, updatable=false)
@@ -28,15 +39,9 @@ private Category category;
 @JoinColumn(name = "supplierId", nullable=false, insertable=false, updatable=false)
 private Supplier supplier;
 
-private int supplierId;
+@Transient
+private MultipartFile productImage;
 
-private int subCategoryId;
-
-private int categoryId;
-
-private String productName;
-
-private int productStock;
 
 public Supplier getSupplier() {
 	return supplier;
@@ -62,23 +67,18 @@ public Category getCategory() {
 public void setCategory(Category category) {
 	this.category = category;
 }
-
-
-//@Transient
-//private MultipartFile productImage;
-
+public MultipartFile getProductImage() {
+	return productImage;
+}
+public void setProductImage(MultipartFile productImage) {
+	this.productImage = productImage;
+}
 public SubCategory getSubCategory() {
 	return subCategory;
 }
 public void setSubCategory(SubCategory subCategory) {
 	this.subCategory = subCategory;
 }
-//public MultipartFile getProductImage() {
-//	return productImage;
-//}
-//public void setProductImage(MultipartFile productImage) {
-//	this.productImage = productImage;
-//}
 public int getProductId() {
 	return productId;
 }

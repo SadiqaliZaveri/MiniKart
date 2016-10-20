@@ -1,16 +1,12 @@
 package com.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 @Entity
 public class ProductSpecification {
 @Id
-@GeneratedValue(strategy=GenerationType.AUTO)
-private int productSpecificationId;
 private int productId;
 @OneToOne
 @JoinColumn(name="productId", nullable=false, insertable=false, updatable=false)
@@ -45,12 +41,7 @@ public Product getProduct() {
 public void setProduct(Product product) {
 	this.product = product;
 }
-public int getProductSpecificationId() {
-	return productSpecificationId;
-}
-public void setProductSpecificationId(int productSpecificationId) {
-	this.productSpecificationId = productSpecificationId;
-}
+
 public int getProductId() {
 	return productId;
 }

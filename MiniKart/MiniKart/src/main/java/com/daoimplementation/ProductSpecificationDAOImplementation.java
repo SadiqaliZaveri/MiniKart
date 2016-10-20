@@ -48,8 +48,8 @@ public class ProductSpecificationDAOImplementation implements ProductSpecificati
 	}
 
 	@SuppressWarnings("unchecked")
-	public ProductSpecification getIdFromId(int productSpecificationId) {
-		String query ="from ProductSpecification where productSpecificationId="+productSpecificationId;
+	public ProductSpecification getIdFromId(int productId) {
+		String query ="from ProductSpecification where productSpecificationId="+productId;
 		List<ProductSpecification> productSpecificationList = sessionFactory.getCurrentSession().createQuery(query).getResultList();
 		if(productSpecificationList!=null && !productSpecificationList.isEmpty())
 		{
@@ -61,10 +61,10 @@ public class ProductSpecificationDAOImplementation implements ProductSpecificati
 		
 	}
 
-	public void deleteProductSpecification(int productSpecificationId) {
+	public void deleteProductSpecification(int productId) {
 		ProductSpecification productSpecification = new ProductSpecification();
-		productSpecification.setProductSpecificationId(productSpecificationId);
-		sessionFactory.getCurrentSession().delete(productSpecificationId);
+		productSpecification.setProductId(productId);
+		sessionFactory.getCurrentSession().delete(productId);
 		
 	}
 

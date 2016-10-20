@@ -36,6 +36,7 @@
             <td>{{x.productStock}} Units</td>
             <td><a href="editprod-{{x.productId}}">Edit</a></td>
             <td><a href="deleteprod-{{x.productId}}">Delete</a></td>
+            <td><a href="productspec-{{x.productId}}">Add Info</a></td>
             </tr>
             </tbody>
           </table>

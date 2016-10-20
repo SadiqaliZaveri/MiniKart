@@ -18,15 +18,21 @@
           <table class="table table-striped" id="tblGrid">
             <thead id="tblHead">
               <tr>
-                <th ng-click="orderByMe('subCategoryId')">SubCategory ID</th>
-                <th ng-click="orderByMe('categoryId')">Category ID</th>
-                <th ng-click="orderByMe('subCategoryName')">SubCategory Name</th>
+                <th ng-click="sort('subCategoryId')">SubCategory ID
+                <span class="glyphicon sort-icon" ng-show="sortKey=='subcategoryId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('categoryId')">Category ID
+                <span class="glyphicon sort-icon" ng-show="sortKey=='categoryId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('subCategoryName')">SubCategory Name
+                <span class="glyphicon sort-icon" ng-show="sortKey=='subCategoryName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
                 <th></th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="x in getSubCategory | filter: test | orderBy:myOrderBy | limitTo : maxsize">
+            <tr dir-paginate="x in getSubCategory | filter: test | orderBy:sortKey:reverse |itemsPerPage: maxsize" pagination-id="subCategory">
             <td>{{x.subCategoryId}}</td>
             <td>{{x.categoryId}}</td>
             <td>{{x.subCategoryName}}</td>
@@ -37,6 +43,7 @@
           </table>
 		</div>
         <div class="modal-footer">
+       <dir-pagination-controls class="pull-left" max-size="5" pagination-id="subCategory" direction-links="true" boundary-links="true" ></dir-pagination-controls>
           <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
           
         </div>

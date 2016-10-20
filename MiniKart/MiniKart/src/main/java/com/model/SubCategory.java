@@ -5,6 +5,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class SubCategory {
@@ -14,6 +15,7 @@ public class SubCategory {
 	
 	
 	private int categoryId;
+	
 	@ManyToOne
     @JoinColumn(name = "categoryId", nullable=false, insertable=false, updatable=false)
 	private Category category;

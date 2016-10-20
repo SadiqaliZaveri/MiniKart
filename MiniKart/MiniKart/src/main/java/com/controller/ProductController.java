@@ -1,5 +1,9 @@
 package com.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,15 +11,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.model.Category;
 import com.model.Product;
-import com.model.ProductSpecification;
 import com.model.SubCategory;
 import com.model.Supplier;
 import com.service.CategoryService;
 import com.service.ProductService;
-import com.service.ProductSpecificationService;
 import com.service.SubCategoryService;
 import com.service.SupplierService;
 @Controller
@@ -29,33 +32,22 @@ public class ProductController {
 	private ProductService productService;
 	@Autowired
 	private SupplierService supplierService;
-	
-	@Autowired ProductSpecificationService productSpecificationService;
+
 	
 	@RequestMapping("/products")
 	public String product(Model model)
 	{
 //		Creating New Product
-		model.addAttribute("product", new Product());
-		
-//		Creating New ProductSpecification
-		model.addAttribute("productSpecification",new ProductSpecification());
-		
+		model.addAttribute("product", new Product());			
 //		Retrieving Product Data through List
 		model.addAttribute("productListNormal",this.productService.listProduct());
 //		Retrieving Product Data through GsontoJson Conversion
 		model.addAttribute("productListJson",this.productService.listProductViaJson());
-		
-//		Retrieving ProductSpecification Data through List
-		model.addAttribute("producSpecificationtListNormal",this.productSpecificationService.listProductSpecification());
-//		Retrieving ProductSpecification Data through GsontoJson Conversion
-		model.addAttribute("productSpecificationListJson",this.productSpecificationService.listProductSpecificationViaJson());
-		
-		return "admin";
-		
+			
+		return "admin";	
 	}
 		
-	//PRODUCT ADD ACTION	
+		//PRODUCT ADD ACTION	
 		@RequestMapping(value="/add/products", method = RequestMethod.POST)
 		public String addProduct(@ModelAttribute("product") Product product){
 			
@@ -80,12 +72,27 @@ public class ProductController {
 			
 			this.productService.addProduct(product);
 			return "redirect:/admin";
-			
+//			String path= "";
+//			path = path+"";
+//			try
+//			{
+//			File f = new File(path);
+//			MultipartFile m = product.getProductImage();
+//			byte[] b = m.getBytes();
+//			FileOutputStream fos = new FileOutputStream(f);
+//			BufferedOutputStream bos = new BufferedOutputStream(fos);
+//			bos.write(b);
+//			bos.close();
+//			}
+//			catch (Exception e) {
+//				
+//			}
+	
 		}
 		
 		//Product EDIT ACTION
-				@RequestMapping(value="/editprod-{productId}", method = RequestMethod.GET)
-				public String editSubCategory(Model model,@PathVariable("productId") int productId){
+		@RequestMapping(value="/editprod-{productId}", method = RequestMethod.GET)
+		public String editSubCategory(Model model,@PathVariable("productId") int productId){
 					
 //					Retrieving Category Data through List
 					model.addAttribute("categoryListNormal", this.categoryService.listCategory());	
@@ -95,18 +102,15 @@ public class ProductController {
 					model.addAttribute("supplierListNormal",this.supplierService.listSupplier());
 					
 					model.addAttribute("product", productService.getIdFromId(productId));
-					
-//					
-					
+									
 					return "EditProduct";
 				}
 
-			//SUBCATEGORY DELETE ACTION	
-			@RequestMapping("/deleteprod-{productId}")
-			public String deleteSubCategory(@PathVariable("productId") int productId){
+		//SUBCATEGORY DELETE ACTION	
+		@RequestMapping("/deleteprod-{productId}")
+		public String deleteSubCategory(@PathVariable("productId") int productId){
 					
 			        this.productService.deleteProduct(productId);
 			        return "redirect:/admin";
 			}
-
-}
+		}

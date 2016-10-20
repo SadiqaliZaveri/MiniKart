@@ -63,7 +63,7 @@ public class ProductDAOImplementation implements ProductDAO {
 	public void deleteProduct(int productId) {
 		Product product = new Product();
 		product.setProductId(productId);
-		sessionFactory.getCurrentSession().delete(productId);
+		sessionFactory.getCurrentSession().delete(product);
 		
 	}
 

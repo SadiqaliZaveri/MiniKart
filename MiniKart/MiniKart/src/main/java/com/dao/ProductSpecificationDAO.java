@@ -12,7 +12,7 @@ public void addProduct(ProductSpecification productSpecification);
 public List<ProductSpecification> listProductSpecification();
 public String listProductSpecificationViaJson();
 public ProductSpecification getIdFromName(String productSpecificationName);
-public ProductSpecification getIdFromId(int productSpecificationId);
-public void deleteProductSpecification(int productSpecificationId);
+public ProductSpecification getIdFromId(int productId);
+public void deleteProductSpecification(int productId);
 
 }

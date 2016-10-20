@@ -302,12 +302,7 @@
 	     
 <!--      FOOTER ENDS     -->
           
-      </div>
-<!--    PAGE CONTENT WRAPPER ENDS   -->
 
-    </div>
-
-<!--    SIDE BAR WRAPPER ENDS  -->
 
 
 

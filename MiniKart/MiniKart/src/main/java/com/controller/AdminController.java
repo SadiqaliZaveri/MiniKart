@@ -9,10 +9,8 @@ import com.model.ProductSpecification;
 import com.model.SubCategory;
 import com.model.Supplier;
 import com.service.*;
-@Controller
 
-	
-	
+@Controller	
 public class AdminController {
 	@Autowired
 	private CategoryService categoryService;
@@ -70,8 +68,6 @@ public class AdminController {
 		model.addAttribute("productSpecificationListJson",this.productSpecificationService.listProductSpecificationViaJson());
 
 		
-		return "Admin";
-		
+		return "Admin";		
 	}
-
 }
