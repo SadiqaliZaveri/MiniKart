@@ -1,25 +1,32 @@
 package com.model;
 
 import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
+import org.hibernate.validator.constraints.NotEmpty;
+import com.google.gson.annotations.Expose;
 
 
 @Entity
 public class Category {
+	
+	@Expose
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int categoryId;
+	@Expose
+	@NotEmpty(message="Cannot be Empty")
 	private String categoryName;
+	@Expose
+	@NotEmpty(message="Cannot be Empty")
 	private String categoryDescription;
 	
-	@Transient
+	
+	
 	@OneToMany(mappedBy="category", fetch=FetchType.EAGER)
 	private Set<SubCategory> subCategory;
 

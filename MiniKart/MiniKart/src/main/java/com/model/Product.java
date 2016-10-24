@@ -8,24 +8,35 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.google.gson.annotations.Expose;
 
 
 @Entity
 public class Product {
+@Expose
 @Id
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 private int productId;
-
+@Expose
 private int supplierId;
-
+@Expose
 private int subCategoryId;
-
+@Expose
 private int categoryId;
-
+@Expose
+@NotEmpty(message="Cannot be Empty")
 private String productName;
-
+@Expose
 private int productStock;
+@Expose
+private int productPrice;
+@Expose
+private int productDiscountPrice;
+@Expose
+private int productRating;
 
 @ManyToOne
 @JoinColumn(name = "subCategoryId", nullable=false, insertable=false, updatable=false)
@@ -43,6 +54,24 @@ private Supplier supplier;
 private MultipartFile productImage;
 
 
+public int getProductDiscountPrice() {
+	return productDiscountPrice;
+}
+public void setProductDiscountPrice(int productDiscountPrice) {
+	this.productDiscountPrice = productDiscountPrice;
+}
+public int getProductRating() {
+	return productRating;
+}
+public void setProductRating(int productRating) {
+	this.productRating = productRating;
+}
+public int getProductPrice() {
+	return productPrice;
+}
+public void setProductPrice(int productPrice) {
+	this.productPrice = productPrice;
+}
 public Supplier getSupplier() {
 	return supplier;
 }

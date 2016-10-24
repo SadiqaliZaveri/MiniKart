@@ -16,6 +16,14 @@
 <label for="Product Stock">Product Stock:</label>
 <form:input path="productStock" cssClass="form-control" id="Product Stock" />
 </div>
+<div class="form-group tenpxtop" >
+<label for="Product Price">Product Price:</label>
+<form:input path="productPrice" cssClass="form-control" id="Product Price" />
+</div>
+<div class="form-group tenpxtop" >
+<label for="Product DPrice">Product Discount Price:</label>
+<form:input path="productDiscountPrice" cssClass="form-control" id="Product DPrice" />
+</div>
 <div class="form-group">
 <label class="labelspace">Select Category:</label>
 <form:select cssClass="form-control" path="category.categoryName" items="${categoryListNormal}" itemValue="categoryName" itemLabel="categoryName"> 
@@ -33,17 +41,16 @@
 </div>
 
 <div class="form-group">
-<button type="submit" class="btn btn-warning">Submit</button>
+<button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-ok"> Edit</i></button>
 </div>
 <div class="form-group">
-<button href="#productModal" data-toggle="modal" type="button" class="btn btn-success">Check</button>
-
+<a href="admin"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-arrow-left"> Back</i></button></a>
 </div>
 </form:form>
 </div>
 
 
-<%@include file="ProductListModal.jsp" %>
+
 <!--      FOOTER STARTS     -->
 
 <%@include file="Footer.jsp" %>

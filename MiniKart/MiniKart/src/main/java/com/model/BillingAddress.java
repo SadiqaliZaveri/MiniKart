@@ -17,6 +17,7 @@ private String state;
 private String pinCode;
 private String district;
 private String landmark;
+
 @OneToOne
 private UserDetails userDetails;
 

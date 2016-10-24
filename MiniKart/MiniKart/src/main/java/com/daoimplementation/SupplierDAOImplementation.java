@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dao.SupplierDAO;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.model.Supplier;
 @Repository
 public class SupplierDAOImplementation implements SupplierDAO{
@@ -25,7 +26,7 @@ public class SupplierDAOImplementation implements SupplierDAO{
 	}
 	@SuppressWarnings("unchecked")
 	public String listSupplierViaJson() {
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		
 		List<Supplier> list = sessionFactory.getCurrentSession().createQuery("from Supplier").getResultList();
 		String listSupplier = gson.toJson(list);

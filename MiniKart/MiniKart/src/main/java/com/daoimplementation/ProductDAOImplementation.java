@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dao.ProductDAO;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.model.Product;
 @Repository
 public class ProductDAOImplementation implements ProductDAO {
@@ -41,7 +42,7 @@ public class ProductDAOImplementation implements ProductDAO {
 	}
 	@SuppressWarnings("unchecked")
 	public String listProductViaJson() {
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		List<Product> list = sessionFactory.getCurrentSession().createQuery("from Product").getResultList();
 		String listProduct = gson.toJson(list);
 		return listProduct;
@@ -66,5 +67,6 @@ public class ProductDAOImplementation implements ProductDAO {
 		sessionFactory.getCurrentSession().delete(product);
 		
 	}
+	
 
 }

@@ -15,27 +15,16 @@
 <form:input cssClass="form-control" path="categoryDescription" id="category description"/>
 </div>
 <div class="form-group">
-<input type="submit" class="btn btn-warning" value="Submit"/>
+<button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-ok"> Edit</i></button>
 </div>
 <div class="form-group">
-<button type="button" class="btn btn-success">Check</button>
+<a href="admin"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-arrow-left"> Back</i></button></a>
 </div>
 </form:form>
 </div>
 
-<script type="text/javascript">
-var app = angular.module('Caller', []);
-var modelAttributeName = ${categoryListJson};
-app.controller('CallerController', function($scope) {
-  $scope.getCategory = modelAttributeName;
-  $scope.orderByMe = function(x) {
-	    $scope.myOrderBy = x;
-	  }
-});
 
-</script>
 
-<%@include file="CategoryListModal.jsp" %>
 <!--      FOOTER STARTS     -->
 
 <%@include file="Footer.jsp" %>

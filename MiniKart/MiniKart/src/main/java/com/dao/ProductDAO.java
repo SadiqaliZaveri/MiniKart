@@ -17,4 +17,5 @@ public Product getIdFromName(String productName);
 public Product getIdFromId(int productId);
 public void deleteProduct(int productId);
 
+
 }

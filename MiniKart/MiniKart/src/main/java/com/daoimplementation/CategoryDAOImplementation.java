@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dao.CategoryDAO;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.model.Category;
 
 
@@ -40,9 +41,9 @@ public class CategoryDAOImplementation implements CategoryDAO
 	@SuppressWarnings("unchecked")
 	public String listCategoryViaJson()
 	{
-		Gson list = new Gson();
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		List<Category> categoryList = sessionFactory.getCurrentSession().createQuery("from Category").getResultList();
-		String categoriesjson= list.toJson(categoryList);
+		String categoriesjson= gson.toJson(categoryList);
 		return categoriesjson;
 		
 	}

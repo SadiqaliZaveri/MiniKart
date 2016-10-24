@@ -5,13 +5,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.google.gson.annotations.Expose;
+
 @Entity
 public class Supplier {
+	@Expose
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int supplierId;
+	@Expose
+	@NotEmpty(message="Cannot be Empty")
 	private String supplierName;
+	@Expose
+	@NotEmpty(message="Cannot be Empty")
 	private String supplierDescription;
+	
 	public int getSupplierId() {
 		return supplierId;
 	}

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dao.SubCategoryDAO;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.model.Product;
 import com.model.SubCategory;
 @Repository
@@ -30,7 +31,7 @@ private SessionFactory sessionFactory;
 	
 	@SuppressWarnings("unchecked")
 	public String listSubCategoryViaJson() {
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		
 		
 

@@ -1,8 +1,13 @@
 package com.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,11 +41,17 @@ public class SubCategoryController {
 	
 	//SUBCATEGORIES ADD ACTION
 		@RequestMapping(value= "/add/subcategories", method = RequestMethod.POST)
-		public String addSubCategory(@ModelAttribute("subCategory") SubCategory subCategory){
+		public String addSubCategory(@Valid @ModelAttribute("subCategory") SubCategory subCategory, BindingResult bindingResult, HttpServletRequest request){
 			Category category = categoryService.getIdByName(subCategory.getCategory().getCategoryName());
 			categoryService.addCategory(category);
 			subCategory.setCategory(category);
 			subCategory.setCategoryId(category.getCategoryId());
+			if(bindingResult.hasErrors())
+			{
+				HttpSession session = request.getSession();
+				session.setAttribute("Error","<div class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>Operation Failed : Enable Javascript \\ Insert Valid Data  or Contact Support.</div>");
+				return "redirect:/admin";
+			}
 			this.subCategoryService.addSubCategory(subCategory);
 			return "redirect:/admin";
 			

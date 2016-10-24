@@ -23,9 +23,14 @@ public class AdminController {
 	@Autowired
 	private ProductSpecificationService productSpecificationService;
 	
+	
+	
+	
 	@RequestMapping("/admin")
 	public String admin(Model model)
 	{
+		
+		
 //		Creating New Category
 		model.addAttribute("category", new Category());		
 		

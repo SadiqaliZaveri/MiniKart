@@ -5,22 +5,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.google.gson.annotations.Expose;
 
 @Entity
 public class SubCategory {
+	@Expose
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int subCategoryId;
-	
-	
+	@Expose
+	@NotEmpty(message="Cannot be Empty")
+	private String subCategoryName;
+	@Expose
 	private int categoryId;
 	
 	@ManyToOne
     @JoinColumn(name = "categoryId", nullable=false, insertable=false, updatable=false)
 	private Category category;
 	
-	private String subCategoryName;
+	
 	
 	
 	public Category getCategory() {

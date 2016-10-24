@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dao.ProductSpecificationDAO;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.model.ProductSpecification;
 @Repository
 public class ProductSpecificationDAOImplementation implements ProductSpecificationDAO{
@@ -27,7 +28,7 @@ public class ProductSpecificationDAOImplementation implements ProductSpecificati
 
 	@SuppressWarnings("unchecked")
 	public String listProductSpecificationViaJson() {
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		List<ProductSpecification> list = sessionFactory.getCurrentSession().createQuery("from ProductSpecification").getResultList();
 		String listProductSpecification = gson.toJson(list);
 		return listProductSpecification;

@@ -4,15 +4,24 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.model.Category;
 import com.model.Product;
 import com.model.SubCategory;
@@ -34,6 +43,7 @@ public class ProductController {
 	private SupplierService supplierService;
 
 	
+	
 	@RequestMapping("/products")
 	public String product(Model model)
 	{
@@ -49,7 +59,7 @@ public class ProductController {
 		
 		//PRODUCT ADD ACTION	
 		@RequestMapping(value="/add/products", method = RequestMethod.POST)
-		public String addProduct(@ModelAttribute("product") Product product){
+		public String addProduct(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, HttpServletRequest request){
 			
 
 			Category category = categoryService.getIdByName(product.getCategory().getCategoryName());
@@ -70,29 +80,36 @@ public class ProductController {
 			product.setSupplierId(supplier.getSupplierId());
 			
 			
+			if(bindingResult.hasErrors())
+			{
+				HttpSession session = request.getSession();
+				session.setAttribute("Error","<div class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>Operation Failed : Enable Javascript \\ Insert Valid Data  or Contact Support.</div>");
+				return "redirect:/admin";
+			}
+			
 			this.productService.addProduct(product);
+			String path= System.getProperty("user.home")+"\\workspace\\MiniKart\\MiniKart\\src\\main\\webapp\\resources\\images\\product";
+//			String path= "C:\\Users\\Taena\\workspace\\MiniKart\\MiniKart\\src\\main\\webapp\\resources\\images\\product";
+			path = path+""+product.getProductId()+".jpg";
+			try
+			{
+			File f = new File(path);
+			MultipartFile m = product.getProductImage();
+			byte[] b = m.getBytes();
+			FileOutputStream fos = new FileOutputStream(f);
+			BufferedOutputStream bos = new BufferedOutputStream(fos);
+			bos.write(b);
+			bos.close();
+			}
+			catch (Exception e) {
+				System.out.println("ERROR WHILE IMAGE INPUT");
+			}
 			return "redirect:/admin";
-//			String path= "";
-//			path = path+"";
-//			try
-//			{
-//			File f = new File(path);
-//			MultipartFile m = product.getProductImage();
-//			byte[] b = m.getBytes();
-//			FileOutputStream fos = new FileOutputStream(f);
-//			BufferedOutputStream bos = new BufferedOutputStream(fos);
-//			bos.write(b);
-//			bos.close();
-//			}
-//			catch (Exception e) {
-//				
-//			}
-	
 		}
 		
 		//Product EDIT ACTION
 		@RequestMapping(value="/editprod-{productId}", method = RequestMethod.GET)
-		public String editSubCategory(Model model,@PathVariable("productId") int productId){
+		public String editproduct(Model model,@PathVariable("productId") int productId){
 					
 //					Retrieving Category Data through List
 					model.addAttribute("categoryListNormal", this.categoryService.listCategory());	
@@ -108,9 +125,29 @@ public class ProductController {
 
 		//SUBCATEGORY DELETE ACTION	
 		@RequestMapping("/deleteprod-{productId}")
-		public String deleteSubCategory(@PathVariable("productId") int productId){
+		public String deleteproduct(@PathVariable("productId") int productId){
+						
 					
 			        this.productService.deleteProduct(productId);
+			        File file = new File("C:\\Users\\Sadiq\\workspace\\MiniKart\\MiniKart\\src\\main\\webapp\\resources\\images\\product"+productId+".jpg");
+					file.delete();
 			        return "redirect:/admin";
 			}
+		
+		
+		@RequestMapping(value="/viewprod-{productId}", method = RequestMethod.GET)
+		public ModelAndView viewproduct(@ModelAttribute("product") Product product,@PathVariable("productId") int productId){
+			
+			Product p = productService.getIdFromId(productId);
+			Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+			String g = gson.toJson(p);
+			ModelAndView model = new ModelAndView("ProductFullView");
+			model.addObject("product", g);
+			
+			return model;
+			
 		}
+		
+		}
+
+		

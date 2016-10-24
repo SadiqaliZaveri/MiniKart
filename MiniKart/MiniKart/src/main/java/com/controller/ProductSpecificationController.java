@@ -37,6 +37,12 @@ public class ProductSpecificationController {
 			return "redirect:/admin";
 			
 		}
+		
+		public void deleteproductspec(int id)
+		{
+			productSpecificationService.deleteProductSpecification(id);
+			
+		}
 
 
 }

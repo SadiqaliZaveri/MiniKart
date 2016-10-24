@@ -1,3 +1,5 @@
+
+
 .footer-distributed{
 	background-color: none;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
@@ -6,7 +8,8 @@
 	text-align: left;
 	font: bold 16px sans-serif;
 	padding: 55px 50px;
-	margin-top: 80px;
+	margin-top: 85px;
+	
 }
 
 .footer-distributed .footer-left,

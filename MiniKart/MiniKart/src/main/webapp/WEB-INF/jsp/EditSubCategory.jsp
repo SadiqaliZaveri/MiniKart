@@ -19,15 +19,15 @@
 </form:select>
 </div>
 <div class="form-group">
-<button type="submit" class="btn btn-warning">Submit</button>
+<button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-ok"> Edit</i></button>
 </div>
 <div class="form-group">
-<button type="button" class="btn btn-success">Check</button>
+<a href="admin"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-arrow-left"> Back</i></button></a>
 </div>
 </form:form>
 </div>
 
-<%@include file="SubCategoryListModal.jsp" %>
+
 <!--      FOOTER STARTS     -->
 
 <%@include file="Footer.jsp" %>

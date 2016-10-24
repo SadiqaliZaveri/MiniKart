@@ -4,44 +4,62 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import com.google.gson.annotations.Expose;
 @Entity
 public class ProductSpecification {
+@Expose
 @Id
 private int productId;
 @OneToOne
 @JoinColumn(name="productId", nullable=false, insertable=false, updatable=false)
 private Product product;
+@Expose
 private String productWeight;
+@Expose
 private String productWarranty;
+@Expose
+private String productInches;
+@Expose
+private String productColor;
+@Expose
+private String productRam;
+@Expose
+private String productNetworkType;
+@Expose
+private String productScreenSize;
+@Expose
+private String productBatteryCapacity;
+@Expose
+private String productCamera;
+@Expose
+private String productSecondaryCamera;
+@Expose
+private String productOperatingSystem;
+@Expose
+private String productProcessor;
+@Expose
+private String productGraphicsMemory;
+@Expose
+private String productHardDiskCapacity;
+@Expose
+private String productPortType;
+@Expose
+private String productConnectivityFeatures;
+@Expose
+private String productResolution;
+
 public String getProductWarranty() {
 	return productWarranty;
 }
 public void setProductWarranty(String productWarranty) {
 	this.productWarranty = productWarranty;
 }
-private String productInches;
-private String productColor;
-private String productRam;
-private String productNetworkType;
-private String productScreenSize;
-private String productBatteryCapacity;
-private String productCamera;
-private String productSecondaryCamera;
-private String productOperatingSystem;
-private String productProcessor;
-private String productGraphicsMemory;
-private String productHardDiskCapacity;
-private String productPortType;
-private String productConnectivityFeatures;
-private String productResolution;
-
 public Product getProduct() {
 	return product;
 }
 public void setProduct(Product product) {
 	this.product = product;
 }
-
 public int getProductId() {
 	return productId;
 }

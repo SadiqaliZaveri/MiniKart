@@ -14,18 +14,19 @@
               <label for="search">Items per page:</label>
               <input type="number" min="1" max="100" class="form-control" ng-model="maxsize" ng-init="maxsize=10" >
             </div>
+            <div style="overflow: auto">
           <table class="table table-striped" id="tblGrid">
             <thead id="tblHead">
               <tr>
-                <th ng-click="orderByMe('supplierId')">Supplier ID</th>
-                <th ng-click="orderByMe('supplierName')">Supplier Name</th>
-                <th ng-click="orderByMe('supplierDescription')">Supplier Description</th>
+                <th ng-click="sort('supplierId')">Supplier ID</th>
+                <th ng-click="sort('supplierName')">Supplier Name</th>
+                <th ng-click="sort('supplierDescription')">Supplier Description</th>
                 <th></th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="x in getSupplier | filter: test | orderBy:myOrderBy | limitTo : maxsize">
+            <tr dir-paginate="x in getSupplier | filter: test | orderBy:sortKey:reverse |itemsPerPage: maxsize" pagination-id="Supplier">
             <td>{{x.supplierId}}</td>
             <td>{{x.supplierName}}</td>
             <td>{{x.supplierDescription}}</td>
@@ -34,8 +35,10 @@
             </tr>
             </tbody>
           </table>
+          </div>
 		</div>
         <div class="modal-footer">
+         <dir-pagination-controls class="pull-left"  max-size="5" pagination-id="Supplier" direction-links="true" boundary-links="true" ></dir-pagination-controls>
           <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
           
         </div>

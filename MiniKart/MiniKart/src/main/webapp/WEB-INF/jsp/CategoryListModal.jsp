@@ -14,6 +14,7 @@
               <label for="search">Items per page:</label>
               <input type="number" min="1" max="100" class="form-control" ng-model="maxsize" ng-init="maxsize=10" >
             </div>
+            <div style="overflow: auto">
           <table class="table table-striped" id="tblGrid">
           
             <thead id="tblHead">
@@ -42,6 +43,7 @@
             </tbody>
             
           </table>
+          </div>
 		</div>
         <div class="modal-footer">
         <dir-pagination-controls class="pull-left"  max-size="5" pagination-id="Category" direction-links="true" boundary-links="true" ></dir-pagination-controls>

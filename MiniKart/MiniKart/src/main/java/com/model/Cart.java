@@ -7,6 +7,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Cart {
+	
 @Id
 private int cartId;
 private int userId;

@@ -35,13 +35,13 @@ public ProductSpecification getIdFromName(String productSpecificationName) {
 }
 
 @Transactional
-public ProductSpecification getIdFromId(int productSpecificationId)
+public ProductSpecification getIdFromId(int productId)
 {
-	return productSpecificationDAOImplementation.getIdFromId(productSpecificationId);
+	return productSpecificationDAOImplementation.getIdFromId(productId);
 }
 @Transactional
-public void deleteProductSpecification(int productSpecificationId)
+public void deleteProductSpecification(int productId)
 {
-	 productSpecificationDAOImplementation.deleteProductSpecification(productSpecificationId);
+	 productSpecificationDAOImplementation.deleteProductSpecification(productId);
 }
 }
