@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
-  <context:component-scan base-package="com" />     
+  <context:component-scan base-package="com.minikart" />     
   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
     <property name="driverClassName" value="org.h2.Driver"/>
     <property name="url" value="jdbc:h2:tcp://localhost/~/MinikartDB"/>
@@ -24,7 +24,7 @@
       <property name="dataSource" ref="dataSource" />
       <property name="packagesToScan">
       <list>
-      <value>com.model</value></list></property>
+      <value>com.minikart.model</value></list></property>
       <property name="hibernateProperties">
          <props>
             <prop key="hibernate.hbm2ddl.auto">update</prop>
@@ -44,6 +44,11 @@
     class="org.springframework.orm.hibernate5.HibernateTransactionManager">
     <property name="sessionFactory" ref="sessionFactory" />
 </bean>	 
-  </beans>
+
+
+<bean id="shippingAddress" class="com.minikart.model.ShippingAddress"></bean>
+<bean id="billingAddress" class="com.minikart.model.BillingAddress"></bean>
+
+</beans>
         
   

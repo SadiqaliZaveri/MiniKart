@@ -4,7 +4,6 @@
 		 xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 						
-						
 						<authentication-manager>
 						<authentication-provider>
 						<jdbc-user-service data-source-ref="dataSource"
@@ -16,6 +15,7 @@
 							
 						<http auto-config="true" use-expressions="true">
 						<intercept-url pattern="/home" access="permitAll"/>
+						<intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
 						<access-denied-handler error-page="/403"/>
 						<form-login
 						login-page="/login"

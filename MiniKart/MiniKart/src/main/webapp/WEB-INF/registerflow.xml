@@ -1,0 +1,58 @@
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/webflow 
+		http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+		
+<on-start>
+<evaluate expression="registrationHandler.initFlow()" result="flowScope.userDetails"></evaluate>
+</on-start>
+
+
+	<view-state id="start" view="RegistrationForm3" model="userDetails">
+		<transition on="submit" to="validate"/> 
+		<transition on="cancel" to="cancel"/>
+	</view-state>
+	<action-state id="validate">
+	<evaluate expression="registrationHandler.validateDetails(flowScope.userDetails,messageContext)"></evaluate>
+		<transition on="success" to="shipping" />
+		<transition on="failure" to="start" />
+	</action-state>
+	
+	
+	<view-state id="shipping" view="RegistrationForm4" model="shippingAddress">
+		<transition on="submit" to="validateShipping"/>
+		<transition on="back" to="start"/>
+		<transition on="cancel" to="cancel"/>
+	</view-state>		
+	<action-state id="validateShipping">
+	<evaluate expression="registrationHandler.validateShipping(flowScope.userDetails,shippingAddress,messageContext)"></evaluate>
+		<transition on="success" to="billing" />
+		<transition on="failure" to="shipping" />
+	</action-state>
+	
+	
+	<view-state id="billing" view="RegistrationForm5" model="billingAddress">
+		<transition on="submit" to="confirmDetails"/>
+		<transition on="back" to="shipping"/>
+		<transition on="cancel" to="cancel"/>
+	</view-state>
+	
+	<view-state id="confirmDetails" view="RegistrationForm6" model="userDetails">
+		<transition on="submit" to="success"/>
+		<transition on="edit" to="start"/>
+		<transition on="cancel" to="cancel"/>
+	</view-state>		
+	
+	
+
+<!-- 	<view-state id="step2" view="RegisterForm4"> -->
+<!-- 		<transition on="finish" to="success"/> -->
+<!-- 		<transition on="cancel" to="cancel"/> -->
+<!-- 	</view-state> -->
+
+	<end-state id="success" view="externalRedirect:/login"/>
+
+	<end-state id="cancel" view="externalRedirect:/home"/>
+
+</flow>

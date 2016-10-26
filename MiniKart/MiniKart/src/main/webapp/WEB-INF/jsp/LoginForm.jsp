@@ -15,6 +15,12 @@
     </div>
     <button type="submit" class="btn btn-warning pull-right" value="Submit"><i class="glyphicon glyphicon-arrow-right"></i> Login</button>
   </form>
+  <h2><% 
+String errorString = (String) request.getAttribute("error");
+if(errorString != null && errorString.trim().equals("true")){
+out.println("Invalid Username/Password");	
+}
+%></h2>
 </div>
 
 <script>
