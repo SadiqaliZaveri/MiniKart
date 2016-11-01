@@ -24,7 +24,7 @@ private String emailId;
 private String contactNo;
 private String alternateContactNo;
 private int cartId;
-private int roleId;
+
 
 @OneToOne
 @JoinColumn(name="userId", nullable=false, updatable=false, insertable = false)
@@ -40,17 +40,16 @@ public BillingAddress billingAddress;
 @JoinColumn(name="shippingAddressId")
 public ShippingAddress shippingAddress;
 
+
 @OneToOne
-@JoinColumn(name="userId", insertable=false, nullable=false, updatable=false)
-private UserRole userrole;
+@JoinColumn(name="roleId")
+private UserRole userRole;
+
+@OneToOne
+@JoinColumn(name="supplierId")
+private Supplier supplier;
 
 
-public int getRoleId() {
-	return roleId;
-}
-public void setRoleId(int roleId) {
-	this.roleId = roleId;
-}
 public int getUserId() {
 	return userId;
 }
@@ -107,7 +106,12 @@ public int getCartId() {
 public void setCartId(int cartId) {
 	this.cartId = cartId;
 }
-
+public Supplier getSupplier() {
+	return supplier;
+}
+public void setSupplier(Supplier supplier) {
+	this.supplier = supplier;
+}
 
 public User getUser() {
 	return user;
@@ -115,11 +119,11 @@ public User getUser() {
 public void setUser(User user) {
 	this.user = user;
 }
-public UserRole getUserrole() {
-	return userrole;
+public UserRole getUserRole() {
+	return userRole;
 }
-public void setUserrole(UserRole userrole) {
-	this.userrole = userrole;
+public void setUserRole(UserRole userRole) {
+	this.userRole = userRole;
 }
 public Cart getCart() {
 	return cart;

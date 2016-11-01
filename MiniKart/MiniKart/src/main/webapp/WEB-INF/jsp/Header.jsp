@@ -10,22 +10,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="resources/js/jquery-3.1.1.min.js"></script>
+<!--     <script src="resources/js/ImageToolTips.js"></script> -->
     <link href="resources/css/bootstrap.min.css" rel="stylesheet" />
     <script src="resources/js/bootstrap.min.js"></script>
+    <script src="resources/js/bootstrap-select.js"></script>
+
     <script type="text/javascript" src="resources/js/angular.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="resources/js/dirPagination.js"></script>
-    <link href="resources/css/simple-sidebar.css" rel="stylesheet">
+    <link id="sidebarcss" href="resources/css/simple-sidebar.css" rel="stylesheet">
     <link href="resources/css/footer-distributed-with-address-and-phones.css" rel="stylesheet" />
+    <link href="resources/css/megamenu.css" rel="stylesheet" />
+    <link href="resources/css/Product.css" rel="stylesheet" />
     <link href="resources/css/Main.css" rel="stylesheet" />
     <title>MiniKart</title>
+   
   </head>
 
 
   <!--    NAVIGATION BAR TOP   -->
 
   <body ng-app="Caller" ng-controller="CallerController">
-
+<div class="se-pre-con"></div>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -37,12 +43,53 @@
           <a class="navbar-brand" href="home"><i class="glyphicon glyphicon-shopping-cart"> </i> MiniKart</a>
           <a class="navbar-brand" href="#" id="menu-toggle"><i class="glyphicon glyphicon-resize-full"></i></a>
         </div>
+        
         <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
-            <li><a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Abc@minikart.com</a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-earphone"></i> +123-456-789-10</a></li>
-          </ul>
+
+          <ul class="nav navbar-nav" style="margin-left:10%">
+        
+          
+          
+
+    <li class="dropdown mega-dropdown hidden-xs " style="width:230px; text-align:center; background-color:#263238; letter-spacing: 2px;">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gears" style="font-size:19px"></i> ELECTRONICS <i class="fa fa-unsorted" style="font-size:15px"></i></a>
+      <div class="dropdown-menu mega-dropdown-menu " role="menu">
+        <div class="container-fluid">
+        <hr>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane active" id="men">
+            
+              <ul class="nav-list list-inline">
+              
+              <c:forEach var="category" items="${categoryListNormal}">
+              <li>
+                  <a href="#"  class="dropdown-toggle" data-toggle="dropdown" ><span><c:out value="${category.categoryName}"/></span></a>
+<!--                   <ul> -->
+<%--                         <c:forEach var="sc" items="${category.subCategory}"> --%>
+<%--                         <li><c:out value="${sc.subCategoryName}" /></li> --%>
+<%--                         </c:forEach> --%>
+<!--                     </ul> -->
+                </li>              
+              </c:forEach>     
+                   
+              </ul>  
+            </div>
+          </div>
+          <hr> 
+        </div>
+      </div>
+    </li>
+  </ul>
+
+
+        
+        
+
+	
+	
+         
+      
 
           <ul class="nav navbar-nav navbar-right">
             <li class="cart">
@@ -85,6 +132,8 @@
             </c:if>
           </ul>
         </div>
+                
+	
       </div>
     </nav>
 
@@ -92,6 +141,7 @@
     <!-- Search Bar -->
     <div class="container-fluid searchbarbox">
       <div class="row">
+      
         <div class="container" style="margin-top: 5px; margin-bottom: 5px; ">
           <div class="row">
             <div class="input-group">
@@ -117,7 +167,12 @@
           <li><a>Today's Message :</a></li>
           <li>
             <a>
-              <marquee>Welcome To MiniKart. Enjoy Your Shopping Experience</marquee>
+              <marquee><c:forEach var="tdmessage" items="${todaysMessageListNormal}">
+      
+  <c:out value="${tdmessage.message}"/><span class="labelspace"></span>
+
+ 
+  </c:forEach></marquee>
             </a>
           </li>
           <li><a href="#"><i class="glyphicon glyphicon-envelope"></i></a></li>
@@ -129,10 +184,14 @@
     </nav>
 
 
+<!-- MEGA MENU -->
+
+	
+	
+	
 
 
 
-    <!--   Second Div Bar/Search Bar Ends   -->
 
 
 
@@ -140,16 +199,21 @@
 
 
     <!--    SIDE BAR WRAPPER / ALL CONTENT GOES IN HERE FOR RESPONSIVENESS  -->
-
-    <div id="wrapper">
+<div id="wrapper">
 
         
 <!--    SIDE BAR  -->
 <%@include file="CategorySidebar.jsp" %>
 
+<script type="text/javascript">
 
-<script type="text/javascript">   
-// Drop Down Menu
+//SHOW LOADING SIGN ON LOAD OF WEBSITE
+$(window).on('load', function () {
+	$(".se-pre-con").fadeOut("fast");
+});
+	
+
+// Drop Down Menu    
 $(".dropdown").hover(
 		  function() {
 		    $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true, false).slideDown("400");
@@ -163,12 +227,14 @@ $(".dropdown").hover(
 		function scrolltop() {
 		  window.scrollTo(0, 0);
 		}
+		
 //	Toggle Button Script 
 		$("#menu-toggle, #menu-toggle-2").click(function(e) {
 		  e.preventDefault();
 		  $("#wrapper").toggleClass("toggled");
 		});
 
+	
     </script>
     
     

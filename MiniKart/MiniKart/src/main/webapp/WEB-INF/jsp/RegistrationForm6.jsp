@@ -1,7 +1,12 @@
 <%@include file="Header.jsp" %>
 <div class="container pushfooter theme" style="max-width:500px;">
   <blockquote>
-    <h4>Confirm Details | 4-4</h4></blockquote>
+    <h4>Confirm Details | 4-4 
+    <span class="color"><c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('dberror')}" var="err">
+	  ${err.text}
+	  </c:forEach></span>
+    </h4>
+    </blockquote>
   <form:form modelAttribute="userDetails">
     <div class="form-group">
       <label for="username">UserName:

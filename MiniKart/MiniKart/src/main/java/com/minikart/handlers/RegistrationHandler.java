@@ -9,14 +9,25 @@ import org.springframework.binding.message.MessageContext;
 
 import org.springframework.stereotype.Component;
 
+import com.minikart.model.BillingAddress;
 import com.minikart.model.ShippingAddress;
+import com.minikart.model.Supplier;
 import com.minikart.model.UserDetails;
+import com.minikart.model.UserRole;
 import com.minikart.service.UserService;
 
 @Component
 public class RegistrationHandler {
 @Autowired
 public UserService userService;
+@Autowired
+public ShippingAddress shippingAddress;
+@Autowired
+public  BillingAddress billingAddress;
+@Autowired
+public UserRole userRole;
+@Autowired
+public Supplier supplier;
 	
 public UserDetails initFlow(){
 	return new UserDetails();
@@ -140,4 +151,99 @@ public String validateShipping(UserDetails userDetails, ShippingAddress shipping
 	}
 	return status;	
 }
+
+public String addDetails(UserDetails userDetails,UserRole userRole, ShippingAddress shippingAddress, BillingAddress billingAddress, MessageContext messageContext ){
+	try{
+//	userDetails.setRoleId(userRole.getRoleId());
+	userService.saveOrUpdate(userDetails);	
+	userDetails.setShippingAddress(shippingAddress);
+	userDetails.setBillingAddress(billingAddress);
+	userDetails.setUserRole(userRole);
+	
+	
+	
+	shippingAddress.setUserDetails(userDetails);
+	this.shippingAddress.setUserDetails(userDetails);
+	billingAddress.setUserDetails(userDetails);
+	this.billingAddress.setUserDetails(userDetails);
+	userRole.setUserDetails(userDetails);
+	this.userRole.setUserDetails(userDetails);
+	userService.saveOrUpdateShipping(shippingAddress);
+	userService.saveOrUpdateBilling(billingAddress);
+	userService.saveOrUpdateUserRole(userRole);
+	
+	
+	
+	}
+	catch (Exception e) {
+		messageContext.addMessage(new MessageBuilder().error().source("dberror").defaultText("Server Down! Try again Later.").build());
+		return "failure";	
+	}
+	return "success";
+	
+}
+
+public String addDetailsSupplier(UserDetails userDetails,UserRole userRole,Supplier supplier, MessageContext messageContext ){
+try{
+//	userDetails.setRoleId(userRole.getRoleId());
+	userService.saveOrUpdate(userDetails);	
+	userDetails.setUserRole(userRole);
+	userDetails.setSupplier(supplier);
+	
+	
+	userRole.setUserDetails(userDetails);
+	this.userRole.setUserDetails(userDetails);
+	supplier.setUserDetails(userDetails);
+	this.supplier.setUserDetails(userDetails);
+	userService.saveOrUpdateUserRole(userRole);
+	userService.saveOrUpdateSupplier(supplier);
+	
+	
+	
+	
+	
+	}
+	catch (Exception e) {
+		messageContext.addMessage(new MessageBuilder().error().source("dberror").defaultText("Server Down! Try again Later.").build());
+		return "failure";	
+	}
+	return "success";
+	
+}
+
+public String addShippingDetails(UserDetails userDetails, ShippingAddress shippingaddress)
+{
+	this.shippingAddress.setAddress(shippingaddress.getAddress());
+	this.shippingAddress.setCity(shippingaddress.getCity());
+	this.shippingAddress.setDistrict(shippingaddress.getDistrict());
+	this.shippingAddress.setLandmark(shippingaddress.getLandmark());
+	this.shippingAddress.setPinCode(shippingaddress.getPinCode());
+	this.shippingAddress.setState(shippingaddress.getState());
+	return "success";
+	
+}
+public String addBillingDetails(UserDetails userDetails, BillingAddress billinggaddress)
+{
+	this.billingAddress.setAddress(billingAddress.getAddress());
+	this.billingAddress.setCity(billingAddress.getCity());
+	this.billingAddress.setDistrict(billingAddress.getDistrict());
+	this.billingAddress.setLandmark(billingAddress.getLandmark());
+	this.billingAddress.setPinCode(billingAddress.getPinCode());
+	this.billingAddress.setState(billingAddress.getState());
+	return "success";
+	
+}
+public String addSupplierDetails(UserDetails userDetails, Supplier supplier)
+{
+	this.supplier.setAddress(supplier.getAddress());
+	this.supplier.setCity(supplier.getCity());
+	this.supplier.setDistrict(supplier.getDistrict());
+	this.supplier.setLandmark(supplier.getLandmark());
+	this.supplier.setPinCode(supplier.getPinCode());
+	this.supplier.setState(supplier.getState());
+	return "success";
+	
+}
+
+
 }

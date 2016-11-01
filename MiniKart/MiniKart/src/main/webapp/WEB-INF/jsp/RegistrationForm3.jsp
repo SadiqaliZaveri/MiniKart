@@ -20,7 +20,7 @@
       <form:password path="password" cssClass="form-control" id="password" />
     </div>
     <div class="form-group">
-      <label for="EmailId">Email_id:<span class="color">
+      <label for="EmailId">Email:<span class="color">
       <c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('emailid')}" var="err">
 	  ${err.text}
 	  </c:forEach>

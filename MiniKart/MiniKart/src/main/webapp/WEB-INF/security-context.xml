@@ -8,7 +8,7 @@
 						<authentication-provider>
 						<jdbc-user-service data-source-ref="dataSource"
 						users-by-username-query="select username,password,enabled from User where username=?;"
-						authorities-by-username-query="select u.username,r.roleName from User u, UserRole ur, Role r where u.userId = ur.userId and ur.roleId = r.roleId and u.username=?;"/>
+						authorities-by-username-query="select u.username,r.roleName from User u, UserRole ur, Role r where u.userId = ur.userDetails_userId and ur.roleId = r.roleId and u.username=?;"/>
 						</authentication-provider>
 						</authentication-manager>
 						
@@ -21,7 +21,7 @@
 						login-page="/login"
 						default-target-url="/home"
 						login-processing-url="/perform_login"
-						authentication-failure-url="/login?error"
+						authentication-failure-url="/login?error=1"
 						username-parameter="username"
 						password-parameter="password"
 						/>

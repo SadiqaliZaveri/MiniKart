@@ -1,11 +1,35 @@
 <%@include file="Header.jsp" %>
       
-
+<div class="container">
 
 ${sessionScope.Error}
 <c:set var="Error" value="" scope="session" />
 <blockquote>
   <h3>Admin Panel </h3></blockquote>
+  
+  
+  
+ <hr>
+<blockquote>
+  <h4>Add Today's Message</h4></blockquote>
+<div class="container-fluid">
+  <form:form id="categoryform" cssClass="form-inline" method="POST" action="add/todaysmessage" modelAttribute="todaysMessage" onsubmit="return validate(this)">
+    <div class="form-group tenpxtop">
+      <label for="categoryName">Today's Message:</label>
+      
+      <form:textarea path="message" cssClass="form-control" id="categoryName" cols="50"/>
+    </div>
+    <div class="form-group tenpxtop">
+      <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-ok"> Submit</i></button>
+    </div>
+    <div class="form-group tenpxtop">
+      <button href="#todaysMessageModal" data-toggle="modal" type="button" class="btn btn-success"><i class="glyphicon glyphicon-th-list"> Manage</i></button>
+    </div>
+  </form:form>
+  
+  
+</div> 
+  
 <!-- CATEGORY FORM -->
 <hr>
 <blockquote>
@@ -24,7 +48,7 @@ ${sessionScope.Error}
       <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-ok"> Submit</i></button>
     </div>
     <div class="form-group tenpxtop">
-      <button href="#categoryModal" data-toggle="modal" type="button" class="btn btn-success"><i class="glyphicon glyphicon-th-list"> Check</i></button>
+      <button href="#categoryModal" data-toggle="modal" type="button" class="btn btn-success"><i class="glyphicon glyphicon-th-list"> Manage</i></button>
     </div>
   </form:form>
 </div>
@@ -48,7 +72,7 @@ ${sessionScope.Error}
       <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-ok"> Submit</i></button>
     </div>
     <div class="form-group tenpxtop">
-      <button href="#subCategoryModal" data-toggle="modal" type="button" class="btn btn-success"><i class="glyphicon glyphicon-th-list"> Check</i></button>
+      <button href="#subCategoryModal" data-toggle="modal" type="button" class="btn btn-success"><i class="glyphicon glyphicon-th-list"> Manage</i></button>
     </div>
   </form:form>
 </div>
@@ -71,7 +95,7 @@ ${sessionScope.Error}
       <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-ok"> Submit</i></button>
     </div>
     <div class="form-group tenpxtop">
-      <button href="#supplierModal" data-toggle="modal" type="button" class="btn btn-success"><i class="glyphicon glyphicon-th-list"> Check</i></button>
+      <button href="#supplierModal" data-toggle="modal" type="button" class="btn btn-success"><i class="glyphicon glyphicon-th-list"> Manage</i></button>
     </div>
   </form:form>
 </div>
@@ -82,7 +106,7 @@ ${sessionScope.Error}
 <blockquote>
   <h4>Add Product</h4></blockquote>
 <div class="container-fluid">
-  <form:form id="productForm" cssClass="form-inline" method="POST" action="add/products" modelAttribute="product" enctype="multipart/form-data" onsubmit="return validate(this)">
+  <form:form id="productForm" cssClass="form" method="POST" action="add/products" modelAttribute="product" enctype="multipart/form-data" onsubmit="return validate(this)">
 
     <div class="form-group tenpxtop">
       <label for="Product Name">Product Name:</label>
@@ -117,20 +141,25 @@ ${sessionScope.Error}
     </div>
 
     <div class="form-group tenpxtop">
+    <div class="input-group">
       <label class="labelspace" for="Image">Upload Image:</label>
 
-      <form:input path="productImage" type="file" onchange="readURL(this);" cssClass="form-control" id="Image" accept="image/x-png, image/jpeg" />
-      <a id="del" class="form-control pointer colorhover"><i class="glyphicon glyphicon-remove" ></i></a>
-      <img id="Tempimg" class="tenpxtop prodimg" src="resources/images/altimg.png" alt="your image" width="350" height="350" alt="Error" />
+<form:input path="productImage" type="file" onchange="readURL(this);" cssClass="form-control" id="Image" accept="image/x-png, image/jpeg" />
+<a id="del" class="form-control pointer colorhover" ><i class="glyphicon glyphicon-remove " ></i></a> </div>
+      
+      <div class="thumbnail tenpxtop" style="width:300px">
+      <div class="imgholder">
+      <img id="Tempimg" class="img-responsive center-block" src="resources/images/altimg.png" alt="your image" alt="Error" />
+      </div></div>
     </div>
-    <div class="row">
+   
       <div class="form-group tenpxtop">
         <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-ok"> Submit</i></button>
       </div>
       <div class="form-group tenpxtop">
-        <button href="#productModal" data-toggle="modal" type="button" class="btn btn-success"><i class="glyphicon glyphicon-th-list"> Check</i></button>
+        <button href="#productModal" data-toggle="modal" type="button" class="btn btn-success"><i class="glyphicon glyphicon-th-list"> Manage</i></button>
       </div>
-    </div>
+    
   </form:form>
 </div>
 
@@ -148,7 +177,7 @@ ${sessionScope.Error}
 <button type="submit" class="btn btn-warning">Submit</button>
 </div>
 <div class="form-group">
-<button href="#productSpecificationModal" data-toggle="modal" type="button" class="btn btn-success">Check</button>
+<button href="#productSpecificationModal" data-toggle="modal" type="button" class="btn btn-success">Manage</button>
 </div>
 </form:form>
 </div> --%>
@@ -164,8 +193,16 @@ ${sessionScope.Error}
 
 <%@include file="ProductListModal.jsp" %>
 
+<%@include file="TodaysMessageModal.jsp" %>
 
+</div>
 <script type="text/javascript">
+
+$("#wrapper").toggleClass("toggled");
+
+
+
+
 //MODULE AND CONTROLLER - ANGULARJS - RETRIEVAL OF DATA VIA JSON LISTS
 var app = angular.module('Caller', ['angularUtils.directives.dirPagination']);
 app.controller('CallerController', function($scope) {
@@ -173,7 +210,8 @@ app.controller('CallerController', function($scope) {
   $scope.getSubCategory = ${subCategoryListJson};
   $scope.getSupplier = ${supplierListJson};
   $scope.getProduct = ${productListJson};
-  $scope.getProductSpecification = ${productSpecificationListJson};
+  $scope.getTodaysMessage = ${todaysMessageListJson};
+//   $scope.getProductSpecification = ${productSpecificationListJson};
   $scope.sort = function(keyname) {
     $scope.sortKey = keyname; //set the sortKey to the param passed
     $scope.reverse = !$scope.reverse; //if true make it false and vice versa
@@ -199,7 +237,8 @@ function readURL(input) {
 function validate(formid) {
 
   var von = 0;
-  var elements = formid.getElementsByTagName('input');
+  var elements = formid.querySelectorAll('input,textarea');
+//   var elements = formid.getElementsByTagName('input');
 
   for (i = 0; i < elements.length; i++) {
 

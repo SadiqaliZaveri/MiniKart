@@ -18,27 +18,26 @@ public class UserRole implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int userRoleId;
-	private int userId;
 	private int roleId;
 	
-	@OneToOne
-	@JoinColumn(name="userId", nullable=false,insertable=false,updatable=false)
-	private User user;
+
 	
 	@OneToOne
 	@JoinColumn(name="roleId", nullable=false,insertable=false,updatable=false)
 	private Role role;
 	
-	public User getUser() {
-		return user;
+	@OneToOne
+	private UserDetails userDetails;
+	
+	public UserDetails getUserDetails() {
+		return userDetails;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserDetails(UserDetails userDetails) {
+		this.userDetails = userDetails;
 	}
-	
-	
 
+	
 	public int getUserRoleId() {
 		return userRoleId;
 	}
@@ -47,13 +46,6 @@ public class UserRole implements Serializable {
 		this.userRoleId = userRoleId;
 	}
 
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
 
 	public int getRoleId() {
 		return roleId;

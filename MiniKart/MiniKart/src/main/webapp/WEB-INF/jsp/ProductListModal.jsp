@@ -13,7 +13,13 @@
         </div>
         <div class="form-group">
               <label for="search">Items per page:</label>
-              <input type="number" min="1" max="100" class="form-control" ng-model="maxsize" ng-init="maxsize=10" >
+              <select class="form-control" ng-model="maxsize" ng-init="maxsize=10">
+			    <option ng-selected="true">10</option>
+			    <option>20</option>
+			    <option>30</option>
+			    <option>40</option>
+			  </select>
+<!--               <input type="number" min="1" max="100" class="form-control" ng-model="maxsize" ng-init="maxsize=10" > -->
             </div>
             <div style="overflow: auto">
           <table class="table table-striped" id="tblGrid">

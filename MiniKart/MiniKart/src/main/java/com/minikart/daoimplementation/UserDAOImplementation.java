@@ -14,6 +14,7 @@ import com.minikart.dao.UserDAO;
 import com.minikart.model.BillingAddress;
 import com.minikart.model.Cart;
 import com.minikart.model.ShippingAddress;
+import com.minikart.model.Supplier;
 import com.minikart.model.User;
 import com.minikart.model.UserDetails;
 import com.minikart.model.UserRole;
@@ -23,7 +24,7 @@ public class UserDAOImplementation implements UserDAO{
 	@Autowired
 	private SessionFactory sessionFactory;
 	public void saveOrUpdateUser(UserDetails userDetails) {
-		// TODO Auto-generated method stub
+		
 		Session session = this.sessionFactory.getCurrentSession();
 		User user = new User();
 		/*user.setUserId(userDetails.getUserId());
@@ -31,12 +32,14 @@ public class UserDAOImplementation implements UserDAO{
 		user.setUsername(userDetails.getUsername());
 		user.setPassword(userDetails.getPassword());
 		user.setEnabled(true);
+		user.setUserId(userDetails.getUserId());
+		
 		session.saveOrUpdate(user);
 		
-		UserRole userRole = new UserRole();
-		userRole.setUserId(user.getUserId());
-		userRole.setRoleId(1);
-		session.saveOrUpdate(userRole);
+//		UserRole userRole = new UserRole();
+//		userRole.setUserId(user.getUserId());
+//		userRole.setRoleId(1);
+//		session.saveOrUpdate(userRole);
 		
 		Cart cart = new Cart();
 		cart.setCartId(user.getUserId());
@@ -45,15 +48,26 @@ public class UserDAOImplementation implements UserDAO{
 						
 		
 		
-		userDetails.setRoleId(1);
+//		userDetails.setRoleId(1);
 		userDetails.setUserId(user.getUserId());
 		userDetails.setCartId(cart.getCartId());
 		
-		userDetails.getBillingAddress().setUserDetails(userDetails);
-		userDetails.getShippingAddress().setUserDetails(userDetails);
+//		session.saveOrUpdate(userDetails.getUserRole());
+//		userDetails.getUserRole().setUserDetails(userDetails);
 		
-		session.saveOrUpdate(userDetails.getBillingAddress());
-		session.saveOrUpdate(userDetails.getShippingAddress());
+		if(!(userDetails.getShippingAddress() == null))
+				{
+//		userDetails.getBillingAddress().setUserDetails(userDetails);
+//		userDetails.getShippingAddress().setUserDetails(userDetails);
+//		session.saveOrUpdate(userDetails.getBillingAddress());
+//		session.saveOrUpdate(userDetails.getShippingAddress());
+				}
+if(!(userDetails.getSupplier() == null))
+{
+//	userDetails.getSupplier().setUserDetails(userDetails);
+//	session.saveOrUpdate(userDetails.getSupplier());
+}
+		
 		
 		
 		session.saveOrUpdate(userDetails);
@@ -72,6 +86,12 @@ public class UserDAOImplementation implements UserDAO{
 	}
 	public void saveOrUpdateBilling(BillingAddress billingAddress) {
 		sessionFactory.getCurrentSession().saveOrUpdate(billingAddress);		
+	}
+	public void saveOrUpdateUserRole(UserRole userRole) {
+		sessionFactory.getCurrentSession().saveOrUpdate(userRole);	
+	}
+	public void saveOrUpdateSupplier(Supplier supplier) {
+		sessionFactory.getCurrentSession().saveOrUpdate(supplier);		
 	}
 	
 

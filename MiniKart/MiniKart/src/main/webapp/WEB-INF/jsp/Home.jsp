@@ -1,3 +1,4 @@
+
 <%@include file="Header.jsp" %>
 
 <!--    SIDE BAR ENDS -->
@@ -49,11 +50,11 @@
 <div class="col-xs-12"><h3>Featured Products</h3>
              
     </div></div><hr>
-                    <div class="col-xs-12 col-sm-4 col-md-3 ">
+                    <div class="col-xs-12 col-sm-4 col-md-3 preview">
                         <div class="thumbnail">
                         <div class="imgholder">
                         
-                            <img class="img-responsive center-block"  src="resources/images/product4.jpg" alt="">
+                            <img class="img-responsive center-block "  src="resources/images/product7.jpg" alt="">
                            
                             </div>
                             <div class="caption">
@@ -75,10 +76,12 @@
                         </div>
                     </div>
                     
-                    <div class="col-xs-12 col-sm-4 col-md-3">
+                    <div class="col-xs-12 col-sm-4 col-md-3 preview">
                         <div class="thumbnail">
                         <div class="imgholder">
-                            <img class="img-responsive center-block" src="resources/images/product5.jpg" alt="">
+                        
+                            <img class="img-responsive center-block "  src="resources/images/altimg.png" alt="">
+                           
                             </div>
                             <div class="caption">
                                 <h4 class="pull-right">$24.99</h4>
@@ -103,7 +106,7 @@
                     <div class="col-xs-12 col-sm-4 col-md-3">
                         <div class="thumbnail">
                         <div style="width:100%; height:300px;">
-                            <img class="img-responsive center-block" src="resources/images/product6.jpg" alt="">
+                            <img class="img-responsive center-block" src="resources/images/altimg.png" alt="">
                             </div>
                             <div class="caption">
                                 <h4 class="pull-right">$64.99</h4>
@@ -152,7 +155,7 @@
              </div></div><hr>
                     <div class="col-xs-12 col-sm-4 col-md-3">
                         <div class="thumbnail">
-                            <img src="resources/images/altimg.png" alt="">
+                            <img src="resources/images/product7.jpg" alt="">
                             <div class="caption">
                                 <h4 class="pull-right">$84.99</h4>
                                 <h4><a href="#">Fourth Product</a>
@@ -309,7 +312,7 @@
 			     
 <!--      FOOTER ENDS     -->
           
-   
+
   </body>
 
 </html>

@@ -6,15 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.minikart.model.Category;
 import com.minikart.model.Product;
-import com.minikart.model.ProductSpecification;
 import com.minikart.model.SubCategory;
 import com.minikart.model.Supplier;
+import com.minikart.model.TodaysMessage;
 import com.minikart.service.*;
 
 @Controller	
 public class AdminController {
-	@Autowired
-	private CategoryService categoryService;
+
 	@Autowired
 	private SubCategoryService subCategoryService;
 	@Autowired
@@ -22,7 +21,7 @@ public class AdminController {
 	@Autowired
 	private ProductService productService;
 	@Autowired
-	private ProductSpecificationService productSpecificationService;
+	private TodaysMessageService todaysMessageService;
 	
 	
 	
@@ -43,15 +42,11 @@ public class AdminController {
 		
 //		Creating New Product
 		model.addAttribute("product", new Product());
+
+//		Creating New TodaysMessage
+		model.addAttribute("todaysMessage", new TodaysMessage());
 		
-//		Creating New ProductSpecification
-		model.addAttribute("productSpecification",new ProductSpecification());
-		
-		
-//		Retrieving Category Data through List
-		model.addAttribute("categoryListNormal", this.categoryService.listCategory());		
-//		Retrieving Category Data through GsontoJson Conversion 
-		model.addAttribute("categoryListJson",this.categoryService.listCategoryViaJson());
+
 		
 //		Retrieving SubCategory Data through List 
 		model.addAttribute("subCategoryListNormal", this.subCategoryService.listSubCategory());		
@@ -67,12 +62,14 @@ public class AdminController {
 		model.addAttribute("productListNormal",this.productService.listProduct());
 //		Retrieving Product Data through GsontoJson Conversion
 		model.addAttribute("productListJson",this.productService.listProductViaJson());
-
+		
+		model.addAttribute("todaysMessageListJson",this.todaysMessageService.listTodaysMessageViaJson());
+/*
 //		Retrieving ProductSpecification Data through List
 		model.addAttribute("producSpecificationtListNormal",this.productSpecificationService.listProductSpecification());
 //		Retrieving ProductSpecification Data through GsontoJson Conversion
 		model.addAttribute("productSpecificationListJson",this.productSpecificationService.listProductSpecificationViaJson());
-
+*/
 		
 		return "Admin";		
 	}

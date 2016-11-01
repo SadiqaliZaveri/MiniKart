@@ -1,5 +1,5 @@
 
-<%@include file="Header.jsp" %>
+<jsp:include page="Header.jsp" />
       
 
 
@@ -30,7 +30,7 @@
 
 <!--      FOOTER STARTS     -->
 
-<%@include file="Footer.jsp" %>
+<jsp:include page="Footer.jsp" />
 		
 
 <!--      FOOTER ENDS     -->

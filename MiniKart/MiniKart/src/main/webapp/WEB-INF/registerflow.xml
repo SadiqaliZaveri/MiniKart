@@ -3,7 +3,11 @@
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/webflow 
 		http://www.springframework.org/schema/webflow/spring-webflow.xsd">
-		
+
+<var name="userDetails" class="com.minikart.model.UserDetails"/>
+<var name="shippingAddress" class="com.minikart.model.ShippingAddress"/>
+<var name="billingAddress" class="com.minikart.model.BillingAddress"/>
+<var name="userRole" class="com.minikart.model.UserRole"/>		
 <on-start>
 <evaluate expression="registrationHandler.initFlow()" result="flowScope.userDetails"></evaluate>
 </on-start>
@@ -15,34 +19,91 @@
 	</view-state>
 	<action-state id="validate">
 	<evaluate expression="registrationHandler.validateDetails(flowScope.userDetails,messageContext)"></evaluate>
-		<transition on="success" to="shipping" />
+		<transition on="success" to="choosetype" />
 		<transition on="failure" to="start" />
 	</action-state>
-	
+<!-- GOES TO CHOOSE ROLE TYPE	 -->
+	<view-state id="choosetype" view="RegistrationForm3.5" model="userRole">
+		<transition on="submitship" to="shipping"/>
+		<transition on="submitsupp" to="supplier"/>
+		<transition on="back" to="start"/>
+		<transition on="cancel" to="cancel"/>
+	</view-state>
+<!-- GOES TO SUPPLIER FORM	 -->
+	<view-state id="supplier" view="RegistrationForm4.5" model="supplier">
+		<transition on="submit" to="confirmSupplierDetails"/>
+		<transition on="back" to="choosetype"/>
+		<transition on="cancel" to="cancel"/>
+	</view-state>
+	<action-state id="addSupplierDetails">
+	<evaluate expression="registrationHandler.addSupplierDetails(flowScope.userDetails, supplier)"></evaluate>
+		<transition on="success" to="confirmSupplierDetails" />
+		<transition on="failure" to="supplier" />
+	</action-state>
 	
 	<view-state id="shipping" view="RegistrationForm4" model="shippingAddress">
 		<transition on="submit" to="validateShipping"/>
-		<transition on="back" to="start"/>
+		<transition on="back" to="choosetype"/>
 		<transition on="cancel" to="cancel"/>
 	</view-state>		
 	<action-state id="validateShipping">
 	<evaluate expression="registrationHandler.validateShipping(flowScope.userDetails,shippingAddress,messageContext)"></evaluate>
-		<transition on="success" to="billing" />
+		<transition on="success" to="addShippingDetails" />
 		<transition on="failure" to="shipping" />
+	</action-state>
+	<action-state id="addShippingDetails">
+	<evaluate expression="registrationHandler.addShippingDetails(flowScope.userDetails, shippingAddress)"></evaluate>
+		<transition on="success" to="billing" />
+		<transition on="failure" to="confirmDetails" />
 	</action-state>
 	
 	
 	<view-state id="billing" view="RegistrationForm5" model="billingAddress">
-		<transition on="submit" to="confirmDetails"/>
+		<transition on="submit" to="addBillingDetails"/>
 		<transition on="back" to="shipping"/>
 		<transition on="cancel" to="cancel"/>
-	</view-state>
+	</view-state>	
+	<action-state id="addBillingDetails">
+	<evaluate expression="registrationHandler.addBillingDetails(flowScope.userDetails, billingAddress)"></evaluate>
+		<transition on="success" to="confirmDetails" />
+		<transition on="failure" to="confirmDetails" />
+	</action-state>
+
+
 	
 	<view-state id="confirmDetails" view="RegistrationForm6" model="userDetails">
-		<transition on="submit" to="success"/>
+		<transition on="submit" to="addDetails"/>
 		<transition on="edit" to="start"/>
 		<transition on="cancel" to="cancel"/>
-	</view-state>		
+	</view-state>
+	<action-state id="addDetails">
+	<evaluate expression="registrationHandler.addDetails(flowScope.userDetails,userRole,shippingAddress,billingAddress,messageContext)"></evaluate>
+		<transition on="success" to="saveUser" />
+		<transition on="failure" to="confirmDetails" />
+	</action-state>
+	
+	<action-state id="saveUser">
+	<evaluate expression="userService.saveOrUpdate(userDetails)" result="userDetails"></evaluate>
+	<transition to="success"></transition>
+	
+	</action-state>
+	
+	<view-state id="confirmSupplierDetails" view="RegistrationForm6" model="userDetails">
+		<transition on="submit" to="addDetailsSupplier"/>
+		<transition on="edit" to="start"/>
+		<transition on="cancel" to="cancel"/>
+	</view-state>
+	<action-state id="addDetailsSupplier">
+	<evaluate expression="registrationHandler.addDetailsSupplier(flowScope.userDetails,userRole,supplier,messageContext)"></evaluate>
+		<transition on="success" to="saveUser" />
+		<transition on="failure" to="confirmDetails" />
+	</action-state>
+
+	
+	
+	
+	
+			
 	
 	
 
@@ -51,8 +112,8 @@
 <!-- 		<transition on="cancel" to="cancel"/> -->
 <!-- 	</view-state> -->
 
-	<end-state id="success" view="externalRedirect:/login"/>
-
-	<end-state id="cancel" view="externalRedirect:/home"/>
+	<end-state id="success" view="externalRedirect:contextRelative:/login"/>
+	<end-state id="cancel" view="externalRedirect:contextRelative:/home"/>
+	
 
 </flow>
