@@ -63,6 +63,7 @@ hr {
 }
 
 
+
 /*    NAVIGATION STYLING    */
 
 .body {
@@ -234,7 +235,7 @@ li:hover {
 
 ::-webkit-scrollbar {
   width: 5px;
-  height: 5px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-button {
@@ -303,12 +304,39 @@ li:hover {
   position: relative;
   margin: 0 auto;
   width: 100%;
-  height: 300px;
+  height:200px;
+  
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
 }
 
+.thumbnail
+{
+	min-height: auto;
+	
+}
+@media(max-width:768px) {
+.imgholder{
+	max-height:300px;
+}	
+	
+	
+}
+
+
+.cartbutton
+{
+	background-color: #f65819;
+	color:white;
+	border: 2px solid #263238;
+	border-radius: 50px;
+}
+.cartbutton:hover
+{	background-color: #263238;
+	border: 2px solid #f65819;
+	color:white;
+}
 
 /* ALERT  */
 
@@ -379,6 +407,29 @@ li:hover {
 	background: url(Preloader_1.gif) center no-repeat #fff;
 }
 
+
+
+/* Panels  */
+.panel-default>.panel-heading
+{
+	background-color:#263238;
+	color:#f65819;
+	cursor: pointer;
+}
+
+/* Contact Us  */
+.first-box{padding:10px;background:#f65819;}
+.second-box{color:white;padding:10px; background:#263238;}
+.third-box{padding:10px;background:#f65819;}
+.fourth-box{color:white;padding:10px;background:#263238;}
+
+/* Map lock  */
+
+.maplock
+{
+	pointer-events:none;
+	
+}
 
 
 

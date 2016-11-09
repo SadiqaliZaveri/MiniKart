@@ -10,18 +10,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="resources/js/jquery-3.1.1.min.js"></script>
-<!--     <script src="resources/js/ImageToolTips.js"></script> -->
     <link href="resources/css/bootstrap.min.css" rel="stylesheet" />
     <script src="resources/js/bootstrap.min.js"></script>
-    <script src="resources/js/bootstrap-select.js"></script>
-
     <script type="text/javascript" src="resources/js/angular.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="resources/js/dirPagination.js"></script>
     <link id="sidebarcss" href="resources/css/simple-sidebar.css" rel="stylesheet">
     <link href="resources/css/footer-distributed-with-address-and-phones.css" rel="stylesheet" />
-    <link href="resources/css/megamenu.css" rel="stylesheet" />
-    <link href="resources/css/Product.css" rel="stylesheet" />
+    <link href="resources/css/megamenu.css" rel="stylesheet" />  
     <link href="resources/css/Main.css" rel="stylesheet" />
     <title>MiniKart</title>
    
@@ -46,13 +42,13 @@
         
         <div class="collapse navbar-collapse" id="myNavbar">
 
-          <ul class="nav navbar-nav" style="margin-left:10%">
+          <ul id="maincategory" class="nav navbar-nav" style="margin-left:10%">
         
           
           
 
-    <li class="dropdown mega-dropdown hidden-xs " style="width:230px; text-align:center; background-color:#263238; letter-spacing: 2px;">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gears" style="font-size:19px"></i> ELECTRONICS <i class="fa fa-unsorted" style="font-size:15px"></i></a>
+    <li  class="dropdown mega-dropdown hidden-xs " style="width:230px; text-align:center; background-color:#263238; letter-spacing: 2px;">
+      <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gears" style="font-size:19px"></i> ELECTRONICS <i class="fa fa-unsorted" style="font-size:15px"></i></a>
       <div class="dropdown-menu mega-dropdown-menu " role="menu">
         <div class="container-fluid">
         <hr>
@@ -63,11 +59,12 @@
               <ul class="nav-list list-inline">
               
               <c:forEach var="category" items="${categoryListNormal}">
-              <li>
-                  <a href="#"  class="dropdown-toggle" data-toggle="dropdown" ><span><c:out value="${category.categoryName}"/></span></a>
-<!--                   <ul> -->
+              <li class="dropdown-submenu">
+                  <a href="home"><span><c:out value="${category.categoryName}"/></span></a>
+<!--                   <ul class="dropdown-menu"> -->
 <%--                         <c:forEach var="sc" items="${category.subCategory}"> --%>
-<%--                         <li><c:out value="${sc.subCategoryName}" /></li> --%>
+                        
+<%--                        <a style="text-decoration:none; color:black;" href="home"><li style="text-align:center"><c:out value="${sc.subCategoryName}" /></li></a> --%>
 <%--                         </c:forEach> --%>
 <!--                     </ul> -->
                 </li>              
@@ -92,20 +89,30 @@
       
 
           <ul class="nav navbar-nav navbar-right">
+           <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ANONYMOUS')">
             <li class="cart">
               <a href="cart"><img alt="Logo" src="resources/images/logo.png" width="25" height="15"> Your Cart</a>
             </li>
+            </sec:authorize>
              <c:if test="${pageContext.request.userPrincipal.name != null}">
             <div class="hidden-sm hidden-md hidden-lg">
               <ul class="nav navbar-nav" style="padding-left:10%; padding-right:10%;">
-                <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+              <sec:authorize access="hasRole('ROLE_USER')">
+                <li><a href="#">Profile User <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
                 <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
                 <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
                 <li><a href="#">Favourites Snippets <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+                </sec:authorize>
                 <li><a href="perform_logout">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
                   <li><a href="admin"> Admin Panel<span class="glyphicon glyphicon-user pull-right"></span></a></li>
                 </sec:authorize>
+                <sec:authorize access="hasRole('ROLE_SUPPLIER')">
+                  <li><a href="supplier">Supplier Panel<span class="glyphicon glyphicon-user pull-right"></span></a></li>
+                </sec:authorize>
+                
+                  
+                
               </uL>
             </div>
             </c:if>
@@ -115,14 +122,19 @@
               <li class="dropdown hidden-xs">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">${pageContext.request.userPrincipal.name}<span class="glyphicon glyphicon-user pull-right"> </span></a>
                 <ul class="dropdown-menu">
+                <sec:authorize access="hasRole('ROLE_USER')">
                   <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
                   <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
                   <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
                   <li><a href="#">Favourites Snippets <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+                  </sec:authorize>
                   <li><a href="perform_logout">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
                   <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <li><a href="admin"> Admin Panel<span class="glyphicon glyphicon-user pull-right"></span></a></li>
                   </sec:authorize>
+                  <sec:authorize access="hasRole('ROLE_SUPPLIER')">
+                  <li><a href="supplier">Supplier Panel<span class="glyphicon glyphicon-user pull-right"></span></a></li>
+                </sec:authorize>
                 </ul>
               </li>
             </c:if>
@@ -164,10 +176,10 @@
     <nav class="navbar navbar-inverse navbar-fixed-bottom">
       <div class="container-fluid">
         <ul class="nav navbar-nav hidden-xs">
-          <li><a>Today's Message :</a></li>
+          <li id="todaysmessage"><a>Today's Message :</a></li>
           <li>
             <a>
-              <marquee><c:forEach var="tdmessage" items="${todaysMessageListNormal}">
+              <marquee style="font-size:13px; height:17px;"><c:forEach var="tdmessage" items="${todaysMessageListNormal}">
       
   <c:out value="${tdmessage.message}"/><span class="labelspace"></span>
 
@@ -175,7 +187,11 @@
   </c:forEach></marquee>
             </a>
           </li>
-          <li><a href="#"><i class="glyphicon glyphicon-envelope"></i></a></li>
+          <li><a href="home"><i class="fa fa-home"></i></a></li>
+          <li><a href="FAQ"><i class="fa fa-question"></i></a></li>
+          <li><a href="contactus"><i class="fa fa-phone"></i></a></li>
+          <li><a href="#"><i class="fa fa-info-circle"></i></a></li>
+          
         </ul>
         <ul class="nav navbar-nav navbar-right pull-right">
           <li onclick="scrolltop()"><a><span class="glyphicon glyphicon-arrow-up"></span></a></li>
@@ -207,6 +223,8 @@
 
 <script type="text/javascript">
 
+
+
 //SHOW LOADING SIGN ON LOAD OF WEBSITE
 $(window).on('load', function () {
 	$(".se-pre-con").fadeOut("fast");
@@ -214,15 +232,21 @@ $(window).on('load', function () {
 	
 
 // Drop Down Menu    
+
 $(".dropdown").hover(
 		  function() {
 		    $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true, false).slideDown("400");
+		    
 		    $(this).toggleClass('open');
 		  },
 		  function() {
-		    $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true, false).slideUp("400");
+		    $('.dropdown-menu', this).not('.in .dropdown-menu ').stop(true, false).slideUp("400");
+		    
 		    $(this).toggleClass('open');
-		  });
+
+  });
+		  
+
 
 		function scrolltop() {
 		  window.scrollTo(0, 0);
@@ -234,7 +258,13 @@ $(".dropdown").hover(
 		  $("#wrapper").toggleClass("toggled");
 		});
 
-	
+		//Hide Elements Based on URL
+		 var url=window.location.href.split('?')[0];
+		if(url=="http://localhost:8080/MiniKart/reg")
+			{
+			$("#maincategory").hide();
+			$("#todaysmessage").hide();
+			}
     </script>
     
     

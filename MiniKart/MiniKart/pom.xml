@@ -154,6 +154,13 @@
 		    <artifactId>spring-webflow</artifactId>
 		    <version>2.4.4.RELEASE</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.integration/spring-integration-mail -->
+		<dependency>
+		    <groupId>org.springframework.integration</groupId>
+		    <artifactId>spring-integration-mail</artifactId>
+		    <version>4.3.4.RELEASE</version>
+		</dependency>
+		
 		
 		
 		

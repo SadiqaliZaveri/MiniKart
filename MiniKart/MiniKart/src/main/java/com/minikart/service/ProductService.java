@@ -36,12 +36,22 @@ public String listProductViaJson() {
 }
 @Transactional
 public Product getIdFromId(int productId)
-{
-	return productDAOImplementation.getIdFromId(productId);
+{		
+	return productDAOImplementation.getIdFromId(productId);	
 }
+
 @Transactional
 public void deleteProduct(int productId)
 {
 	 productDAOImplementation.deleteProduct(productId);
 }
+@Transactional
+public void enableDisableProduct(int productId) {
+	productDAOImplementation.enableDisableProduct(productId);
+}
+@Transactional
+public String listProductEnabledViaJson() {
+	return productDAOImplementation.listProductEnabledViaJson();
+}
+
 }

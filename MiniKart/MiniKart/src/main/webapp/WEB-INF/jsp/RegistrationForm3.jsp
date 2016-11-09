@@ -8,7 +8,7 @@
       <c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('username')}" var="err">
 	  ${err.text}
 	  </c:forEach></span></label>
-      <form:input path="username" cssClass="form-control" id="username" />
+      <form:input path="username" cssClass="form-control" id="username" maxlength="255"/>
     </div>
     <div class="form-group">
       <label for="password">Password:<span class="color">
@@ -17,7 +17,7 @@
 	  </c:forEach>
 	  </span>
       </label>
-      <form:password path="password" cssClass="form-control" id="password" />
+      <form:password path="password" cssClass="form-control" id="password" maxlength="255" />
     </div>
     <div class="form-group">
       <label for="EmailId">Email:<span class="color">
@@ -26,7 +26,7 @@
 	  </c:forEach>
 	  </span>
       </label>
-      <form:input path="emailId" cssClass="form-control" id="EmailId" />
+      <form:input path="emailId" cssClass="form-control" id="EmailId" maxlength="255"/>
     </div>
     <div class="form-group">
       <label for="FirstName">First Name:<span class="color">
@@ -35,7 +35,7 @@
 	  </c:forEach>
 	  </span>
       </label>
-      <form:input path="firstName" cssClass="form-control" id="FirstName" />
+      <form:input path="firstName" cssClass="form-control" id="FirstName" maxlength="255"/>
     </div>
     <div class="form-group">
       <label for="LastName">Last Name:<span class="color">
@@ -44,7 +44,7 @@
 	  </c:forEach>
 	  </span>
       </label>
-      <form:input path="lastName" cssClass="form-control" id="LastName" />
+      <form:input path="lastName" cssClass="form-control" id="LastName" maxlength="255"/>
     </div>
     <div class="form-group">
       <label for="contact_no">Contact Number:<span class="color">
@@ -58,7 +58,7 @@
     <div class="form-group">
       <label for="alternateContactNo">Alternate Contact Number:
       </label>
-      <form:input path="alternateContactNo" cssClass="form-control" id="alternateContactNo" />
+      <form:input path="alternateContactNo" cssClass="form-control" id="alternateContactNo" maxlength="255"/>
     </div>
     <div class="form-grouo">
     <button name="_eventId_submit" type="submit" class="btn btn-warning pull-right"><i class="glyphicon glyphicon-arrow-right"></i> Continue</button>
@@ -69,6 +69,8 @@
 
 <script>
 $("#wrapper").toggleClass("toggled");
+
+
 </script> 
 
 <!--      FOOTER STARTS     -->

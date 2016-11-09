@@ -61,7 +61,7 @@
 </div>
 <div class="form-group tenpxtop" >
 <label for="Product Color">Product Color:</label>
-<form:input path="productColor" cssClass="form-control" id="Product Color" value="N/A"/>
+<form:input path="productColor" cssClass="form-control" id="Product Color" value="N/A" maxlength="255"/>
 </div>
 <div class="form-group tenpxtop" >
 <label for="Product Connectivity Features">Product Connectivity Features:</label>
@@ -114,7 +114,7 @@
 </div>
 <div class="form-group tenpxtop" >
 <label for="Product Product Inches">Product Inches:</label>
-<form:input path="productInches" cssClass="form-control" id="Product Product Inches" value="N/A"/>
+<form:input path="productInches" cssClass="form-control" id="Product Product Inches" value="N/A" maxlength="255"/>
 </div>
 <div class="form-group tenpxtop" >
 <label for="Product Network Type">Product Network Type:</label>
@@ -223,7 +223,7 @@
 </div>
 <div class="form-group tenpxtop" >
 <label for="Product Weight">Product Weight:</label>
-<form:input path="productWeight" cssClass="form-control" id="Product Weight" value="N/A"/>
+<form:input path="productWeight" cssClass="form-control" id="Product Weight" value="N/A" maxlength="255"/>
 </div>
 <div class="form-group tenpxtop" >
 <label for="Product Warranty">Product Warranty:</label>

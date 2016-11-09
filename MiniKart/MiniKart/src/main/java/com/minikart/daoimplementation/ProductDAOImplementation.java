@@ -17,8 +17,8 @@ public class ProductDAOImplementation implements ProductDAO {
 	private SessionFactory sessionFactory;
 	
 	public void addProduct(Product product) {
-		sessionFactory.getCurrentSession().saveOrUpdate(product);
-		
+		product.setEnabled(false);
+		sessionFactory.getCurrentSession().saveOrUpdate(product);	
 	}
 
 	@SuppressWarnings("unchecked")
@@ -65,6 +65,20 @@ public class ProductDAOImplementation implements ProductDAO {
 		Product product = new Product();
 		product.setProductId(productId);
 		sessionFactory.getCurrentSession().delete(product);
+		
+	}
+
+	public void enableDisableProduct(int productId) {
+		sessionFactory.getCurrentSession().createQuery("update Product set enabled = case when enabled=true then false when enabled=false then true end where productId="+productId ).executeUpdate();
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	public String listProductEnabledViaJson() {
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		List<Product> list = sessionFactory.getCurrentSession().createQuery("from Product where enabled=true").getResultList();
+		String listProduct = gson.toJson(list);
+		return listProduct;
 		
 	}
 	

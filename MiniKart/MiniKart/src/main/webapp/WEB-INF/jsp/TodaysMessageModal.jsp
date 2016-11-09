@@ -26,14 +26,13 @@
             <thead id="tblHead">
               <tr>
                 <th ng-click="sort('messageId')">Message ID
-                <span class="glyphicon sort-icon" ng-show="sortKey=='categoryId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                <span class="glyphicon sort-icon" ng-show="sortKey=='messageId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"> </span>
                 </th>
                 <th ng-click="sort('message')">Message
-                <span class="glyphicon sort-icon" ng-show="sortKey=='categoryName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                <span class="glyphicon sort-icon" ng-show="sortKey=='message'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
                 </th>
                 
-                <th></th>
-                <th></th>
+               
               </tr>
             </thead>
             <tbody>

@@ -50,17 +50,16 @@ public class ProductSpecificationDAOImplementation implements ProductSpecificati
 
 	@SuppressWarnings("unchecked")
 	public ProductSpecification getIdFromId(int productId) {
-		String query ="from ProductSpecification where productSpecificationId="+productId;
+		String query ="from ProductSpecification where productId="+productId;
+		
 		List<ProductSpecification> productSpecificationList = sessionFactory.getCurrentSession().createQuery(query).getResultList();
-		if(productSpecificationList!=null && !productSpecificationList.isEmpty())
-		{
-			return productSpecificationList.get(0);	
-		}else
-		{
-			return null;
+		
+			return productSpecificationList.get(0);
+		
 		}
 		
-	}
+		
+	
 
 	public void deleteProductSpecification(int productId) {
 		ProductSpecification productSpecification = new ProductSpecification();

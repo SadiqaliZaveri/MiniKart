@@ -11,6 +11,8 @@ import com.minikart.model.UserRole;
 public interface UserDAO {
 	public void saveOrUpdateUser(UserDetails userDetails);
 	public List<UserDetails> listUserDetails();
+	public String listUserViaJson();
+	public void enableDisableUser(int userId);
 	public void saveOrUpdateShipping(ShippingAddress shippingAddress);
 	public void saveOrUpdateBilling(BillingAddress billingAddress);
 	public void saveOrUpdateUserRole(UserRole userRole);

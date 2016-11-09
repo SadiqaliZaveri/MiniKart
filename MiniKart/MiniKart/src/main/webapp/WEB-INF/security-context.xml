@@ -14,8 +14,14 @@
 						
 							
 						<http auto-config="true" use-expressions="true">
+						
+						<session-management>
+      					<concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
+  						</session-management>
 						<intercept-url pattern="/home" access="permitAll"/>
 						<intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
+						<intercept-url pattern="/reg" access="hasRole('ROLE_ANONYMOUS')"/>
+						<intercept-url pattern="/login" access="hasRole('ROLE_ANONYMOUS')"/>
 						<access-denied-handler error-page="/403"/>
 						<form-login
 						login-page="/login"

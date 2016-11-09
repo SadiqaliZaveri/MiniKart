@@ -33,6 +33,10 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+<!--  Listener Used for only 1 Session of user	 -->
+	<listener>
+    <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+  	</listener>
 
   
   <servlet>
@@ -48,6 +52,8 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-
+<session-config>
+		<session-timeout>5</session-timeout>
+</session-config>
 	
 </web-app>

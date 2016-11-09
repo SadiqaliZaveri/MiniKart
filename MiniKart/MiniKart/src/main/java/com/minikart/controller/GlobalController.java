@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 
 import com.minikart.service.CategoryService;
+import com.minikart.service.ProductService;
 import com.minikart.service.SubCategoryService;
 import com.minikart.service.TodaysMessageService;
 
@@ -21,6 +22,8 @@ public class GlobalController {
 	private SubCategoryService subCategoryService;
 	@Autowired
 	private TodaysMessageService todaysMessageService;
+	@Autowired
+	private ProductService productService;
 	
 	@ModelAttribute
 	public void globalAttribute(Model model)
@@ -38,6 +41,12 @@ public class GlobalController {
 		
 //		Retrieving TodaysMessage through list
 		model.addAttribute("todaysMessageListNormal",this.todaysMessageService.listTodaysMessage());
+		
+//		Retrieving Product Data through GsontoJson Conversion
+		model.addAttribute("productListJson",this.productService.listProductViaJson());
+		
+//		Retrieving Product Data through GsontoJson Conversion
+		model.addAttribute("productListEnabledJson",this.productService.listProductEnabledViaJson());
 		
 	}
 }

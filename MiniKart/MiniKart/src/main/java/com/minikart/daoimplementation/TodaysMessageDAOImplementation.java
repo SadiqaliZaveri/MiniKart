@@ -17,7 +17,7 @@ public class TodaysMessageDAOImplementation implements TodaysMessageDAO{
 private SessionFactory sessionFactory;
 	public void addMessage(TodaysMessage todaysMessage) {
 		
-		sessionFactory.getCurrentSession().save(todaysMessage);
+		sessionFactory.getCurrentSession().saveOrUpdate(todaysMessage);
 		
 	}
 	@SuppressWarnings("unchecked")

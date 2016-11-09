@@ -26,6 +26,18 @@ public String HomePage(Model model)
 		return "403";
 	}
 	
+	@RequestMapping("/FAQ")
+	public String FAQPage()
+	{
+		return "FAQ";
+	}
+	
+	@RequestMapping("/contactus")
+	public String ContactUsPage()
+	{
+		return "ContactUs";
+	}
+	
 
 	
 }

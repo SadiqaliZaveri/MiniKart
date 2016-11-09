@@ -3,10 +3,13 @@ package com.minikart.handlers;
 
 import java.util.List;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
-
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 import com.minikart.model.BillingAddress;
@@ -28,6 +31,8 @@ public  BillingAddress billingAddress;
 public UserRole userRole;
 @Autowired
 public Supplier supplier;
+@Autowired
+private JavaMailSender mailSender;
 	
 public UserDetails initFlow(){
 	return new UserDetails();
@@ -154,7 +159,7 @@ public String validateShipping(UserDetails userDetails, ShippingAddress shipping
 
 public String addDetails(UserDetails userDetails,UserRole userRole, ShippingAddress shippingAddress, BillingAddress billingAddress, MessageContext messageContext ){
 	try{
-//	userDetails.setRoleId(userRole.getRoleId());
+
 	userService.saveOrUpdate(userDetails);	
 	userDetails.setShippingAddress(shippingAddress);
 	userDetails.setBillingAddress(billingAddress);
@@ -171,7 +176,17 @@ public String addDetails(UserDetails userDetails,UserRole userRole, ShippingAddr
 	userService.saveOrUpdateShipping(shippingAddress);
 	userService.saveOrUpdateBilling(billingAddress);
 	userService.saveOrUpdateUserRole(userRole);
+	 
 	
+	 // creates a simple e-mail object
+    SimpleMailMessage email = new SimpleMailMessage();
+    email.setTo(userDetails.getEmailId());
+    email.setSubject("Welcome To Minikart");
+    email.setText("Enjoy Your Shopping Experience");
+    
+     
+    // sends the e-mail
+    mailSender.send(email);
 	
 	
 	}
@@ -184,10 +199,11 @@ public String addDetails(UserDetails userDetails,UserRole userRole, ShippingAddr
 }
 
 public String addDetailsSupplier(UserDetails userDetails,UserRole userRole,Supplier supplier, MessageContext messageContext ){
-try{
-//	userDetails.setRoleId(userRole.getRoleId());
+	try{
+	
 	userService.saveOrUpdate(userDetails);	
 	userDetails.setUserRole(userRole);
+	
 	userDetails.setSupplier(supplier);
 	
 	
@@ -244,6 +260,7 @@ public String addSupplierDetails(UserDetails userDetails, Supplier supplier)
 	return "success";
 	
 }
+
 
 
 }

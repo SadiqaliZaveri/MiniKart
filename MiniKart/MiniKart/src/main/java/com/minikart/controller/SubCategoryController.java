@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -73,9 +74,19 @@ public class SubCategoryController {
 		
 	//SUBCATEGORY DELETE ACTION	
 		@RequestMapping("/deletesub-{subCategoryId}")
-	    public String deleteSubCategory(@PathVariable("subCategoryId") int subCategoryId){
+	    public String deleteSubCategory(@PathVariable("subCategoryId") int subCategoryId, HttpServletRequest request){
 			
-	        this.subCategoryService.deleteSubCategory(subCategoryId);
+			
+			try{
+				subCategoryService.deleteSubCategory(subCategoryId);
+				}
+				catch(DataIntegrityViolationException e)
+				{
+					HttpSession session = request.getSession();
+					session.setAttribute("Error","<div class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>Operation Failed : Cannot Delete SubCategory. DataIntegrityViolation</div>");
+					
+				}
+	        
 	        return "redirect:/admin";
 	    }
 	

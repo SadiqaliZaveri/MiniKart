@@ -2,15 +2,15 @@
 
 <div class="container-fluid" style="background-color:white">
 <div class="row">
-<div class="col-xs-12" style="text-align:center"><h3>Product Name</h3></div>
+<div class="col-xs-12" style="text-align:center"><h3>{{getProduct.productName}}</h3></div>
 <div class="col-xs-12">
-                        <div class="container">	
+                    	
 				<div class="col-xs-12">
-						<div class="imgholder" style="width:400px">
-							<img class="img-responsive center-block " id="item-display" src="resources/images/product7.jpg" alt=""></img>
+						<div class="imgholder" style="max-width:400px; max-height:400px">
+							<img class="img-responsive center-block " id="item-display" src="resources/images/product{{getProduct.productId}}.jpg" alt=""></img>
 						</div>
 					</div>
-					</div></div>
+					</div>
 					
 		
 <div class="col-xs-12 col-sm-7 col-md-7"></div>
@@ -26,7 +26,7 @@
   <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
       <h3>HOME</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p>{{getProduct.categoryName}}</p>
     </div>
     <div id="menu1" class="tab-pane fade">
       <h3>Menu 1</h3>
@@ -44,5 +44,11 @@
 </div>
 </div>
 
-
+<script>
+//MODULE AND CONTROLLER - ANGULARJS - RETRIEVAL OF DATA VIA JSON LISTS
+var app = angular.module('Caller', ['angularUtils.directives.dirPagination']);
+app.controller('CallerController', function($scope) {
+  $scope.getProduct = ${particularProductFullView};
+});
+</script>          
 <%@include file="Footer.jsp" %>	      

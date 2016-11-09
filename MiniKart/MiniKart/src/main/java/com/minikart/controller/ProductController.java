@@ -4,6 +4,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -19,17 +21,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.minikart.model.Category;
 import com.minikart.model.Product;
+import com.minikart.model.ProductFullView;
 import com.minikart.model.SubCategory;
 import com.minikart.model.Supplier;
 import com.minikart.service.CategoryService;
+import com.minikart.service.ProductFullViewService;
 import com.minikart.service.ProductService;
 import com.minikart.service.SubCategoryService;
 import com.minikart.service.SupplierService;
+
 @Controller
 public class ProductController {
 
@@ -41,7 +45,8 @@ public class ProductController {
 	private ProductService productService;
 	@Autowired
 	private SupplierService supplierService;
-
+	@Autowired
+	private ProductFullViewService productFullViewService;
 	
 	
 	@RequestMapping("/products")
@@ -87,7 +92,13 @@ public class ProductController {
 				return "redirect:/admin";
 			}
 			
+			Date currentDate = new Date();
+			product.setProductDate(currentDate);
+			
+			
 			this.productService.addProduct(product);
+			
+			
 			String path= System.getProperty("user.home")+"\\workspace\\MiniKart\\MiniKart\\src\\main\\webapp\\resources\\images\\product";
 //			String path= "C:\\Users\\Taena\\workspace\\MiniKart\\MiniKart\\src\\main\\webapp\\resources\\images\\product";
 			path = path+""+product.getProductId()+".jpg";
@@ -116,10 +127,8 @@ public class ProductController {
 //					Retrieving SubCategory Data through List 
 					model.addAttribute("subCategoryListNormal", this.subCategoryService.listSubCategory());	
 //					Retrieving Supplier Data through List
-					model.addAttribute("supplierListNormal",this.supplierService.listSupplier());
-					
-					model.addAttribute("product", productService.getIdFromId(productId));
-									
+					model.addAttribute("supplierListNormal",this.supplierService.listSupplier());					
+					model.addAttribute("product", productService.getIdFromId(productId));									
 					return "EditProduct";
 				}
 
@@ -128,7 +137,7 @@ public class ProductController {
 		public String deleteproduct(@PathVariable("productId") int productId){
 						
 					
-			        this.productService.deleteProduct(productId);
+			        this.productService.deleteProduct(productId); 
 			        File file = new File(System.getProperty("user.home")+"\\workspace\\MiniKart\\MiniKart\\src\\main\\webapp\\resources\\images\\product"+productId+".jpg");
 					file.delete();
 			        return "redirect:/admin";
@@ -142,12 +151,32 @@ public class ProductController {
 			Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 			String g = gson.toJson(p);
 			ModelAndView model = new ModelAndView("ProductFullView");
-			model.addObject("product", g);
+			model.addObject("particularProduct", g);
 			
 			return model;
 			
 		}
 		
+		@RequestMapping(value="/viewfullprod-{productId}", method = RequestMethod.GET)
+		public ModelAndView viewproduct(@ModelAttribute("product") ProductFullView productFullView,@PathVariable("productId") int productFullViewId){
+			
+			ProductFullView p = productFullViewService.getIdFromId(productFullViewId);
+			Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+			String g = gson.toJson(p);
+			ModelAndView model = new ModelAndView("ProductFullView");
+			model.addObject("particularProductFullView", g);
+			
+			return model;
+			
 		}
+		
+		@RequestMapping("/toggleproduct-{productId}")
+		public String toggleUser(@PathVariable("productId") int productId)
+		{
+
+			productService.enableDisableProduct(productId);			
+			return "redirect:/admin";
+		}
+	}
 
 		

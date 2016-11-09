@@ -21,16 +21,39 @@
 			  </select>
 <!--               <input type="number" min="1" max="100" class="form-control" ng-model="maxsize" ng-init="maxsize=10" > -->
             </div>
-            <div style="overflow: auto">
+            <div style="overflow: auto;">
           <table class="table table-striped" id="tblGrid">
             <thead id="tblHead">
               <tr>
-                <th ng-click="sort('productId')">Product ID</th>
-                <th ng-click="sort('categoryId')">Category ID</th>
-                <th ng-click="sort('subCategoryId')">SubCategory ID</th>
-                <th ng-click="sort('productName')">Product Name</th>
-                <th ng-click="sort('productStock')">Product Stock</th>
+                <th ng-click="sort('productId')">Product ID
+                <span class="glyphicon sort-icon" ng-show="sortKey=='productId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('categoryId')">Category ID
+                <span class="glyphicon sort-icon" ng-show="sortKey=='categoryId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('subCategoryId')">SubCategory ID
+                <span class="glyphicon sort-icon" ng-show="sortKey=='subCategoryId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('productName')">Product Name
+                <span class="glyphicon sort-icon" ng-show="sortKey=='productName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('productDescription')">Product Description
+                <span class="glyphicon sort-icon" ng-show="sortKey=='productDescription'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('productStock')">Product Stock
+                <span class="glyphicon sort-icon" ng-show="sortKey=='productStock'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('productPrice')">Product Price
+                <span class="glyphicon sort-icon" ng-show="sortKey=='productPrice'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('productDate')">Product Date
+                <span class="glyphicon sort-icon" ng-show="sortKey=='productDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
                 <th>Product Image</th>
+                <th ng-click="sort('productEnabled')">Product Enabled
+                <span class="glyphicon sort-icon" ng-show="sortKey=='productEnabled'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                
                 <th></th>
               </tr>
             </thead>
@@ -40,12 +63,18 @@
             <td>{{x.categoryId}}</td>
             <td>{{x.subCategoryId}}</td>
             <td>{{x.productName}}</td>
+            <td>{{x.productDescription}}</td>
             <td>{{x.productStock}} Units</td>
+            <td>Rs. {{x.productPrice}}</td>
+            <td>{{x.productDate}}</td>
             <td><img src="resources/images/product{{x.productId}}.jpg" width="100px" height="50px"/></td>
+            <td>{{x.enabled}}</td>
             <td><a href="viewprod-{{x.productId}}">View</a></td>
             <td><a href="editprod-{{x.productId}}">Edit</a></td>
             <td><a href="deleteprod-{{x.productId}}">Delete</a></td>
             <td><a href="productspec-{{x.productId}}">Add Info</a></td>
+            <td><a href="editprodspec-{{x.productId}}">Edit Info</a></td>
+            <td><a href="toggleproduct-{{x.productId}}">Toggle Product</a></td>
             </tr>
             </tbody>
           </table>

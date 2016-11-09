@@ -85,7 +85,6 @@
 	<action-state id="saveUser">
 	<evaluate expression="userService.saveOrUpdate(userDetails)" result="userDetails"></evaluate>
 	<transition to="success"></transition>
-	
 	</action-state>
 	
 	<view-state id="confirmSupplierDetails" view="RegistrationForm6" model="userDetails">
@@ -112,7 +111,7 @@
 <!-- 		<transition on="cancel" to="cancel"/> -->
 <!-- 	</view-state> -->
 
-	<end-state id="success" view="externalRedirect:contextRelative:/login"/>
+	<end-state id="success" view="externalRedirect:contextRelative:/regsuccess"/>
 	<end-state id="cancel" view="externalRedirect:contextRelative:/home"/>
 	
 

@@ -1,6 +1,8 @@
 package com.minikart.model;
 
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,6 +39,15 @@ private int productPrice;
 private int productDiscountPrice;
 @Expose
 private int productRating;
+@Expose
+private String productDescription;
+@Expose
+private Date productDate;
+@Expose
+private boolean enabled;
+
+
+
 
 @ManyToOne
 @JoinColumn(name = "subCategoryId", nullable=false, insertable=false, updatable=false)
@@ -50,10 +61,22 @@ private Category category;
 @JoinColumn(name = "supplierId", nullable=false, insertable=false, updatable=false)
 private Supplier supplier;
 
+public boolean isEnabled() {
+	return enabled;
+}
+public void setEnabled(boolean enabled) {
+	this.enabled = enabled;
+}
+
 @Transient
 private MultipartFile productImage;
 
-
+public String getProductDescription() {
+	return productDescription;
+}
+public void setProductDescription(String productDescription) {
+	this.productDescription = productDescription;
+}
 public int getProductDiscountPrice() {
 	return productDiscountPrice;
 }
@@ -131,5 +154,11 @@ public int getProductStock() {
 }
 public void setProductStock(int productStock) {
 	this.productStock = productStock;
+}
+public Date getProductDate() {
+	return productDate;
+}
+public void setProductDate(Date productDate) {
+	this.productDate = productDate;
 }
 }

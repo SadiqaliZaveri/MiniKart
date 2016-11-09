@@ -24,16 +24,36 @@
           <table class="table table-striped" id="tblGrid">
             <thead id="tblHead">
               <tr>
-                <th ng-click="sort('supplierId')">Supplier ID</th>        
-                <th ng-click="sort('supplierName')">Supplier Name</th>
-                <th ng-click="sort('supplierDescription')">Supplier Description</th>
-                <th ng-click="sort('state')">State</th>
-                <th ng-click="sort('city')">City</th>
-                <th ng-click="sort('district')">District</th>
-                <th ng-click="sort('landmark')">Landmark</th>
-                <th ng-click="sort('pinCode')">Pincode</th>
-                <th ng-click="sort('companyUrl')">Website</th>
-                <th ng-click="sort('address')" style="min-width:200px;">Address</th>
+                <th ng-click="sort('supplierId')">Supplier ID
+                <span class="glyphicon sort-icon" ng-show="sortKey=='supplierId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>        
+                <th ng-click="sort('supplierName')">Supplier Name
+                <span class="glyphicon sort-icon" ng-show="sortKey=='supplierName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('supplierDescription')">Supplier Description
+                <span class="glyphicon sort-icon" ng-show="sortKey=='supplierDescription'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('state')">State
+                <span class="glyphicon sort-icon" ng-show="sortKey=='state'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('city')">City
+                <span class="glyphicon sort-icon" ng-show="sortKey=='city'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('district')">District
+                <span class="glyphicon sort-icon" ng-show="sortKey=='district'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('landmark')">Landmark
+                <span class="glyphicon sort-icon" ng-show="sortKey=='landmark'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('pinCode')">Pincode
+                <span class="glyphicon sort-icon" ng-show="sortKey=='pinCode'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('companyUrl')">Website
+                <span class="glyphicon sort-icon" ng-show="sortKey=='companyUrl'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
+                <th ng-click="sort('address')" style="min-width:200px;">Address
+                <span class="glyphicon sort-icon" ng-show="sortKey=='address'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                </th>
                 <th></th>
                 <th></th>
               </tr>

@@ -7,37 +7,37 @@
     <div class="form-group">
       <label for="State">State:
       </label>
-      <form:input path="state" cssClass="form-control" id="State" />
+      <form:input path="state" cssClass="form-control" id="State" maxlength="255"/>
     </div>
     <div class="form-group">
       <label for="City">City:
      
       </label>
-      <form:input path="city" cssClass="form-control" id="City" />
+      <form:input path="city" cssClass="form-control" id="City" maxlength="255"/>
     </div>
     <div class="form-group">
       <label for="District">District:
       
       </label>
-      <form:input path="district" cssClass="form-control" id="District" />
+      <form:input path="district" cssClass="form-control" id="District" maxlength="255"/>
     </div>
     <div class="form-group">
       <label for="Landmark">Landmark:
 
       </label>
-      <form:input path="landmark" cssClass="form-control" id="Landmark" />
+      <form:input path="landmark" cssClass="form-control" id="Landmark" maxlength="255"/>
     </div>
     <div class="form-group">
       <label for="Address">Address:
      
       </label>
-      <form:input path="address" cssClass="form-control" id="Address" />
+      <form:input path="address" cssClass="form-control" id="Address" maxlength="255"/>
     </div>
     <div class="form-group">
       <label for="Pincode">Pincode:
       
       </label>
-      <form:input path="pinCode" cssClass="form-control" id="Pincode" />
+      <form:input path="pinCode" cssClass="form-control" id="Pincode" maxlength="255"/>
     </div>
     <div class="form-group">
     <button name="_eventId_submit" type="submit" class="btn btn-warning pull-right labelspace"><i class="glyphicon glyphicon-arrow-right"></i> Continue</button>

@@ -11,9 +11,9 @@
 					·
 					<a href="#">About</a>
 					·
-					<a href="#">FAQ</a>
+					<a href="FAQ">FAQ</a>
 					·
-					<a href="#">Contact</a>
+					<a href="contactus">Contact</a>
 				</p>
 
 				<p class="footer-company-name">All Rights Reserved. Sadiqali Zaveri. MiniKart &copy; 2016</p>
@@ -33,7 +33,7 @@
 
 				<div>
 					<i class="fa fa-envelope"></i>
-					<p><a href="mailto:sadiqalizaveri@gmail.com">SadiqaliZaveri@Gmail.com</a></p>
+					<p><a href="mailto:minikartshopping@gmail.com">minikartshopping@Gmail.com</a></p>
 				</div>
 
 			</div>
@@ -50,7 +50,7 @@
 				<a href="https://www.facebook.com/sadiqali.zaveri"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a> 
             	<a href="https://twitter.com/Sadiqali_Zaveri"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a> 
 	            <a href="https://plus.google.com/118380662731182759935"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a> 
-	            <a href="mailto:sadiqalizaveri@gmail.com"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a> 
+	            <a href="mailto:minikartshopping@gmail.com"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a> 
 
 				
 

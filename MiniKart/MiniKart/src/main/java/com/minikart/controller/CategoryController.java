@@ -4,7 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -64,9 +66,17 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(value="/delete-{categoryId}", method=RequestMethod.GET)
-	public String deleteCategory(@PathVariable("categoryId") int categoryId )
+	public String deleteCategory(@PathVariable("categoryId") int categoryId,HttpServletRequest request)
 	{
+		try{
 		categoryService.deleteCategory(categoryId);
+		}
+		catch(DataIntegrityViolationException e)
+		{
+			HttpSession session = request.getSession();
+			session.setAttribute("Error","<div class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>Operation Failed : Cannot Delete Category. DataIntegrityViolation</div>");
+			
+		}
 		return "redirect:/admin";	
 	}
 }

@@ -6,6 +6,7 @@
     </li>
     <hr>
     <hr>
+    
     <c:forEach var="category" items="${categoryListNormal}">
       <li>
         <div class="panel-group filters">

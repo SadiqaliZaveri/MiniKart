@@ -8,11 +8,11 @@
 <form:input path="categoryId" hidden="true"/>
 <div class="form-group">
 <label for="category name">Category Name</label>
-<form:input cssClass="form-control" path="categoryName" id="category name"/>
+<form:input cssClass="form-control" path="categoryName" id="category name" maxlength="255"/>
 </div>
 <div class="form-group">
 <label for="category description">Category Description</label>
-<form:input cssClass="form-control" path="categoryDescription" id="category description"/>
+<form:input cssClass="form-control" path="categoryDescription" id="category description" maxlength="255"/>
 </div>
 <div class="form-group">
 <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-ok"> Edit</i></button>

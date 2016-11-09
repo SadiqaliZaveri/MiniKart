@@ -8,7 +8,7 @@
 <form:input path="messageId" hidden="true"/>
 <div class="form-group">
 <label for="message">Message</label>
-<form:textarea cssClass="form-control" path="message" id="message" cols="50"/>
+<form:textarea cssClass="form-control" path="message" id="message" cols="50" maxlength="255"/>
 </div>
 <div class="form-group">
 <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-ok"> Edit</i></button>

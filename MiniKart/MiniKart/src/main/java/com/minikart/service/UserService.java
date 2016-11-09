@@ -44,4 +44,13 @@ public class UserService {
 	public void saveOrUpdateSupplier(Supplier supplier){
 		userDAOImplementation.saveOrUpdateSupplier(supplier);
 	}
+	@Transactional
+	public String listUserViaJson() {
+		return userDAOImplementation.listUserViaJson();
+	}
+	@Transactional
+	public void enableDisableUser(int userId) {
+		userDAOImplementation.enableDisableUser(userId);
+	}
+	
 }

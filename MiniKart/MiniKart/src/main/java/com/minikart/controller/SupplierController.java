@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -60,8 +61,19 @@ public String editSupplier(Model model,@PathVariable("supplierId") int supplierI
 }
 
 @RequestMapping(value="/deletesup-{supplierId}", method = RequestMethod.GET)
-public String deleteSupplier(@PathVariable("supplierId") int supplierId){
-	this.supplierService.deleteSupplier(supplierId);
+public String deleteSupplier(@PathVariable("supplierId") int supplierId, HttpServletRequest request){
+	
+	try{
+		supplierService.deleteSupplier(supplierId);
+		}
+		catch(DataIntegrityViolationException e)
+		{
+			HttpSession session = request.getSession();
+			session.setAttribute("Error","<div class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>Operation Failed : Cannot Delete Supplier. DataIntegrityViolation</div>");
+			
+		}
+	
+	
 	return "redirect:/admin";
 }
 }

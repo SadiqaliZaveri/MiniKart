@@ -1,5 +1,8 @@
 package com.minikart.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,10 +41,26 @@ public class ProductSpecificationController {
 			
 		}
 		
+		@RequestMapping(value="/editprodspec-{productId}", method=RequestMethod.GET)
+		public String editproductspec(@PathVariable("productId") int productId, Model model, HttpServletRequest request)
+		{
+			try{
+			model.addAttribute("productSpecification",productSpecificationService.getIdFromId(productId));
+			
+			}
+			catch(Exception e)
+			{
+				HttpSession session = request.getSession();
+				session.setAttribute("Error","<div class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>Operation Failed : Please Add Info Before Editing</div>");
+				return "redirect:/admin";
+			}
+			return "EditProductSpecForm";
+			
+		}
+		
 		public void deleteproductspec(int id)
 		{
-			productSpecificationService.deleteProductSpecification(id);
-			
+			productSpecificationService.deleteProductSpecification(id);	
 		}
 
 

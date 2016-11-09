@@ -10,7 +10,7 @@
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
           <!-- Indicators -->
           <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" tdata-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
             <li data-target="#myCarousel" data-slide-to="2"></li>
 
@@ -50,104 +50,34 @@
 <div class="col-xs-12"><h3>Featured Products</h3>
              
     </div></div><hr>
-                    <div class="col-xs-12 col-sm-4 col-md-3 preview">
+                    <div ng-repeat="x in getProduct" class="col-xs-12 col-sm-4 col-md-3 preview">
                         <div class="thumbnail">
                         <div class="imgholder">
                         
-                            <img class="img-responsive center-block "  src="resources/images/product7.jpg" alt="">
+                            <a href="viewfullprod-{{x.productId}}"><img class="img-responsive center-block "  src="resources/images/product{{x.productId}}.jpg" alt=""></a>
                            
                             </div>
                             <div class="caption">
-                                <h4 class="pull-right">$24.99</h4>
-                                <h4><a href="#">First Product</a>
-                                </h4>
-                                <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+<!--                                 <h4 class="pull-right"><i class="fa fa-inr" aria-hidden="true"></i> {{x.productPrice}}</h4> -->
+<!--                                 <h4><a href="viewfullprod-{{x.productId}}">{{x.productName}}</a></h4> -->
+<!--                                 <p style="min-height:50px; max-height:50px; overflow:hidden;">{{x.productDescription}}</p> -->
+                                
+                                <h4 class="group inner list-group-item-heading"><a href="viewfullprod-{{x.productId}}">{{x.productName}}</a></h4>
+                    			<p style="min-height:50px; max-height:50px; overflow:hidden;" class="group inner list-group-item-text">{{x.productDescription}}</p>
+                    			<div class="row">
+                        			<div class="col-xs-12 col-md-6">
+                            			<p class="lead"><i class="fa fa-inr" aria-hidden="true"></i> {{x.productPrice}}</p>
+                        			</div>
+                        			<div class="col-xs-12 col-md-6" >
+                            		<a class="btn cartbutton" href=""><i class="fa fa-shopping-cart hidden-md" aria-hidden="true"></i> Add to cart</a>
+                        			</div>
+                    			</div>
                             </div>
-                            <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
-                            </div>
+                            
                         </div>
                     </div>
                     
-                    <div class="col-xs-12 col-sm-4 col-md-3 preview">
-                        <div class="thumbnail">
-                        <div class="imgholder">
-                        
-                            <img class="img-responsive center-block "  src="resources/images/altimg.png" alt="">
-                           
-                            </div>
-                            <div class="caption">
-                                <h4 class="pull-right">$24.99</h4>
-                                <h4><a href="#">First Product</a>
-                                </h4>
-                                <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-
-                    <div class="col-xs-12 col-sm-4 col-md-3">
-                        <div class="thumbnail">
-                        <div style="width:100%; height:300px;">
-                            <img class="img-responsive center-block" src="resources/images/altimg.png" alt="">
-                            </div>
-                            <div class="caption">
-                                <h4 class="pull-right">$64.99</h4>
-                                <h4><a href="#">Second Product</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">12 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-4 col-md-3">
-                        <div class="thumbnail">
-                            <img src="resources/images/altimg.png" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$74.99</h4>
-                                <h4><a href="#">Third Product</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">31 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                   
 
          <div class="row" style="margin-top:10px;">
 <div class="col-xs-12"><h3>On Sale Products</h3>
@@ -303,7 +233,13 @@
                     </div>
           </div> 
           
-          
+<script>
+//MODULE AND CONTROLLER - ANGULARJS - RETRIEVAL OF DATA VIA JSON LISTS
+var app = angular.module('Caller', ['angularUtils.directives.dirPagination']);
+app.controller('CallerController', function($scope) {
+  $scope.getProduct = ${productListEnabledJson};
+});
+</script>          
 <!--    PRODUCT ELEMENTS END  -->
           
 <!--      FOOTER STARTS     -->

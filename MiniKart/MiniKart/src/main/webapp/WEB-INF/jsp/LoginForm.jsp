@@ -5,12 +5,17 @@
   <blockquote>
     <h4>Login Details</h4></blockquote>
   <form method="POST" action="perform_login">
+  
+  
+	  
   <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
       <div class="alert alert-warning"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        
         <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
         <c:remove var = "SPRING_SECURITY_LAST_EXCEPTION" scope = "session" />
       </div>
 </c:if>
+
     <div class="form-group">
     
       <label for="username">UserName:</label>
@@ -22,12 +27,6 @@
     </div>
     <button type="submit" class="btn btn-warning pull-right" value="Submit"><i class="glyphicon glyphicon-arrow-right"></i> Login</button>
   </form>
-  <h2><% 
-String errorString = (String) request.getAttribute("error");
-if(errorString != null && errorString.trim().equals("true")){
-out.println("Invalid Username/Password");	
-}
-%></h2>
 </div>
 
 <script>

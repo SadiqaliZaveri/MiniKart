@@ -9,9 +9,9 @@
 <div class="container-fluid">
 <form:form cssClass="form-inline" method="POST" action="add/subcategories" modelAttribute="subCategory">
 <div class="form-group">
-<form:input path="subCategoryId" hidden="true"/>
+<form:input path="subCategoryId" hidden="true" />
 <label for="Sub-Category Name">Sub-Category Name:</label>
-<form:input path="subCategoryName" cssClass="form-control" id="Sub-Category Name" />
+<form:input path="subCategoryName" cssClass="form-control" id="Sub-Category Name" maxlength="255"/>
 </div>
 <div class="form-group">
 <label class="labelspace">Select Category:</label>

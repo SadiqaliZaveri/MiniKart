@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LoginController {
 
+	@RequestMapping(value="/regsuccess")
+	public String RegSuccessPage()
+	{
+		return "RegSuccess";
+	}
 	@RequestMapping(value="/login")
 	public String loginPage()
 	{

@@ -15,9 +15,9 @@ ${sessionScope.Error}
 <div class="container-fluid">
   <form:form id="categoryform" cssClass="form-inline" method="POST" action="add/todaysmessage" modelAttribute="todaysMessage" onsubmit="return validate(this)">
     <div class="form-group tenpxtop">
-      <label for="categoryName">Today's Message:</label>
+      <label for="todaysMessage">Today's Message:</label>
       
-      <form:textarea path="message" cssClass="form-control" id="categoryName" cols="50"/>
+      <form:textarea path="message" cssClass="form-control" id="todaysMessage" cols="50" maxlength="255"/>
     </div>
     <div class="form-group tenpxtop">
       <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-ok"> Submit</i></button>
@@ -29,6 +29,20 @@ ${sessionScope.Error}
   
   
 </div> 
+ 
+ 
+  
+<!-- User FORM -->
+<hr>
+<blockquote>
+  <h4>User Management</h4></blockquote>
+<div class="container-fluid">
+    <div class="form-group tenpxtop">
+      <button href="#userListModal" data-toggle="modal" type="button" class="btn btn-success"><i class="glyphicon glyphicon-th-list"> Manage</i></button>
+    </div>
+</div>
+
+ 
   
 <!-- CATEGORY FORM -->
 <hr>
@@ -38,11 +52,11 @@ ${sessionScope.Error}
   <form:form id="categoryform" cssClass="form-inline" method="POST" action="add/categories" modelAttribute="category" onsubmit="return validate(this)">
     <div class="form-group tenpxtop">
       <label for="categoryName">Category Name:</label>
-      <form:input path="categoryName" cssClass="form-control" id="categoryName" />
+      <form:input path="categoryName" cssClass="form-control" id="categoryName" maxlength="255"/>
     </div>
     <div class="form-group tenpxtop">
       <label class="labelspace" for="categoryDescription">Category Description:</label>
-      <form:input path="categoryDescription" cssClass="form-control" id="categoryDescription" />
+      <form:input path="categoryDescription" cssClass="form-control" id="categoryDescription" maxlength="255"/>
     </div>
     <div class="form-group tenpxtop">
       <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-ok"> Submit</i></button>
@@ -61,7 +75,7 @@ ${sessionScope.Error}
   <form:form id="subcategoryForm" cssClass="form-inline" method="POST" action="add/subcategories" modelAttribute="subCategory" onsubmit="return validate(this)">
     <div class="form-group tenpxtop">
       <label for="Sub-Category Name">Sub-Category Name:</label>
-      <form:input path="subCategoryName" cssClass="form-control" id="Sub-Category Name" />
+      <form:input path="subCategoryName" cssClass="form-control" id="Sub-Category Name" maxlength="255"/>
     </div>
     <div class="form-group tenpxtop">
       <label class="labelspace">Select Category:</label>
@@ -85,11 +99,11 @@ ${sessionScope.Error}
   <form:form id="supplierForm" cssClass="form-inline" method="POST" action="add/suppliers" modelAttribute="supplier" onsubmit="return validate(this)">
     <div class="form-group tenpxtop">
       <label for="Supplier Name">Supplier Name:</label>
-      <form:input path="supplierName" cssClass="form-control" id="Supplier Name" />
+      <form:input path="supplierName" cssClass="form-control" id="Supplier Name" maxlength="255"/>
     </div>
     <div class="form-group tenpxtop">
       <label class="labelspace" for="Supplier Description">Supplier Description:</label>
-      <form:input path="supplierDescription" cssClass="form-control" id="Supplier Description" />
+      <form:input path="supplierDescription" cssClass="form-control" id="Supplier Description" maxlength="255"/>
     </div>
     <div class="form-group tenpxtop">
       <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-ok"> Submit</i></button>
@@ -110,7 +124,12 @@ ${sessionScope.Error}
 
     <div class="form-group tenpxtop">
       <label for="Product Name">Product Name:</label>
-      <form:input path="productName" cssClass="form-control" id="Product Name" />
+      <form:input path="productName" cssClass="form-control" id="Product Name" maxlength="255"/>
+    </div>
+    <div class="form-group tenpxtop">
+      <label for="Product Description">Product Description</label>
+      
+      <form:textarea path="productDescription" cssClass="form-control" id="Product Description" cols="50" maxlength="255"/>
     </div>
     <div class="form-group tenpxtop">
       <label class="labelspace" for="Product Stock">Product Stock:</label>
@@ -164,23 +183,7 @@ ${sessionScope.Error}
 </div>
 
 
-<%-- <hr>
-<blockquote><h4>Add ProductSpecification</h4></blockquote>
-<div class="container-fluid">
-<form:form cssClass="form-inline" method="POST" action="add/productspecification" modelAttribute="productSpecification">
-<div class="form-group">
-<label class="labelspace">Select ProductId:</label>
-<form:select cssClass="form-control" path="Product.productId" items="${productListNormal}" itemValue="productId" itemLabel="productId"> 
-</form:select>
-</div>
-<div class="form-group">
-<button type="submit" class="btn btn-warning">Submit</button>
-</div>
-<div class="form-group">
-<button href="#productSpecificationModal" data-toggle="modal" type="button" class="btn btn-success">Manage</button>
-</div>
-</form:form>
-</div> --%>
+
 
 
 <!-- ALL MODALS INCLUDED HERE   -->
@@ -195,12 +198,15 @@ ${sessionScope.Error}
 
 <%@include file="TodaysMessageModal.jsp" %>
 
+<%@include file="UserListModal.jsp" %>
+
 </div>
 <script type="text/javascript">
 
 $("#wrapper").toggleClass("toggled");
 
-
+//scroll back to same position
+window.scrollTo(0, getCookie("scroll"));
 
 
 //MODULE AND CONTROLLER - ANGULARJS - RETRIEVAL OF DATA VIA JSON LISTS
@@ -211,7 +217,8 @@ app.controller('CallerController', function($scope) {
   $scope.getSupplier = ${supplierListJson};
   $scope.getProduct = ${productListJson};
   $scope.getTodaysMessage = ${todaysMessageListJson};
-//   $scope.getProductSpecification = ${productSpecificationListJson};
+  $scope.getUser = ${userListJson};
+
   $scope.sort = function(keyname) {
     $scope.sortKey = keyname; //set the sortKey to the param passed
     $scope.reverse = !$scope.reverse; //if true make it false and vice versa
@@ -238,7 +245,6 @@ function validate(formid) {
 
   var von = 0;
   var elements = formid.querySelectorAll('input,textarea');
-//   var elements = formid.getElementsByTagName('input');
 
   for (i = 0; i < elements.length; i++) {
 
@@ -263,7 +269,32 @@ document.getElementById('del').onclick = function() {
   file.value = file.defaultValue;
   var img = document.getElementById("Tempimg");
   img.src = "resources/images/altimg.png";
+ 
 }
+
+// Function to get & create cookie for scroll of page.
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length,c.length);
+        }
+    }
+    return "";
+}
+
+$(window).on('scroll',function(){
+	 var y = window.pageYOffset;
+	 document.cookie = "scroll="+y;
+	 
+});
+
+
 </script>
 
 <!--      FOOTER STARTS     -->

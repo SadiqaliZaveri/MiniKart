@@ -10,7 +10,11 @@
 <div class="form-group">
 <form:input path="productId" hidden="true" />
 <label for="Product Name">Product Name:</label>
-<form:input path="productName" cssClass="form-control" id="Product Name" />
+<form:input path="productName" cssClass="form-control" id="Product Name" maxlength="255"/>
+</div>
+ <div class="form-group tenpxtop">
+<label for="Product Description">Product Description</label>
+<form:textarea path="productDescription" cssClass="form-control" id="Product Description" cols="50" maxlength="255"/>
 </div>
 <div class="form-group">
 <label for="Product Stock">Product Stock:</label>

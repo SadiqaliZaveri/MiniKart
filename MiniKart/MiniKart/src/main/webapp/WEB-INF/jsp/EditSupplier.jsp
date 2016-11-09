@@ -11,11 +11,11 @@
 <div class="form-group">
 <label for="Supplier Name">Supplier Name:</label>
 <form:input path="supplierId" hidden="true"/>
-<form:input path="supplierName" cssClass="form-control" id="Supplier Name"/>
+<form:input path="supplierName" cssClass="form-control" id="Supplier Name" maxlength="255"/>
 </div>
 <div class="form-group">
 <label class="labelspace" for="Supplier Description">Supplier Description:</label>
-<form:input path="supplierDescription" cssClass="form-control" id="Supplier Description"/>
+<form:input path="supplierDescription" cssClass="form-control" id="Supplier Description" maxlength="255"/>
 </div>
 <div class="form-group">
 <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-ok"> Edit</i></button>
