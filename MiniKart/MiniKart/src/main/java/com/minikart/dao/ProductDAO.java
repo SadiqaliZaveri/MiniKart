@@ -18,5 +18,7 @@ public Product getIdFromName(String productName);
 public Product getIdFromId(int productId);
 public void deleteProduct(int productId);
 public void enableDisableProduct(int productId);
+public void updateProductMinus(int productId);
+public void updateProductPlus(int productId);
 
 }

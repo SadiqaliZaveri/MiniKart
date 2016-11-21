@@ -1,6 +1,7 @@
 package com.minikart.handlers;
 
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -8,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
+
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
@@ -159,7 +161,8 @@ public String validateShipping(UserDetails userDetails, ShippingAddress shipping
 
 public String addDetails(UserDetails userDetails,UserRole userRole, ShippingAddress shippingAddress, BillingAddress billingAddress, MessageContext messageContext ){
 	try{
-
+	Date date = new Date();
+	userDetails.setUserCreationDate(date);	
 	userService.saveOrUpdate(userDetails);	
 	userDetails.setShippingAddress(shippingAddress);
 	userDetails.setBillingAddress(billingAddress);
@@ -177,16 +180,21 @@ public String addDetails(UserDetails userDetails,UserRole userRole, ShippingAddr
 	userService.saveOrUpdateBilling(billingAddress);
 	userService.saveOrUpdateUserRole(userRole);
 	 
-	
+	try{
 	 // creates a simple e-mail object
     SimpleMailMessage email = new SimpleMailMessage();
     email.setTo(userDetails.getEmailId());
     email.setSubject("Welcome To Minikart");
     email.setText("Enjoy Your Shopping Experience");
-    
+	
      
     // sends the e-mail
     mailSender.send(email);
+	}
+	catch(Exception e)
+	{
+		return "success";
+	}
 	
 	
 	}
@@ -200,7 +208,8 @@ public String addDetails(UserDetails userDetails,UserRole userRole, ShippingAddr
 
 public String addDetailsSupplier(UserDetails userDetails,UserRole userRole,Supplier supplier, MessageContext messageContext ){
 	try{
-	
+	Date date = new Date();
+	userDetails.setUserCreationDate(date);	
 	userService.saveOrUpdate(userDetails);	
 	userDetails.setUserRole(userRole);
 	
@@ -214,7 +223,21 @@ public String addDetailsSupplier(UserDetails userDetails,UserRole userRole,Suppl
 	userService.saveOrUpdateUserRole(userRole);
 	userService.saveOrUpdateSupplier(supplier);
 	
-	
+	try{
+		 // creates a simple e-mail object
+	    SimpleMailMessage email = new SimpleMailMessage();
+	    email.setTo(userDetails.getEmailId());
+	    email.setSubject("Welcome To Minikart");
+	    email.setText("Enjoy Your Shopping Experience");
+		
+	     
+	    // sends the e-mail
+	    mailSender.send(email);
+		}
+		catch(Exception e)
+		{
+			return "success";
+		}
 	
 	
 	
@@ -227,18 +250,18 @@ public String addDetailsSupplier(UserDetails userDetails,UserRole userRole,Suppl
 	
 }
 
-public String addShippingDetails(UserDetails userDetails, ShippingAddress shippingaddress)
+public String addShippingDetails(UserDetails userDetails, ShippingAddress shippingAddress)
 {
-	this.shippingAddress.setAddress(shippingaddress.getAddress());
-	this.shippingAddress.setCity(shippingaddress.getCity());
-	this.shippingAddress.setDistrict(shippingaddress.getDistrict());
-	this.shippingAddress.setLandmark(shippingaddress.getLandmark());
-	this.shippingAddress.setPinCode(shippingaddress.getPinCode());
-	this.shippingAddress.setState(shippingaddress.getState());
+	this.shippingAddress.setAddress(shippingAddress.getAddress());
+	this.shippingAddress.setCity(shippingAddress.getCity());
+	this.shippingAddress.setDistrict(shippingAddress.getDistrict());
+	this.shippingAddress.setLandmark(shippingAddress.getLandmark());
+	this.shippingAddress.setPinCode(shippingAddress.getPinCode());
+	this.shippingAddress.setState(shippingAddress.getState());
 	return "success";
 	
 }
-public String addBillingDetails(UserDetails userDetails, BillingAddress billinggaddress)
+public String addBillingDetails(UserDetails userDetails, BillingAddress billingAddress)
 {
 	this.billingAddress.setAddress(billingAddress.getAddress());
 	this.billingAddress.setCity(billingAddress.getCity());

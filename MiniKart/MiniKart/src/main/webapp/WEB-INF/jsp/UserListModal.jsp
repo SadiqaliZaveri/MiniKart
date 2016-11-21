@@ -47,7 +47,12 @@
             <td>{{x.username}}</td>
             <td>{{x.password}}</td>
             <td>{{x.enabled}}</td>
-            <td><a href="toggleuser-{{x.userId}}">Toggle Enable/Disable</a></td>
+            <td><a href="toggleuser-{{x.userId}}"><div ng-if="x.enabled == true">
+            <i class="fa fa-toggle-on largetxt" title="Disable"></i>
+            </div>
+            <div ng-if="x.enabled != true">
+            <i class="fa fa-toggle-off largetxt" title="Enable" ></i>
+            </div></a></td>
             
             </tr>
             </tbody>

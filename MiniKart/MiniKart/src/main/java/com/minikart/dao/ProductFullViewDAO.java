@@ -10,4 +10,5 @@ public interface ProductFullViewDAO {
 	public List<ProductFullView> listProductFullView();
 	public String listProductFullViewViaJson();
 	public ProductFullView getIdFromId(int productFullViewId);
+	public String listProductEnabledFullviewViaJson();
 }

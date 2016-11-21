@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.minikart.daoimplementation.UserDAOImplementation;
 import com.minikart.model.BillingAddress;
+import com.minikart.model.Product;
 import com.minikart.model.ShippingAddress;
 import com.minikart.model.Supplier;
 import com.minikart.model.UserDetails;
@@ -52,5 +53,24 @@ public class UserService {
 	public void enableDisableUser(int userId) {
 		userDAOImplementation.enableDisableUser(userId);
 	}
-	
+	@Transactional
+	public UserDetails getUserDetailsFromName(String username) {
+		return userDAOImplementation.getUserDetailsFromName(username);
+	}
+	@Transactional
+	public ShippingAddress getShippingIdById(int userDetails_userId) {
+		return userDAOImplementation.getShippingIdById(userDetails_userId);
+	}
+	@Transactional
+	public BillingAddress getBillingIdById(int userDetails_userId) {
+		return userDAOImplementation.getBillingIdById(userDetails_userId);
+	}
+	@Transactional
+	public Supplier getSupplierIdById(int userDetails_userId) {
+		return userDAOImplementation.getSupplierIdById(userDetails_userId);
+	}
+	@Transactional
+	public List<Product> getProductIdById(int supplierId) {
+		return userDAOImplementation.getProductIdById(supplierId);
+	}
 }

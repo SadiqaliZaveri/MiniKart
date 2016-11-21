@@ -53,4 +53,7 @@ public class SubCategory {
 	public void setSubCategoryName(String subCategoryName) {
 		this.subCategoryName = subCategoryName;
 	}
+	
+	
+	
 }

@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 public class ShippingAddress implements Serializable {
 	
@@ -15,14 +17,21 @@ public class ShippingAddress implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Expose
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int shippingAddressId;
+	@Expose
 	private String city;
+	@Expose
 	private String state;
+	@Expose
 	private String pinCode;
+	@Expose
 	private String district;
+	@Expose
 	private String landmark;
+	@Expose
 	private String address;
 	
 	public String getAddress() {

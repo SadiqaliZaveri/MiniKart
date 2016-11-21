@@ -3,6 +3,7 @@ package com.minikart.dao;
 import java.util.List;
 
 import com.minikart.model.BillingAddress;
+import com.minikart.model.Product;
 import com.minikart.model.ShippingAddress;
 import com.minikart.model.Supplier;
 import com.minikart.model.UserDetails;
@@ -17,4 +18,9 @@ public interface UserDAO {
 	public void saveOrUpdateBilling(BillingAddress billingAddress);
 	public void saveOrUpdateUserRole(UserRole userRole);
 	public void saveOrUpdateSupplier(Supplier supplier);
+	public UserDetails getUserDetailsFromName(String username);
+	public ShippingAddress getShippingIdById(int userDetails_userId);
+	public BillingAddress getBillingIdById(int userDetails_userId);
+	public Supplier getSupplierIdById(int userDetails_userId);
+	public List<Product> getProductIdById(int supplierId);
 }

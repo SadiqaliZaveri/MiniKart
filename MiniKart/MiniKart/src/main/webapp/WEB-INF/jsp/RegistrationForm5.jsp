@@ -1,40 +1,64 @@
 <%@include file="Header.jsp" %>
 <div class="container pushfooter theme" style="max-width:500px;">
   <blockquote>
-    <h4>Billing Details | 3-4</h4>
+    <h4>Billing Details | 3-4 <span class="color">(optional)</span></h4>
   </blockquote>
   <form:form modelAttribute="billingAddress">
     <div class="form-group">
-      <label for="State">State:
+      <label for="State">State:<span class="color">
+      <c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('state')}" var="err">
+	  ${err.text}
+	  </c:forEach>
+	  </span>
       </label>
       <form:input path="state" cssClass="form-control" id="State" maxlength="255"/>
     </div>
     <div class="form-group">
-      <label for="City">City:
+      <label for="City">City:<span class="color">
+      <c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('city')}" var="err">
+	  ${err.text}
+	  </c:forEach>
+	  </span>
      
       </label>
       <form:input path="city" cssClass="form-control" id="City" maxlength="255"/>
     </div>
     <div class="form-group">
-      <label for="District">District:
+      <label for="District">District:<span class="color">
+      <c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('district')}" var="err">
+	  ${err.text}
+	  </c:forEach>
+	  </span>
       
       </label>
       <form:input path="district" cssClass="form-control" id="District" maxlength="255"/>
     </div>
     <div class="form-group">
-      <label for="Landmark">Landmark:
+      <label for="Landmark">Landmark:<span class="color">
+      <c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('landmark')}" var="err">
+	  ${err.text}
+	  </c:forEach>
+	  </span>
 
       </label>
       <form:input path="landmark" cssClass="form-control" id="Landmark" maxlength="255"/>
     </div>
     <div class="form-group">
-      <label for="Address">Address:
+      <label for="Address">Address:<span class="color">
+      <c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('address')}" var="err">
+	  ${err.text}
+	  </c:forEach>
+	  </span>
      
       </label>
       <form:input path="address" cssClass="form-control" id="Address" maxlength="255"/>
     </div>
     <div class="form-group">
-      <label for="Pincode">Pincode:
+      <label for="Pincode">Pincode:<span class="color">
+      <c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('pincode')}" var="err">
+	  ${err.text}
+	  </c:forEach>
+	  </span>
       
       </label>
       <form:input path="pinCode" cssClass="form-control" id="Pincode" maxlength="255"/>

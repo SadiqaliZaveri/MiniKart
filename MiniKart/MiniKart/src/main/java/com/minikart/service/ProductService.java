@@ -53,5 +53,14 @@ public void enableDisableProduct(int productId) {
 public String listProductEnabledViaJson() {
 	return productDAOImplementation.listProductEnabledViaJson();
 }
+@Transactional
+public void updateProductMinus(int productId) {
+	productDAOImplementation.updateProductMinus(productId);
+}
+@Transactional
+public void updateProductPlus(int productId) {
+	productDAOImplementation.updateProductPlus(productId);
+}
+
 
 }

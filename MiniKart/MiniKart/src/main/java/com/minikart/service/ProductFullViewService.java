@@ -28,7 +28,9 @@ public String listProductFullViewViaJson() {
 public ProductFullView getIdFromId(int productFullViewId) {
 	return productFullViewDAOImplementation.getIdFromId(productFullViewId);
 }
-
-	
-
+@Transactional
+public String listProductEnabledFullviewViaJson() {	
+	return productFullViewDAOImplementation.listProductEnabledFullviewViaJson();
 }
+}
+

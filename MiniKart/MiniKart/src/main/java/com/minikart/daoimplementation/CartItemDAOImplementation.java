@@ -18,7 +18,7 @@ public class CartItemDAOImplementation implements CartItemDAO{
 private SessionFactory sessionFactory;
 
 public void addCartItem(CartItem cartItem) {
-	sessionFactory.getCurrentSession().save(cartItem);
+	sessionFactory.getCurrentSession().saveOrUpdate(cartItem);
 }
 
 public void deleteCartItem(int cartItemId) {
@@ -28,16 +28,23 @@ public void deleteCartItem(int cartItemId) {
 }
 
 @SuppressWarnings("unchecked")
-public List<CartItem> listCartItem() {
+public CartItem listCartItem(int cartItemId) {
 	
-	return sessionFactory.getCurrentSession().createQuery("from CartItem").getResultList();
+	String query = "from CartItem where cartItemId="+cartItemId;
+	List<CartItem> list = sessionFactory.getCurrentSession().createQuery(query).getResultList();
+	return list.get(0);
 }
 
 @SuppressWarnings("unchecked")
-public String listCartItemViaJson() {
+public String listCartItemViaJson(int cartId) {
 	Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-	List<CartItem> list = sessionFactory.getCurrentSession().createQuery("from CartItem").getResultList();
+	List<CartItem> list = sessionFactory.getCurrentSession().createQuery("from CartItem where cartId="+cartId+" order by cartItemId desc").setMaxResults(1).getResultList();
 	String listCartItem = gson.toJson(list);
 	return listCartItem;
+}
+
+public void UpdateCartItemFlag(int cartItemId) {
+	sessionFactory.getCurrentSession().createQuery("update CartItem set flag=true where cartItemId="+cartItemId).executeUpdate();
+	
 }
 }

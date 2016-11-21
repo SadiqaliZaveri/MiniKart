@@ -1,11 +1,11 @@
  <div id="sidebar-wrapper">
   <ul class="sidebar-nav">
     <a id="menu-toggle" href="#" style="color:#f65819" class="btn btn-sm pull-right"><i class="glyphicon glyphicon-resize-full"></i></a>
-    <li class="sidebar-brand">
-      Filters
+    <li class="sidebar-brand text-center">
+      FILTERS
     </li>
-    <hr>
-    <hr>
+   
+    <hr style="margin-top:0px;">
     
     <c:forEach var="category" items="${categoryListNormal}">
       <li>
@@ -21,7 +21,7 @@
             <div id="collapse${category.categoryId}" class="panel-collapse collapse">
               <ul class="list-group">
                 <c:forEach var="sc" items="${category.subCategory}">
-                  <a href="#">
+                  <a href="filter?search=${sc.subCategoryName}">
                     <li class="list-group-item">
                       <c:out value="${sc.subCategoryName}" />
                       <p>

@@ -33,6 +33,7 @@ body {
   margin-left: -250px;
   overflow-y: auto;
   background: #263238;
+  border-bottom-right-radius: 50px;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -95,6 +96,7 @@ body {
   line-height: 60px;
   background-color: #263238;
   color: #f65819;
+  
 }
 
 .sidebar-nav > .sidebar-brand a {

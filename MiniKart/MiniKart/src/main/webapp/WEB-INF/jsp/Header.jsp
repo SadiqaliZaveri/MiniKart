@@ -10,21 +10,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="resources/js/jquery-3.1.1.min.js"></script>
+    <script src="resources/js/angular.min.js"></script>
+    <script src="resources/js/jquery.autocomplete.min.js"></script>	
     <link href="resources/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="resources/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="resources/js/angular.min.js"></script>
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="resources/js/bootstrap.min.js"></script>   
     <script src="resources/js/dirPagination.js"></script>
+    
+ 
     <link id="sidebarcss" href="resources/css/simple-sidebar.css" rel="stylesheet">
     <link href="resources/css/footer-distributed-with-address-and-phones.css" rel="stylesheet" />
     <link href="resources/css/megamenu.css" rel="stylesheet" />  
     <link href="resources/css/Main.css" rel="stylesheet" />
+    <link rel="icon" href="resources/images/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>MiniKart</title>
    
   </head>
 
 
   <!--    NAVIGATION BAR TOP   -->
+
 
   <body ng-app="Caller" ng-controller="CallerController">
 <div class="se-pre-con"></div>
@@ -42,7 +47,7 @@
         
         <div class="collapse navbar-collapse" id="myNavbar">
 
-          <ul id="maincategory" class="nav navbar-nav" style="margin-left:10%">
+          <ul id="maincategory" class="nav navbar-nav" style="margin-left:5%">
         
           
           
@@ -60,13 +65,7 @@
               
               <c:forEach var="category" items="${categoryListNormal}">
               <li class="dropdown-submenu">
-                  <a href="home"><span><c:out value="${category.categoryName}"/></span></a>
-<!--                   <ul class="dropdown-menu"> -->
-<%--                         <c:forEach var="sc" items="${category.subCategory}"> --%>
-                        
-<%--                        <a style="text-decoration:none; color:black;" href="home"><li style="text-align:center"><c:out value="${sc.subCategoryName}" /></li></a> --%>
-<%--                         </c:forEach> --%>
-<!--                     </ul> -->
+                  <a href="filter?search=${category.categoryName}"><span><c:out value="${category.categoryName}"/></span></a>
                 </li>              
               </c:forEach>     
                    
@@ -80,14 +79,6 @@
   </ul>
 
 
-        
-        
-
-	
-	
-         
-      
-
           <ul class="nav navbar-nav navbar-right">
            <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ANONYMOUS')">
             <li class="cart">
@@ -98,7 +89,7 @@
             <div class="hidden-sm hidden-md hidden-lg">
               <ul class="nav navbar-nav" style="padding-left:10%; padding-right:10%;">
               <sec:authorize access="hasRole('ROLE_USER')">
-                <li><a href="#">Profile User <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                <li><a href="panel-${pageContext.request.userPrincipal.name}">User Profile<span class="glyphicon glyphicon-cog pull-right"></span></a></li>
                 <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
                 <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
                 <li><a href="#">Favourites Snippets <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
@@ -108,7 +99,7 @@
                   <li><a href="admin"> Admin Panel<span class="glyphicon glyphicon-user pull-right"></span></a></li>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_SUPPLIER')">
-                  <li><a href="supplier">Supplier Panel<span class="glyphicon glyphicon-user pull-right"></span></a></li>
+                  <li><a href="panel-${pageContext.request.userPrincipal.name}">Supplier Panel<span class="glyphicon glyphicon-user pull-right"></span></a></li>
                 </sec:authorize>
                 
                   
@@ -123,7 +114,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">${pageContext.request.userPrincipal.name}<span class="glyphicon glyphicon-user pull-right"> </span></a>
                 <ul class="dropdown-menu">
                 <sec:authorize access="hasRole('ROLE_USER')">
-                  <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                  <li><a href="panel-${pageContext.request.userPrincipal.name}">User Panel <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
                   <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
                   <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
                   <li><a href="#">Favourites Snippets <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
@@ -133,7 +124,7 @@
                     <li><a href="admin"> Admin Panel<span class="glyphicon glyphicon-user pull-right"></span></a></li>
                   </sec:authorize>
                   <sec:authorize access="hasRole('ROLE_SUPPLIER')">
-                  <li><a href="supplier">Supplier Panel<span class="glyphicon glyphicon-user pull-right"></span></a></li>
+                  <li><a href="panel-${pageContext.request.userPrincipal.name}">Supplier Panel<span class="glyphicon glyphicon-user pull-right"></span></a></li>
                 </sec:authorize>
                 </ul>
               </li>
@@ -157,11 +148,17 @@
         <div class="container" style="margin-top: 5px; margin-bottom: 5px; ">
           <div class="row">
             <div class="input-group">
-              <input type="text" class="form-control SearchBar" placeholder="Search for...">
+            
+ 			  
+              <input id="searchbar" onkeypress="redirectEnter(event)" type="text" ng-model="lel" class="form-control SearchBar" placeholder="Search for...">
+              
+              
               <span class="input-group-btn">
-        <button class="btn btn-defaul SearchButton" type="button">
+<!--         <a href="filter?search={{ball}}"> -->
+        <button onclick="redirect()" class="btn btn-defaul SearchButton" type="button">
             <span class=" glyphicon glyphicon-search SearchIcon" ></span>
               </button>
+<!--               </a> -->
               </span>
             </div>
           </div>
@@ -223,6 +220,17 @@
 
 <script type="text/javascript">
 
+function redirect()
+{
+	window.location.href = "filter?search="+document.getElementById('searchbar').value;
+};
+
+function redirectEnter(e)
+{
+	if (e.keyCode == 13){
+		window.location.href = "filter?search="+document.getElementById('searchbar').value;
+	}
+};
 
 
 //SHOW LOADING SIGN ON LOAD OF WEBSITE
@@ -250,7 +258,7 @@ $(".dropdown").hover(
 
 		function scrolltop() {
 		  window.scrollTo(0, 0);
-		}
+		};
 		
 //	Toggle Button Script 
 		$("#menu-toggle, #menu-toggle-2").click(function(e) {
@@ -264,7 +272,39 @@ $(".dropdown").hover(
 			{
 			$("#maincategory").hide();
 			$("#todaysmessage").hide();
-			}
+			};
+			
+		
+		
+		
+// AUTOCOMPLETE 
+
+
+$(document).ready(function() {
+
+	$('#searchbar').autocomplete({
+		serviceUrl: '${pageContext.request.contextPath}/getTags',
+		paramName: "categoryName",
+		delimiter: ",",
+	   transformResult: function(response) {
+
+		return {
+		  //must convert json to javascript object before process
+		  suggestions: $.map($.parseJSON(response), function(item) {
+
+		      return { value: item.categoryName, data: item.categoryId };
+		   })
+
+		 };
+
+            }
+
+	 });
+
+  });
+
+      
+
     </script>
     
     

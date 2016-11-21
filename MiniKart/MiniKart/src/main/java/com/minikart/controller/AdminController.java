@@ -65,9 +65,7 @@ public class AdminController {
 		model.addAttribute("productListJson",this.productService.listProductViaJson());
 		
 		model.addAttribute("todaysMessageListJson",this.todaysMessageService.listTodaysMessageViaJson());
-/*
-//		Retrieving ProductSpecification Data through List
-		model.addAttribute("producSpecificationtListNormal",this.productSpecificationService.listProductSpecification());*/
+
 //		Retrieving ProductSpecification Data through GsontoJson Conversion
 		model.addAttribute("productSpecificationListJson",this.productSpecificationService.listProductSpecificationViaJson());
 

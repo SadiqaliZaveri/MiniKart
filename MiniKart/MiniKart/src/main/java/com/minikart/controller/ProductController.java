@@ -177,6 +177,12 @@ public class ProductController {
 			productService.enableDisableProduct(productId);			
 			return "redirect:/admin";
 		}
+		
+		@RequestMapping("/filter")
+		public String filterProducts()
+		{
+			return "ProductFilter";
+		}
 	}
 
 		

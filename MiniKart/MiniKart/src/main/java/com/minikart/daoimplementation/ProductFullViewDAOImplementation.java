@@ -42,4 +42,13 @@ private SessionFactory sessionFactory;
 		
 	}
 
+	@SuppressWarnings("unchecked")
+	public String listProductEnabledFullviewViaJson() {
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		List<ProductFullView> list = sessionFactory.getCurrentSession().createQuery("from ProductFullView where enabled=true").getResultList();
+		String listProductEnabledFullView = gson.toJson(list);
+		return listProductEnabledFullView;
+		
+	}
+
 }

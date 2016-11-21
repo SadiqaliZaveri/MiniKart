@@ -20,6 +20,18 @@
       <form:password path="password" cssClass="form-control" id="password" maxlength="255" />
     </div>
     <div class="form-group">
+      <label for="password">Gender<span class="color">
+      
+	  </span>
+      </label>
+      <form:select path="gender" cssClass="form-control">
+   		<form:option value="Male" label="Male" selected="true"/>
+   		<form:option value="Female" label="Female"/>
+		</form:select>
+    </div>
+   
+    
+    <div class="form-group">
       <label for="EmailId">Email:<span class="color">
       <c:forEach items="${flowRequestContext.messageContext.getMessagesBySource('emailid')}" var="err">
 	  ${err.text}
@@ -69,6 +81,8 @@
 
 <script>
 $("#wrapper").toggleClass("toggled");
+
+
 
 
 </script> 

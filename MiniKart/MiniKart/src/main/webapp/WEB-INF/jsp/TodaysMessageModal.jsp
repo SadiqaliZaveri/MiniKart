@@ -39,8 +39,8 @@
             <tr dir-paginate="x in getTodaysMessage | filter: test | orderBy:sortKey:reverse |itemsPerPage: maxsize" pagination-id="Message">
             <td>{{x.messageId}}</td>
             <td>{{x.message}}</td>
-            <td><a href="editTodaysMessage-{{x.messageId}}">Edit</a></td>
-            <td><a href="deleteTodaysMessage-{{x.messageId}}">Delete</a></td>
+            <td><a href="editTodaysMessage-{{x.messageId}}"><i class="fa fa-edit largetxt" style="color:#f65819" title="Edit"></i></a></td>
+            <td><a href="deleteTodaysMessage-{{x.messageId}}"><i class="fa fa-trash largetxt" style="color:#f65819" title="Delete"></i></a></td>
             </tr>
             </tbody>
             

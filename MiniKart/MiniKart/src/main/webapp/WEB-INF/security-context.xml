@@ -22,6 +22,10 @@
 						<intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
 						<intercept-url pattern="/reg" access="hasRole('ROLE_ANONYMOUS')"/>
 						<intercept-url pattern="/login" access="hasRole('ROLE_ANONYMOUS')"/>
+						<intercept-url pattern="/panel-{username}" access="hasAnyRole('ROLE_USER','ROLE_SUPPLIER')"/>
+						<intercept-url pattern="/buyNow-{productId}" access="hasRole('ROLE_USER')"/>
+						<intercept-url pattern="/buyNowList-{productId}" access="hasRole('ROLE_USER')"/>
+						<intercept-url pattern="/checkout" access="hasRole('ROLE_USER')"/>
 						<access-denied-handler error-page="/403"/>
 						<form-login
 						login-page="/login"

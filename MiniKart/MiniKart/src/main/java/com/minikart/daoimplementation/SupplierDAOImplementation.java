@@ -56,13 +56,8 @@ public class SupplierDAOImplementation implements SupplierDAO{
 	public Supplier getIdFromId(int supplierId) {
 		String query ="from Supplier where supplierId="+supplierId;
 		List<Supplier> supplierList = sessionFactory.getCurrentSession().createQuery(query).getResultList();
-		if(supplierList!=null && !supplierList.isEmpty())
-		{
+		
 			return supplierList.get(0);	
-		}else
-		{
-			return null;
-		}
 		
 	}
 

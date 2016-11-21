@@ -1,11 +1,14 @@
 package com.minikart.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+
+import com.google.gson.annotations.Expose;
 
 @Entity
 public class UserDetails implements Serializable{
@@ -14,16 +17,30 @@ public class UserDetails implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 @Id
+@Expose
 private int userId;
+@Expose
 private String firstName;
+@Expose
 private String lastName;
+@Expose
 private String username;
+@Expose
 private String password;
+@Expose
 private String emailId;
+@Expose
 private String contactNo;
+@Expose
 private String alternateContactNo;
+@Expose
 private int cartId;
+@Expose
+private String gender;
+@Expose
+private Date userCreationDate;
 
 
 @OneToOne
@@ -33,13 +50,14 @@ private User user;
 @OneToOne
 @JoinColumn(name="cartId", insertable=false, nullable=false, updatable=false)
 public Cart cart;
+
 @OneToOne
 @JoinColumn(name="billingAddressId")
 public BillingAddress billingAddress;
+
 @OneToOne
 @JoinColumn(name="shippingAddressId")
 public ShippingAddress shippingAddress;
-
 
 @OneToOne
 @JoinColumn(name="roleId")
@@ -50,6 +68,20 @@ private UserRole userRole;
 private Supplier supplier;
 
 
+
+public String getGender() {
+	return gender;
+}
+public void setGender(String gender) {
+	this.gender = gender;
+}
+
+public Date getUserCreationDate() {
+	return userCreationDate;
+}
+public void setUserCreationDate(Date userCreationDate) {
+	this.userCreationDate = userCreationDate;
+}
 public int getUserId() {
 	return userId;
 }
@@ -98,8 +130,6 @@ public String getAlternateContactNo() {
 public void setAlternateContactNo(String alternateContactNo) {
 	this.alternateContactNo = alternateContactNo;
 }
-
-
 public int getCartId() {
 	return cartId;
 }
@@ -112,7 +142,6 @@ public Supplier getSupplier() {
 public void setSupplier(Supplier supplier) {
 	this.supplier = supplier;
 }
-
 public User getUser() {
 	return user;
 }

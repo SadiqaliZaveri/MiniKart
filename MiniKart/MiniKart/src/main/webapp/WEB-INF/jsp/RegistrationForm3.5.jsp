@@ -24,7 +24,7 @@
 
        <div class="form-group">
     <button id="supp" name="_eventId_submitsupp" type="submit" class="btn btn-warning pull-right labelspace"><i class="glyphicon glyphicon-arrow-right"></i> Supplier</button>
-    <button id="ship"name="_eventId_submitship" type="submit" class="btn btn-warning pull-right"><i class="glyphicon glyphicon-arrow-right"></i> Buyer</button>
+    <button id="ship" name="_eventId_submitship" type="submit" class="btn btn-warning pull-right"><i class="glyphicon glyphicon-arrow-right"></i> Buyer</button>
     <button name="_eventId_cancel" type="submit" class="btn btn-danger pull-left"><i class="glyphicon glyphicon-remove"></i> Cancel</button>
     </div>
   </form:form>

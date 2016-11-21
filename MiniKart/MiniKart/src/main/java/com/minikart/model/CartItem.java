@@ -1,5 +1,6 @@
 package com.minikart.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -12,7 +13,11 @@ import javax.persistence.ManyToOne;
 import com.google.gson.annotations.Expose;
 
 @Entity
-public class CartItem {
+public class CartItem implements Serializable{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 @Id
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 @Expose
@@ -32,8 +37,11 @@ private int productDiscountPrice;
 @Expose
 private boolean flag;
 @Expose
-private Date date;
-
+private Date orderDate;
+@Expose
+private int productQuantity;
+@Expose
+private int amount;
 
 @ManyToOne
 @JoinColumn(name="cartId", nullable=false,insertable=false,updatable=false)
@@ -47,6 +55,29 @@ private User user;
 @JoinColumn(name="productId", nullable=false,insertable=false,updatable=false)
 private Product product;
 
+public Date getOrderDate() {
+	return orderDate;
+}
+
+public void setOrderDate(Date orderDate) {
+	this.orderDate = orderDate;
+}
+
+public int getProductQuantity() {
+	return productQuantity;
+}
+
+public void setProductQuantity(int productQuantity) {
+	this.productQuantity = productQuantity;
+}
+
+public int getAmount() {
+	return amount;
+}
+
+public void setAmount(int amount) {
+	this.amount = amount;
+}
 
 public int getCartItemId() {
 	return cartItemId;
@@ -112,13 +143,6 @@ public void setFlag(boolean flag) {
 	this.flag = flag;
 }
 
-public Date getDate() {
-	return date;
-}
-
-public void setDate(Date date) {
-	this.date = date;
-}
 
 public Cart getCart() {
 	return cart;

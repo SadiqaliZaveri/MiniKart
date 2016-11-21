@@ -1,12 +1,15 @@
 
 html {
   height: 100%;
+  text-overflow: ellipsis;
 }
 
 body {
   background: url("seamlessPattern.png");
   background-repeat: repeat;
   height: 100%;
+  font-family: Roboto,Arial,sans-serif;
+  letter-spacing: 0;
 }
 
 hr {
@@ -16,6 +19,20 @@ hr {
   width: 100%;
 }
 
+a:focus, a:hover{
+	text-decoration: none;
+	
+}
+a
+{
+	color:#263238;
+}
+
+
+.largetxt
+{
+	font-size:20px;
+}
 .theme {
   border-bottom-right-radius: 50px;
   border-bottom-left-radius: 50px;
@@ -62,6 +79,12 @@ hr {
 	padding:5px;
 }
 
+.shadowbox
+{
+-webkit-box-shadow: 0px 0px 5px 3px rgba(196,196,196,0.25);
+-moz-box-shadow: 0px 0px 5px 3px rgba(196,196,196,0.25);
+box-shadow: 0px 0px 5px 3px rgba(196,196,196,0.25);
+}
 
 
 /*    NAVIGATION STYLING    */
@@ -234,7 +257,7 @@ li:hover {
 /*  SCROLL BAR CSS */
 
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 7px;
   height: 8px;
 }
 
@@ -310,6 +333,9 @@ li:hover {
   justify-content: center;
   overflow: hidden;
 }
+.imgholder:hover {
+  transform: scale(1.1,1.1);
+}
 
 .thumbnail
 {
@@ -329,12 +355,21 @@ li:hover {
 {
 	background-color: #f65819;
 	color:white;
-	border: 2px solid #263238;
-	border-radius: 50px;
+	
+}
+.wishbutton
+{
+	background-color: #ff3232;
+	color:white;
+}
+.buynowbutton
+{
+	background-color: #0c0c0c;
+	color:white;
 }
 .cartbutton:hover
 {	background-color: #263238;
-	border: 2px solid #f65819;
+	
 	color:white;
 }
 
@@ -432,5 +467,45 @@ li:hover {
 }
 
 
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover
+{
+	color: #f65819;
+}
 
 
+/* USER PANEL STUFF */
+
+
+.table-user-information > tbody > tr {
+    border-top: 1px solid #f65819;
+}
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
+.toppad
+{
+	margin-top:20px;
+}
+
+
+
+
+.autocomplete-suggestions 
+{ 
+  background: #FFF;
+  overflow: auto;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+ }
+.autocomplete-suggestion { padding: 5px 5px; white-space: nowrap; overflow: hidden; border-bottom: 1px solid #f65819; letter-spacing: 1px;}
+.autocomplete-selected { background: #f65819; color:white;}
+.autocomplete-suggestions-strong { font-weight: normal; color: #3399FF; }
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group-strong { display: block; border-bottom: 1px solid #000; }

@@ -1,0 +1,99 @@
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/webflow 
+		http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+
+<var name="buyNow" class="com.minikart.model.BuyNow"/>
+<var name="userDetails" class="com.minikart.model.UserDetails"/>
+<var name="shippingAddress" class="com.minikart.model.ShippingAddress"/>
+<var name="billingAddress" class="com.minikart.model.BillingAddress"/>
+
+<on-start>
+<evaluate expression="cartHandler.initFlow()" result="flowScope.buyNow"></evaluate>
+</on-start>
+
+
+	<action-state id="start">
+	<evaluate expression="userService.getShippingIdById(externalContext.sessionMap.userDetails_userId)" result="shippingAddress"></evaluate>
+		<transition to="shippingDetails" />
+	</action-state>
+
+
+
+
+	<view-state id="shippingDetails" view="ConfirmShippingDetails" model="shippingAddress">
+		<transition on="submit" to="startBilling"/>
+		<transition on="edit" to="editShippingDetails"/>
+		<transition on="cancel" to="cancel"/>
+	</view-state>
+	
+	<view-state id="editShippingDetails" view="RegistrationForm4" model="shippingAddress">
+		<transition on="submit" to="validateShipping"/>
+		<transition on="back" to="start"/>
+		<transition on="cancel" to="cancel"/>
+	</view-state>	
+			
+	<action-state id="validateShipping">
+	<evaluate expression="cartHandler.validateShipping(flowScope.buyNow,shippingAddress,messageContext)"></evaluate>
+		<transition on="success" to="addShippingDetails" />
+		<transition on="failure" to="editShippingDetails" />
+	</action-state>
+	
+	<action-state id="addShippingDetails">
+	<evaluate expression="cartHandler.addShippingDetails(flowScope.buyNow, shippingAddress)"></evaluate>
+		<transition on="success" to="saveShipping" />
+		<transition on="failure" to="editShippingDetails" />
+	</action-state>
+	<action-state id="saveShipping">
+	<evaluate expression="userService.saveOrUpdateShipping(shippingAddress)"></evaluate>
+		<transition to="start" />
+	</action-state>
+	
+	
+	<action-state id="startBilling">
+	<evaluate expression="userService.getBillingIdById(externalContext.sessionMap.userDetails_userId)" result="billingAddress"></evaluate>
+		<transition to="billing" />
+	</action-state>
+	<view-state id="billing" view="ConfirmBillingDetails" model="billingAddress">
+		<transition on="submit" to="payment"/>
+		<transition on="edit" to="editBillingDetails"/>
+		<transition on="same" to="saveBillingAsShipping"/>
+		<transition on="back" to="start"/>
+		<transition on="cancel" to="cancel"/>
+	</view-state>
+	<view-state id="editBillingDetails" view="RegistrationForm5" model="billingAddress">
+		<transition on="submit" to="validateBilling"/>
+		<transition on="back" to="startBilling"/>
+		<transition on="cancel" to="cancel"/>
+	</view-state>	
+			
+	<action-state id="validateBilling">
+	<evaluate expression="cartHandler.validateBilling(flowScope.buyNow,billingAddress,messageContext)"></evaluate>
+		<transition on="success" to="addBillingDetails" />
+		<transition on="failure" to="editBillingDetails" />
+	</action-state>
+	
+	<action-state id="addBillingDetails">
+	<evaluate expression="cartHandler.addBillingDetails(flowScope.buyNow, billingAddress)"></evaluate>
+		<transition on="success" to="saveBilling" />
+		<transition on="failure" to="editBillingDetails" />
+	</action-state>
+	<action-state id="saveBillingAsShipping">
+	<evaluate expression="cartHandler.addBillingDetailsAsShipping(flowScope.buyNow, billingAddress, shippingAddress)"></evaluate>
+		<transition on="success" to="saveBilling" />
+		<transition on="failure" to="editBillingDetails" />
+	</action-state>
+	<action-state id="saveBilling">
+	<evaluate expression="userService.saveOrUpdateBilling(billingAddress)" ></evaluate>
+		<transition to="startBilling" />
+	</action-state>
+	<view-state id="payment" view="PaymentDetails" >
+		<transition on="submit" to="success" />
+		<transition on="cancel" to="cancel"/>
+	</view-state>
+
+<end-state id="success" view="externalRedirect:contextRelative:/updateCartFlag"/>
+<end-state id="cancel" view="externalRedirect:contextRelative:/deleteCartItem"/>
+</flow>

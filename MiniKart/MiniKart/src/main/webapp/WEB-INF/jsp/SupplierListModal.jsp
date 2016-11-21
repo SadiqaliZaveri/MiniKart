@@ -70,8 +70,8 @@
             <td>{{x.pinCode}}</td>
             <td>{{x.companyUrl}}</td>
             <td>{{x.address}}</td>
-            <td><a href="editsup-{{x.supplierId}}">Edit</a></td>
-            <td><a href="deletesup-{{x.supplierId}}">Delete</a></td>
+            <td><a href="editsup-{{x.supplierId}}"><i class="fa fa-edit largetxt" style="color:#f65819" title="Edit"></i></a></td>
+            <td><a href="deletesup-{{x.supplierId}}"><i class="fa fa-trash largetxt" style="color:#f65819" title="Delete"></i></a></td>
             </tr>
             </tbody>
           </table>

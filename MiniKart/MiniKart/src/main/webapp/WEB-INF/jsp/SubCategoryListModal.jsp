@@ -43,8 +43,8 @@
             <td>{{x.subCategoryId}}</td>
             <td>{{x.categoryId}}</td>
             <td>{{x.subCategoryName}}</td>
-            <td><a href="editsub-{{x.subCategoryId}}">Edit</a></td>
-            <td><a href="deletesub-{{x.subCategoryId}}">Delete</a></td>
+            <td><a href="editsub-{{x.subCategoryId}}"><i class="fa fa-edit largetxt" style="color:#f65819" title="Edit"></i></a></td>
+            <td><a href="deletesub-{{x.subCategoryId}}"><i class="fa fa-trash largetxt" style="color:#f65819" title="Delete"></i></a></td>
             </tr>
             </tbody>
           </table>

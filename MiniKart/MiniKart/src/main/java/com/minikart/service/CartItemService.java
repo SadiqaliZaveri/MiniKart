@@ -1,6 +1,6 @@
 package com.minikart.service;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,11 +24,16 @@ public void deleteCartItem(int cartItemId) {
 	cartItemDAOImplementation.deleteCartItem(cartItemId);
 }
 @Transactional
-public List<CartItem> listCartItem() {
-	return cartItemDAOImplementation.listCartItem();
+public CartItem listCartItem(int cartItemId) {
+	return cartItemDAOImplementation.listCartItem(cartItemId);
 }
 @Transactional
-public String listCartItemViaJson() {
-	return cartItemDAOImplementation.listCartItemViaJson();
+public String listCartItemViaJson(int cartId) {
+	return cartItemDAOImplementation.listCartItemViaJson(cartId);
+}
+@Transactional
+public void UpdateCartItemFlag(int cartItemId) 
+{
+	cartItemDAOImplementation.UpdateCartItemFlag(cartItemId);
 }
 }

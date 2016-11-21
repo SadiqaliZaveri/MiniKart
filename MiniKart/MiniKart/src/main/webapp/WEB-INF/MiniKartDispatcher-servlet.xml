@@ -18,6 +18,7 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
+	
 	<mvc:resources mapping="/resources/**" location="/resources/"/>
 	<mvc:annotation-driven ignore-default-model-on-redirect="true" />
 	

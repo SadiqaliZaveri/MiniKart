@@ -106,10 +106,7 @@
 	
 	
 
-<!-- 	<view-state id="step2" view="RegisterForm4"> -->
-<!-- 		<transition on="finish" to="success"/> -->
-<!-- 		<transition on="cancel" to="cancel"/> -->
-<!-- 	</view-state> -->
+
 
 	<end-state id="success" view="externalRedirect:contextRelative:/regsuccess"/>
 	<end-state id="cancel" view="externalRedirect:contextRelative:/home"/>

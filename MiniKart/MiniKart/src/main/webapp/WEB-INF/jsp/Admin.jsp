@@ -210,19 +210,41 @@ window.scrollTo(0, getCookie("scroll"));
 
 
 //MODULE AND CONTROLLER - ANGULARJS - RETRIEVAL OF DATA VIA JSON LISTS
-var app = angular.module('Caller', ['angularUtils.directives.dirPagination']);
-app.controller('CallerController', function($scope) {
+var app = angular.module('Caller', ['angularUtils.directives.dirPagination']).filter('totalSumPriceQty', function () {
+    return function (data, key1, key2) {
+        debugger;
+        if (typeof (data) === 'undefined' && typeof (key1) === 'undefined' && typeof (key2) === 'undefined') {
+            return 0;
+        }
+        var sum = 0;
+        for (var i = 0; i < data.length; i++) {
+            sum = sum + (parseInt(data[i][key1]) * parseInt(data[i][key2]));
+        }
+        return sum;
+    }
+});
+app.controller('CallerController', function($scope, $filter) {
   $scope.getCategory = ${categoryListJson};
   $scope.getSubCategory = ${subCategoryListJson};
   $scope.getSupplier = ${supplierListJson};
   $scope.getProduct = ${productListJson};
   $scope.getTodaysMessage = ${todaysMessageListJson};
   $scope.getUser = ${userListJson};
-
+  
   $scope.sort = function(keyname) {
     $scope.sortKey = keyname; //set the sortKey to the param passed
     $scope.reverse = !$scope.reverse; //if true make it false and vice versa
-  }
+  };
+  
+  $scope.getTotal = function(){
+	  var total = 0;
+	  for(var i = 0; i<$scope.getProduct.length; i++)
+		  {
+		   var product = $scope.getProduct[i];
+		   total += (product.productPrice * product.productStock);
+		  }
+	  return total;
+  };
 });
 
 // DISPLAY IMAGE ON SELECTION
@@ -238,7 +260,7 @@ function readURL(input) {
 
     reader.readAsDataURL(input.files[0]);
   }
-}
+};
 
 // Front End Validation
 function validate(formid) {
@@ -249,19 +271,28 @@ function validate(formid) {
   for (i = 0; i < elements.length; i++) {
 
     if (elements[i].value == "") {
-
+	 
       elements[i].setAttribute('style', 'border:2px solid #f65819');
-      elements[i].previousElementSibling.innerHTML = "<span style=\"color:#f65819\">Please Fill</span> " + elements[i].previousElementSibling.innerHTML;
+      
+      if(elements[i].previousElementSibling.innerHTML.includes("<span style=\"color:#f65819\">Please Fill</span>"))
+    	  {
+    	  
+    	  }
+      else
+    	  {
+    	  elements[i].previousElementSibling.innerHTML = "<span style=\"color:#f65819\">Please Fill</span> " + elements[i].previousElementSibling.innerHTML;
+    	  }
+      
       var von = 1;
     }
-
+   
   }
   if (von == 1) {
     return false;
   }
 
   return true;
-}
+};
 
 // REMOVE IMAGE ON X BUTTON 
 document.getElementById('del').onclick = function() {
@@ -270,7 +301,7 @@ document.getElementById('del').onclick = function() {
   var img = document.getElementById("Tempimg");
   img.src = "resources/images/altimg.png";
  
-}
+};
 
 // Function to get & create cookie for scroll of page.
 function getCookie(cname) {
@@ -286,7 +317,9 @@ function getCookie(cname) {
         }
     }
     return "";
-}
+};
+
+// Scroll Cookie
 
 $(window).on('scroll',function(){
 	 var y = window.pageYOffset;
