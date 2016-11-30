@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.minikart.model.CartItem;
 import com.minikart.model.Category;
 import com.minikart.model.Product;
 import com.minikart.model.ProductFullView;
@@ -66,7 +67,8 @@ public class ProductController {
 		@RequestMapping(value="/add/products", method = RequestMethod.POST)
 		public String addProduct(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, HttpServletRequest request){
 			
-
+			HttpSession session;
+			session = request.getSession();
 			Category category = categoryService.getIdByName(product.getCategory().getCategoryName());
 			categoryService.addCategory(category);
 			product.setCategory(category);
@@ -87,9 +89,9 @@ public class ProductController {
 			
 			if(bindingResult.hasErrors())
 			{
-				HttpSession session = request.getSession();
+				
 				session.setAttribute("Error","<div class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>Operation Failed : Enable Javascript \\ Insert Valid Data  or Contact Support.</div>");
-				return "redirect:/admin";
+				return "redirect:/"+session.getAttribute("pageFrom");
 			}
 			
 			Date currentDate = new Date();
@@ -115,7 +117,7 @@ public class ProductController {
 			catch (Exception e) {
 				System.out.println("ERROR WHILE IMAGE INPUT");
 			}
-			return "redirect:/admin";
+			return "redirect:/"+session.getAttribute("pageFrom");
 		}
 		
 		//Product EDIT ACTION
@@ -144,27 +146,29 @@ public class ProductController {
 			}
 		
 		
-		@RequestMapping(value="/viewprod-{productId}", method = RequestMethod.GET)
-		public ModelAndView viewproduct(@ModelAttribute("product") Product product,@PathVariable("productId") int productId){
-			
-			Product p = productService.getIdFromId(productId);
-			Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-			String g = gson.toJson(p);
-			ModelAndView model = new ModelAndView("ProductFullView");
-			model.addObject("particularProduct", g);
-			
-			return model;
-			
-		}
+//		@RequestMapping(value="/viewprod-{productId}", method = RequestMethod.GET)
+//		public ModelAndView viewproduct(@ModelAttribute("product") Product product,@PathVariable("productId") int productId){
+//			
+//			Product p = productService.getIdFromId(productId);
+//			Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+//			String g = gson.toJson(p);
+//			ModelAndView model = new ModelAndView("ProductFullView");
+//			model.addObject("particularProduct", g);
+//			
+//			
+//			return model;
+//			
+//		}
 		
 		@RequestMapping(value="/viewfullprod-{productId}", method = RequestMethod.GET)
-		public ModelAndView viewproduct(@ModelAttribute("product") ProductFullView productFullView,@PathVariable("productId") int productFullViewId){
+		public ModelAndView viewproduct(@ModelAttribute("product") ProductFullView productFullView, @PathVariable("productId") int productFullViewId){
 			
 			ProductFullView p = productFullViewService.getIdFromId(productFullViewId);
 			Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 			String g = gson.toJson(p);
 			ModelAndView model = new ModelAndView("ProductFullView");
 			model.addObject("particularProductFullView", g);
+			
 			
 			return model;
 			

@@ -20,7 +20,9 @@
 </div>
 
 
-
+<script>
+$("#wrapper").toggleClass("toggled");
+</script>
 <!--      FOOTER STARTS     -->
 
 <%@include file="Footer.jsp" %>

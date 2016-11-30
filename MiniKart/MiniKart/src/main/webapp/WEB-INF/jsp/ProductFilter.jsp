@@ -12,10 +12,12 @@
 <div class="col-xs-3" style="border:1px solid #f65819; background-color: #263238; color:white; " ng-click="sort('productId')">Latest 
 <span class="glyphicon sort-icon pull-right" ng-show="sortKey=='productId'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></span>
 </div>
-<div class="col-xs-12" style="border:1px solid #f65819; background-color: #263238; color:white;">
-<div ng-repeat="k in getProduct | orderBy: 'categoryName' | filter: lel" >
-<div class="checkbox col-xs-2">
-<label><input type="checkbox" ng-click="myNewFilter(k.subCategoryName)"/> {{k.subCategoryName}} ({{k.categoryName}})</label>
+
+
+<div class="col-xs-12 tenpxtop" style="border:1px solid #f65819; background-color: #263238; color:white;">
+<div ng-repeat="k in getProduct | orderBy: 'categoryName' | filter: lel | unique: 'categoryName'" >
+<div class="checkbox col-sm-3 col-xs-6" >
+<label><input type="checkbox" ng-init="chk == lel" ng-click="myNewFilter(k.subCategoryName)"/> {{k.subCategoryName}} ({{k.categoryName}})</label>
 </div>
 </div>
 </div>
@@ -23,7 +25,7 @@
     </div></div><hr>
                     <div ng-repeat="x in  getProduct | filter: lel | filter:nextFilter | orderBy:sortKey:reverse " class="col-xs-12 col-sm-4 col-md-3 preview">
                     
-                        <div class="umbnail">
+                        <div class="thumbnail">
                         <div class="imgholder">
                         <div ng-if="x.categoryName == 'Mobiles' ||  x.categoryName == 'Mobile Accessories'">
                        <a href="viewfullprod-{{x.productId}}"><img class="img-responsive center-block" style="width:30%; max-height:30%;"  src="resources/images/product{{x.productId}}.jpg" alt=""></a>
@@ -40,19 +42,40 @@
                     			
                     			
                     			<div class="row">
-                        			<div class="col-xs-12 text-center">
+                        			<div ng-if="x.productDiscountPrice == 0">
+                        			<div class="col-xs-12 text-center" style="min-height: 60px;">
                             			<p class="lead"><i class="fa fa-inr" aria-hidden="true"></i> {{x.productPrice}}</p>
                         			</div>
+                        			</div>
+                        			<div ng-if="x.productDiscountPrice != 0">
+                        			<div class="col-xs-12 text-center" style="min-height: 60px; max-height: 60px; ">
+                            			
+                            			<div class="col-xs-12">
+                            				<strong><span style="color:orange; font-size:15px;">{{Math.round(((((x.productPrice - x.productDiscountPrice)/ x.productPrice) * 100)))}} % off!</span></strong>
+                            				<del class="labelspace" style="font-size:12px; color:#f65819;"><i class="fa fa-inr" aria-hidden="true"></i> {{x.productPrice}} </del>
+                            			</div>
+                            			<div class="col-xs-12"> <p class="lead"><i class="fa fa-inr" style="color:green;  margin-left:5px;" aria-hidden="true"></i> <span style="color:green;">{{x.productDiscountPrice}}</span></p></div>
+                            			
+                        			</div>
+                        			</div>
+                        			<div ng-if="x.productStock != 0">
                         			<div class="col-xs-12 col-sm-6 text-center" >
-                            		<a class="btn cartbutton tenpxtop" href=""><i class="fa fa-shopping-cart hidden-md" aria-hidden="true"></i> Add to cart</a>
+                            		<a class="btn cartbutton tenpxtop" href="AddToCart-{{x.productId}}"><i class="fa fa-shopping-cart hidden-md" aria-hidden="true"></i> Add to cart</a>
                         			</div>
                         			
                         			<div class="col-xs-12 col-sm-3 text-center" >
                             		<a class="btn cartbutton tenpxtop" href="buyNow-{{x.productId}}" data-toggle="tooltip" data-placement="bottom" title="Buy Now!"><i class="fa fa-credit-card" aria-hidden="true"></i></a>
                         			</div>
+                        			</div>
+                        			<div ng-if="x.productStock == 0">
+                        			<div class="col-xs-12 col-sm-9 text-center" >
+                            		<a class="btn cartbutton tenpxtop"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                            		 OUT OF STOCK</a>
+                        			</div>
+                        			</div>
                         			
                         			<div class="col-xs-12 col-sm-3 text-center" >
-                            		<a class="btn cartbutton tenpxtop" href="" data-toggle="tooltip" data-placement="bottom" title="Add To Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                            		<a class="btn cartbutton tenpxtop" href="wishlist-{{x.productId}}" data-toggle="tooltip" data-placement="bottom" title="Add To Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>
                         			</div>
                     			</div>
                             </div>
@@ -67,11 +90,12 @@
 <script>
 
 //MODULE AND CONTROLLER - ANGULARJS - RETRIEVAL OF DATA VIA JSON LISTS
-var app = angular.module('Caller', ['angularUtils.directives.dirPagination']);
+var app = angular.module('Caller', ['angularUtils.directives.dirPagination','ui.filters']);
 app.controller('CallerController', function($scope, $http, $location) {
   $scope.getProduct = ${productFullViewEnabledJson};
   
-   
+  $scope.Math = window.Math;
+
    $scope.lel = location.search.substr(8).replace(/%20/g," ");
   
    $scope.sort = function(keyname) {

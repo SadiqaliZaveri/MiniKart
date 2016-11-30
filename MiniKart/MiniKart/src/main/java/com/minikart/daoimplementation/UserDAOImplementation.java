@@ -147,6 +147,14 @@ public class UserDAOImplementation implements UserDAO{
 		
 	}
 
+	public void update(UserDetails userDetails) {
+		sessionFactory.getCurrentSession().update(userDetails);
+	}
+	
+	public void update(User user) {
+		sessionFactory.getCurrentSession().update(user);
+	}
+
 	
 }
 

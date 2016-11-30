@@ -39,11 +39,13 @@
       <input type="text" class="form-control" id="Pincode" readonly="readonly" value="${billingAddress.pinCode}"/>
     </div>
     <div class="form-group">
-    <button name="_eventId_submit" type="submit" class="btn btn-success pull-right labelspace"><i class="glyphicon glyphicon-ok"></i> Confirm</button>
-    <button name="_eventId_same" data-toggle="tooltip" data-placement="bottom" type="submit" class="btn btn-warning pull-right labelspace" ><i class="glyphicon glyphicon-repeat"></i> Same</button>
-    <button name="_eventId_back" type="submit" class="btn btn-warning pull-right labelspace"><i class="glyphicon glyphicon-arrow-left"></i> Back</button>
-    <button name="_eventId_edit" type="submit" class="btn btn-warning pull-right "><i class="glyphicon glyphicon-repeat"></i> Edit</button>
-    <button name="_eventId_cancel" type="submit" class="btn btn-danger pull-left"><i class="glyphicon glyphicon-remove"></i> Cancel</button>
+    <button name="_eventId_submit" type="submit" class="btn btn-success pull-right labelspace tenpxtop"><i class="glyphicon glyphicon-ok"></i> Confirm</button>
+    <button name="_eventId_cancel" type="submit" class="btn btn-danger pull-left tenpxtop"><i class="glyphicon glyphicon-remove"></i> Cancel</button>
+    <button name="_eventId_back" type="submit" class="btn btn-warning pull-right labelspace tenpxtop"><i class="glyphicon glyphicon-arrow-left"></i> Back</button>
+    <button name="_eventId_same" data-toggle="tooltip" data-placement="bottom" type="submit" class="btn btn-warning pull-right labelspace tenpxtop" ><i class="glyphicon glyphicon-repeat"></i> Same</button>
+    
+    <button name="_eventId_edit" type="submit" class="btn btn-warning pull-right tenpxtop"><i class="glyphicon glyphicon-repeat"></i> Edit</button>
+    
     </div>
   </form:form>
 </div>

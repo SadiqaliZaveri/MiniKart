@@ -11,6 +11,7 @@ import com.minikart.model.BillingAddress;
 import com.minikart.model.Product;
 import com.minikart.model.ShippingAddress;
 import com.minikart.model.Supplier;
+import com.minikart.model.User;
 import com.minikart.model.UserDetails;
 import com.minikart.model.UserRole;
 
@@ -72,5 +73,13 @@ public class UserService {
 	@Transactional
 	public List<Product> getProductIdById(int supplierId) {
 		return userDAOImplementation.getProductIdById(supplierId);
+	}
+	@Transactional
+	public void update(UserDetails userDetails) {
+		userDAOImplementation.update(userDetails);
+	}
+	@Transactional
+	public void update(User user) {
+		userDAOImplementation.update(user);
 	}
 }

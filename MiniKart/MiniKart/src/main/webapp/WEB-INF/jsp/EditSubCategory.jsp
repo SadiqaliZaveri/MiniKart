@@ -27,7 +27,9 @@
 </form:form>
 </div>
 
-
+<script>
+$("#wrapper").toggleClass("toggled");
+</script>
 <!--      FOOTER STARTS     -->
 
 <jsp:include page="Footer.jsp" />

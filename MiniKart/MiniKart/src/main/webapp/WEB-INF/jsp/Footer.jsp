@@ -7,9 +7,9 @@
 				<marquee style="border-right: 2px solid orange; border-left: 2px solid orange"><img alt="Logo" src="resources/images/logo.png" width="175" height="150"></marquee>
 
 				<p class="footer-links">
-					<a href="#">Home</a>
+					<a href="home">Home</a>
 					·
-					<a href="#">About</a>
+					<a href="">About</a>
 					·
 					<a href="FAQ">FAQ</a>
 					·
@@ -64,6 +64,7 @@
     </div>
 <!--    SIDE BAR WRAPPER ENDS  -->
     <script>
+   
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
 });

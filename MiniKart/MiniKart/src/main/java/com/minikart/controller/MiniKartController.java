@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.minikart.model.Category;
+import com.minikart.model.SubCategory;
 import com.minikart.service.CategoryService;
+import com.minikart.service.SubCategoryService;
 
 
 @Controller
@@ -22,7 +24,7 @@ public class MiniKartController {
 	
 	
 @Autowired
-private CategoryService categoryService;
+private SubCategoryService subCategoryService;
 	
 	
 	@RequestMapping(value={"/","Home","home"})
@@ -54,6 +56,11 @@ private CategoryService categoryService;
 		return "Home";
 	}
 	
+	@RequestMapping("/404")
+	public String ResourceNotFoundPage()
+	{
+		return "404";
+	}
 
 	
 	
@@ -62,22 +69,22 @@ private CategoryService categoryService;
 	
 		 
 	@RequestMapping(value = "/getTags", method = RequestMethod.GET)
-	public @ResponseBody String getTags(@RequestParam String categoryName) {
+	public @ResponseBody String getTags(@RequestParam String subCategoryName) {
 		
-		return simulateSearchResult(categoryName);
+		return simulateSearchResult(subCategoryName);
 
 	}
 
-	private String simulateSearchResult(String categoryName) {
+	private String simulateSearchResult(String subCategoryName) {
 
-		List<Category> result = new ArrayList<Category>();
-		List<Category> data = categoryService.listCategory();
+		List<SubCategory> result = new ArrayList<SubCategory>();
+		List<SubCategory> data = subCategoryService.listSubCategory();
 		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		String j = null;
 		// iterate a list and filter by tagName
-		for(Category tag : data) {
+		for(SubCategory tag : data) {
 			
-			if (tag.getCategoryName().contains(categoryName)) {
+			if (tag.getSubCategoryName().contains(subCategoryName)) {
 				
 				result.add(tag);
 				j=gson.toJson(result);

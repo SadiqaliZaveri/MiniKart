@@ -1,5 +1,6 @@
 package com.minikart.daoimplementation;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -44,7 +45,24 @@ public String listCartItemViaJson(int cartId) {
 }
 
 public void UpdateCartItemFlag(int cartItemId) {
-	sessionFactory.getCurrentSession().createQuery("update CartItem set flag=true where cartItemId="+cartItemId).executeUpdate();
+	
+	sessionFactory.getCurrentSession().createQuery("update CartItem set flag=true, orderDate=sysdate where cartItemId="+cartItemId).executeUpdate();
+	
+}
+
+@SuppressWarnings("unchecked")
+public List<CartItem> listCartItemViaUserId(int userId) {
+	
+	String query = "from CartItem where userId="+userId+" and flag = false";
+	List<CartItem> list = sessionFactory.getCurrentSession().createQuery(query).getResultList();
+	return list;
+}
+
+@SuppressWarnings("unchecked")
+public List<CartItem> listOrderedItemViaUserId(int userId) {
+	String query = "from CartItem where userId="+userId+" and flag = true";
+	List<CartItem> list = sessionFactory.getCurrentSession().createQuery(query).getResultList();
+	return list;
 	
 }
 }

@@ -31,13 +31,13 @@ public class ProductSpecificationController {
 			
 		}
 		@RequestMapping(value="/addprodspec-{productId}", method = RequestMethod.POST)
-		public String addproductspec(@PathVariable("productId") int productId,@ModelAttribute("productSpecification") ProductSpecification productSpecification){
+		public String addproductspec(@PathVariable("productId") int productId,@ModelAttribute("productSpecification") ProductSpecification productSpecification, HttpSession session){
 			
 			productSpecification.setProductId(productId);
 			
 			productSpecificationService.addProductSpecification(productSpecification);
 			
-			return "redirect:/admin";
+			return "redirect:/"+session.getAttribute("pageFrom");
 			
 		}
 		
@@ -52,7 +52,7 @@ public class ProductSpecificationController {
 			{
 				HttpSession session = request.getSession();
 				session.setAttribute("Error","<div class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>Operation Failed : Please Add Info Before Editing</div>");
-				return "redirect:/admin";
+				return "redirect:/"+session.getAttribute("pageFrom");
 			}
 			return "EditProductSpecForm";
 			

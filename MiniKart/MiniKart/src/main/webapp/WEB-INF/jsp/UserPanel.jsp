@@ -1,5 +1,5 @@
 <%@include file="Header.jsp" %>
-
+<c:set var="pageFrom" value="panel" scope="session" />
   
 
 
@@ -10,7 +10,7 @@
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
       <div class="panel panel-info" style="border-color: #f65819;">
         <div class="panel-heading" style="background-color:#f65819;">
-          <h3 class="panel-title" style="color:#263238">User Information</h3>
+          <h3 class="panel-title" style="color:#263238">User Information<span class="pull-right"><a href="useredit">Edit</a></span></h3>
         </div>
         <div class="panel-body">
           <div class="row">
@@ -58,6 +58,11 @@
                       <td>:</td>
                       <td>{{getUser.contactNo}}</td>
                     </tr>
+                    <tr>
+                      <td>Alternate Number</td>
+                      <td>:</td>
+                      <td>{{getUser.alternateContactNo}}</td>
+                    </tr>
                 </tbody>
               </table>
              
@@ -77,7 +82,7 @@
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
       <div class="panel panel-info" style="border-color: #f65819;">
         <div class="panel-heading" style="background-color:#f65819;">
-          <h3 class="panel-title" style="color:#263238; cursor: pointer;" data-toggle="collapse" data-target="#Shipping">Shipping Address</h3>
+          <h3 class="panel-title" style="color:#263238; cursor: pointer;" data-toggle="collapse" data-target="#Shipping">Shipping Address<span class="pull-right"><a href="shippingedit">Edit</a></span></h3>
         </div>
         <div id="Shipping" class="collapse">
         <div class="panel-body">
@@ -141,7 +146,7 @@
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
       <div class="panel panel-info" style="border-color: #f65819;">
         <div class="panel-heading" style="background-color:#f65819;">
-          <h3 class="panel-title" style="color:#263238; cursor: pointer;" data-toggle="collapse" data-target="#Supplier">Billing Address </h3>
+          <h3 class="panel-title" style="color:#263238; cursor: pointer;" data-toggle="collapse" data-target="#Supplier">Billing Address <span class="pull-right"><a href="billingedit">Edit</a></span></h3>
         </div>
         <div id="Supplier" class="collapse">
         <div class="text-center" ng-if="getBilling.city =='' && getBilling.state ==''">Is Empty</div>
@@ -173,13 +178,13 @@
                     <tr>
                       <td>District</td>
                       <td>:</td>
-                      <td>{{getBilling.District}}</td>
+                      <td>{{getBilling.district}}</td>
                     </tr>
                     
                     <tr>
                       <td>Landmark</td>
                       <td>:</td>
-                      <td>{{getBilling.Landmark}}</td>
+                      <td>{{getBilling.landmark}}</td>
                     </tr>
                     <tr>
                       <td>Address</td>
@@ -208,7 +213,7 @@
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
       <div class="panel panel-info" style="border-color: #f65819;">
         <div class="panel-heading" style="background-color:#f65819;">
-          <h3 class="panel-title" style="color:#263238; cursor: pointer;" data-toggle="collapse" data-target="#Supplier">Supplier Details</h3>
+          <h3 class="panel-title" style="color:#263238; cursor: pointer;" data-toggle="collapse" data-target="#Supplier">Supplier Details<span class="pull-right"><a href="supplieredit">Edit</a></span></h3>
         </div>
         <div id="Supplier" class="collapse">
         <div class="panel-body">
@@ -282,7 +287,11 @@
     
 <hr>
 <blockquote style="background-color:#f65819; cursor:pointer;" data-toggle="collapse" data-target="#addProduct">
-  <h4 class="text-center">Add Product</h4></blockquote>
+  <h4 class="text-center">Add Product</h4>
+  ${sessionScope.Error}
+<c:set var="Error" value="" scope="session" />
+  
+  </blockquote>
 <div class="container-fluid">
   <form:form id="productForm" cssClass="form" method="POST" action="add/products" modelAttribute="product" enctype="multipart/form-data" onsubmit="return validate(this)">
 <div id="addProduct" class="collapse">

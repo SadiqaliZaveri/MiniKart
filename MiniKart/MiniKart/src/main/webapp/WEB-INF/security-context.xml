@@ -19,13 +19,29 @@
       					<concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
   						</session-management>
 						<intercept-url pattern="/home" access="permitAll"/>
+						<intercept-url pattern="/resources/**" access="permitAll"/>
+						<intercept-url pattern="/contactus" access="permitAll"/>
+						<intercept-url pattern="/FAQ" access="permitAll"/>
+						<intercept-url pattern="/" access="permitAll"/>
+						<intercept-url pattern="/viewfullprod**" access="permitAll"/>
+						<intercept-url pattern="/filter**" access="permitAll"/>
+						
+						
 						<intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
-						<intercept-url pattern="/reg" access="hasRole('ROLE_ANONYMOUS')"/>
+						
+						<intercept-url pattern="/reg**" access="hasRole('ROLE_ANONYMOUS')"/>					
 						<intercept-url pattern="/login" access="hasRole('ROLE_ANONYMOUS')"/>
+						
 						<intercept-url pattern="/panel-{username}" access="hasAnyRole('ROLE_USER','ROLE_SUPPLIER')"/>
 						<intercept-url pattern="/buyNow-{productId}" access="hasRole('ROLE_USER')"/>
+						<intercept-url pattern="/AddToCart-{productId}" access="hasRole('ROLE_USER')"/>
+						<intercept-url pattern="/wishlist-{productId}" access="hasRole('ROLE_USER')"/>
 						<intercept-url pattern="/buyNowList-{productId}" access="hasRole('ROLE_USER')"/>
 						<intercept-url pattern="/checkout" access="hasRole('ROLE_USER')"/>
+						<intercept-url pattern="/cartList" access="hasRole('ROLE_USER')"/>
+						
+						<intercept-url pattern="/**" access="isAuthenticated()" />
+						
 						<access-denied-handler error-page="/403"/>
 						<form-login
 						login-page="/login"

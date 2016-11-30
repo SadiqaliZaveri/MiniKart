@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="resources/js/jquery-3.1.1.min.js"></script>
     <script src="resources/js/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
     <script src="resources/js/jquery.autocomplete.min.js"></script>	
     <link href="resources/css/bootstrap.min.css" rel="stylesheet" />
     <script src="resources/js/bootstrap.min.js"></script>   
@@ -82,24 +83,24 @@
           <ul class="nav navbar-nav navbar-right">
            <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ANONYMOUS')">
             <li class="cart">
-              <a href="cart"><img alt="Logo" src="resources/images/logo.png" width="25" height="15"> Your Cart</a>
+              <a href="cartList"><img alt="Logo" src="resources/images/logo.png" width="25" height="15"> Your Cart <button type="button" class="btn btn-warning btn-circle-micro pull-right labelspace"> ${sessionScope.cartListNo}</button></a>
             </li>
             </sec:authorize>
              <c:if test="${pageContext.request.userPrincipal.name != null}">
             <div class="hidden-sm hidden-md hidden-lg">
               <ul class="nav navbar-nav" style="padding-left:10%; padding-right:10%;">
               <sec:authorize access="hasRole('ROLE_USER')">
-                <li><a href="panel-${pageContext.request.userPrincipal.name}">User Profile<span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-                <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
-                <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
-                <li><a href="#">Favourites Snippets <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+                <li><a href="panel">User Profile<span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                <li><a href="orderedList">Purchase History <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+                
+                <li><a href="wishlist">Wish List <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
                 </sec:authorize>
                 <li><a href="perform_logout">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
                   <li><a href="admin"> Admin Panel<span class="glyphicon glyphicon-user pull-right"></span></a></li>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_SUPPLIER')">
-                  <li><a href="panel-${pageContext.request.userPrincipal.name}">Supplier Panel<span class="glyphicon glyphicon-user pull-right"></span></a></li>
+                  <li><a href="panel">Supplier Panel<span class="glyphicon glyphicon-user pull-right"></span></a></li>
                 </sec:authorize>
                 
                   
@@ -114,17 +115,17 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">${pageContext.request.userPrincipal.name}<span class="glyphicon glyphicon-user pull-right"> </span></a>
                 <ul class="dropdown-menu">
                 <sec:authorize access="hasRole('ROLE_USER')">
-                  <li><a href="panel-${pageContext.request.userPrincipal.name}">User Panel <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-                  <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
-                  <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
-                  <li><a href="#">Favourites Snippets <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+                  <li><a href="panel">User Panel <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                  <li><a href="orderedList">Purchase History  <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+                  
+                  <li><a href="wishlist">Wish List <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
                   </sec:authorize>
                   <li><a href="perform_logout">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
                   <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <li><a href="admin"> Admin Panel<span class="glyphicon glyphicon-user pull-right"></span></a></li>
                   </sec:authorize>
                   <sec:authorize access="hasRole('ROLE_SUPPLIER')">
-                  <li><a href="panel-${pageContext.request.userPrincipal.name}">Supplier Panel<span class="glyphicon glyphicon-user pull-right"></span></a></li>
+                  <li><a href="panel">Supplier Panel<span class="glyphicon glyphicon-user pull-right"></span></a></li>
                 </sec:authorize>
                 </ul>
               </li>
@@ -173,10 +174,10 @@
     <nav class="navbar navbar-inverse navbar-fixed-bottom">
       <div class="container-fluid">
         <ul class="nav navbar-nav hidden-xs">
-          <li id="todaysmessage"><a>Today's Message :</a></li>
+          <li id="todaysmessage" ><a>Today's Message :</a></li>
           <li>
             <a>
-              <marquee style="font-size:13px; height:17px;"><c:forEach var="tdmessage" items="${todaysMessageListNormal}">
+              <marquee style="font-size:13px; height:17px; min-width: 200px;" ><c:forEach var="tdmessage" items="${todaysMessageListNormal}">
       
   <c:out value="${tdmessage.message}"/><span class="labelspace"></span>
 
@@ -284,7 +285,7 @@ $(document).ready(function() {
 
 	$('#searchbar').autocomplete({
 		serviceUrl: '${pageContext.request.contextPath}/getTags',
-		paramName: "categoryName",
+		paramName: "subCategoryName",
 		delimiter: ",",
 	   transformResult: function(response) {
 
@@ -292,7 +293,7 @@ $(document).ready(function() {
 		  //must convert json to javascript object before process
 		  suggestions: $.map($.parseJSON(response), function(item) {
 
-		      return { value: item.categoryName, data: item.categoryId };
+		      return { value: item.subCategoryName, data: item.subCategoryId };
 		   })
 
 		 };
@@ -303,7 +304,7 @@ $(document).ready(function() {
 
   });
 
-      
+
 
     </script>
     

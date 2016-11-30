@@ -1,6 +1,6 @@
 <%@include file="Header.jsp" %>
 
-<div class="container-fluid shadowbox" style="background-color:white;">
+<div class="container-fluid shadowbox pushfooter" style="background-color:white;">
 <div class="row">
 <div class="col-xs-12 color" style="text-transform: uppercase; font-size:10px; border-right: 2px solid; border-left: 2px solid;">
 	<a href="home"><i class="fa fa-home" style="font-size:12px;"></i></a>
@@ -28,10 +28,28 @@
 					</div>
 				<div class="col-xs-12 col-sm-6">
 				
-				<h2 class="extrapadding" style="background-color:#ffc966"><i class="fa fa-inr" aria-hidden="true"></i> {{getProduct.productPrice}}</h2>
-				<a href="#" class="btn btn-lg btn-warning tenpxtop"><span class="glyphicon glyphicon-forward"></span> BUY NOW</a>
-				<a href="#" class="btn btn-lg btn-warning tenpxtop"><span class="glyphicon glyphicon-shopping-cart"></span> ADD TO CART</a>
-				
+				<h2 class="extrapadding" style="border-top: 1px solid #f65819; border-bottom: 1px solid #f65819; text-align: center;"><i class="fa fa-inr" aria-hidden="true"></i> {{getProduct.productPrice}}</h2>
+				<div class="col-sm-6 col-sm-offset-4">
+				<div ng-if="getProduct.productStock != 0">
+				<a href="buyNow-{{getProduct.productId}}" class="btn btn-md cartbutton tenpxtop " style="width:100px; height:100px; border-radius:100px; line-height: 6; border:2px solid #263238">BUY NOW</a>
+				<a href="AddToCart-{{getProduct.productId}}" class="btn btn-md cartbutton tenpxtop " data-toggle="tooltip" data-placement="bottom" title="Add To Cart" style="width:100px; height:100px; border-radius:100px; line-height: 7; border:2px solid #263238"><span class="glyphicon glyphicon-shopping-cart" style="font-size:30px;"></span></a>
+				</div>
+				<div ng-if="getProduct.productStock == 0">
+				<a href="buyNow-{{getProduct.productId}}" class="btn btn-md cartbutton tenpxtop"><span class="glyphicon glyphicon-forward"></span> BUY NOW</a>
+				<a href="AddToCart-{{getProduct.productId}}" class="btn btn-md cartbutton tenpxtop"><span class="glyphicon glyphicon-shopping-cart"></span> ADD TO CART</a>
+				</div>
+				</div>
+				<div class="col-xs-12 tenpxtop" style="color:#f65819;">
+				<ul class="list-group">
+				  
+				  <li class="list-group-item ">Stock : <span class="tabs" style="color:white; background-color:#f65819; min-width:50px; ">{{getProduct.productStock}}</span></li>
+				  <li class="list-group-item ">Shipping : <span class="tabs" style="color:white; background-color:#f65819; min-width:50px; ">Free!</span></li>
+				  <li class="list-group-item ">Warranty : <span class="tabs" style="color:white; background-color:#f65819; min-width:50px; ">{{getProduct.productWarranty}}</span></li>
+				  <li class="list-group-item ">Supplier : <span class="tabs" style="color:white; background-color:#263238; min-width:50px; ">{{getProduct.supplierName}}</span></li>
+				  
+				  <li class="list-group-item ">Payment Methods : <span class="tabs" style="color:white; background-color:#263238; min-width:50px; ">Cod / Credit / Debit</span></li>
+				</ul>
+				</div>
 				</div>					
 					
 </div>

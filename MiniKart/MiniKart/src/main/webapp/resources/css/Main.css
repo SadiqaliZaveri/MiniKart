@@ -43,6 +43,16 @@ a
   color: white;
 }
 
+.tabs
+{
+	padding:5px;
+	-webkit-box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
+    box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
+}
+.tabs:hover
+{
+	z-index: 200;
+}
 .pushfooter {
   margin-bottom: 500px;
 }
@@ -97,6 +107,7 @@ li:hover {
 	
 	transition:all 0.2s ease;
   background-color: #f65819;
+  color:white;
 }
 
 .navbar-inverse {
@@ -491,6 +502,7 @@ li:hover {
 .toppad
 {
 	margin-top:20px;
+	
 }
 
 
@@ -509,3 +521,81 @@ li:hover {
 .autocomplete-suggestions-strong { font-weight: normal; color: #3399FF; }
 .autocomplete-group { padding: 2px 5px; }
 .autocomplete-group-strong { display: block; border-bottom: 1px solid #000; }
+
+
+/* Payment Details */
+.credit-card-box .panel-title {
+    display: inline;
+    
+}
+.credit-card-box .form-control.error {
+    border-color: red;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(255,0,0,0.6);
+}
+
+.credit-card-box .payment-errors {
+  
+  color: red;
+  padding: 2px 8px;
+  margin-top: 2px;
+}
+.credit-card-box label {
+    display: block;
+}
+
+.credit-card-box .display-table {
+    display: table;
+}
+.credit-card-box .display-tr {
+    display: table-row;
+}
+.credit-card-box .display-td {
+    display: table-cell;
+    vertical-align: middle;
+    width: 50%;
+    color: #263238;
+}
+
+.credit-card-box .panel-heading img {
+    min-width: 180px;
+}
+
+/* Pagination */
+.pagination>li>a, .pagination>li>span
+{
+	border: 1px solid #f65819;
+	color: #263238;
+}
+.pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover, .pagination>.disabled>span, .pagination>.disabled>span:focus, .pagination>.disabled>span:hover
+{
+	border-color: #f65819;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover 
+{
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #263238;
+    border-color: #f65819;
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {
+    z-index: 2;
+    color: #263238;
+    background-color: #eee;
+    border-color: #263238;
+}
+
+
+/* Circle Button  */
+.btn-circle-micro {
+  width: 19px;
+  height: 19px;
+  text-align: center;
+  padding: 1px 0;
+  font-size: 13px;
+  line-height: 0.1;
+  border-radius: 30px;
+}

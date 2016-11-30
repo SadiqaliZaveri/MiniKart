@@ -48,13 +48,15 @@
 <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-ok"> Edit</i></button>
 </div>
 <div class="form-group">
-<a href="admin"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-arrow-left"> Back</i></button></a>
+<a href="${sessionScope.pageFrom}"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-arrow-left"> Back</i></button></a>
 </div>
 </form:form>
 </div>
 
 
-
+<script>
+$("#wrapper").toggleClass("toggled");
+</script>
 <!--      FOOTER STARTS     -->
 
 <%@include file="Footer.jsp" %>

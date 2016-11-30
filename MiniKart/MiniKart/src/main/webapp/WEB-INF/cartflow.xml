@@ -5,6 +5,7 @@
 		http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 
 
+
 <var name="buyNow" class="com.minikart.model.BuyNow"/>
 <var name="userDetails" class="com.minikart.model.UserDetails"/>
 <var name="shippingAddress" class="com.minikart.model.ShippingAddress"/>
@@ -95,5 +96,5 @@
 	</view-state>
 
 <end-state id="success" view="externalRedirect:contextRelative:/updateCartFlag"/>
-<end-state id="cancel" view="externalRedirect:contextRelative:/deleteCartItem"/>
+<end-state id="cancel" view="externalRedirect:contextRelative:/home"/>
 </flow>

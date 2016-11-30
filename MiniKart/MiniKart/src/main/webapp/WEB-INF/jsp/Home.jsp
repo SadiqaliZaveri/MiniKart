@@ -58,29 +58,52 @@
                            </div>
                            
                            <div ng-if="x.categoryName != 'Mobiles' &&  x.categoryName != 'Mobile Accessories'">
-                           <a href="viewfullprod-{{x.productId}}"><img class="img-responsive center-block" style="width:100%; max-height:200px"  src="resources/images/product{{x.productId}}.jpg" alt=""></a>
+                           <a href="viewfullprod-{{x.productId}}"><img class="img-responsive center-block" style="width:100%; max-width:300px; max-height:200px"  src="resources/images/product{{x.productId}}.jpg" alt=""></a>
                            </div>
                             </div>
                             <div class="caption">
 
-                                
                                 <h4 class="group inner list-group-item-heading text-center" style="min-height:46px; max-height:46px; overflow:hidden; font-size:14px; " title="{{x.productName}}"><a href="viewfullprod-{{x.productId}}">{{x.productName}}</a></h4>
                     			
-                    			
                     			<div class="row">
-                        			<div class="col-xs-12 text-center">
-                            			<p class="lead"><i class="fa fa-inr" aria-hidden="true"></i> {{x.productPrice}}</p>
+                    				<div ng-if="x.productDiscountPrice == 0">
+                        			<div class="col-xs-12 text-center" style="min-height: 60px;">
+                            			<p class="lead">
+                            			
+                            			<i class="fa fa-inr" aria-hidden="true"></i> {{x.productPrice}}
+                            			
+                            			</p>
                         			</div>
+                        			</div>
+                        			<div ng-if="x.productDiscountPrice != 0">
+                        			<div class="col-xs-12 text-center" style="min-height: 60px; max-height: 60px; ">
+                            			
+                            			<div class="col-xs-12">
+                            				<strong><span style="color:orange; font-size:15px;">{{Math.round(((((x.productPrice - x.productDiscountPrice)/ x.productPrice) * 100)))}} % off!</span></strong>
+                            				<del class="labelspace" style="font-size:12px; color:#f65819;"><i class="fa fa-inr" aria-hidden="true"></i> {{x.productPrice}} </del>
+                            			</div>
+                            			<div class="col-xs-12"> <p class="lead"><i class="fa fa-inr" style="color:green;  margin-left:5px;" aria-hidden="true"></i> <span style="color:green;">{{x.productDiscountPrice}}</span></p></div>
+ 
+                        			</div>
+                        			</div>
+                        			
+                        			<div ng-if="x.productStock != 0">
                         			<div class="col-xs-12 col-sm-6 text-center" >
-                            		<a class="btn cartbutton tenpxtop" href=""><i class="fa fa-shopping-cart hidden-md" aria-hidden="true"></i> Add to cart</a>
+                            		<a class="btn cartbutton tenpxtop" href="AddToCart-{{x.productId}}"><i class="fa fa-shopping-cart hidden-md" aria-hidden="true"></i> Add to cart</a>
                         			</div>
                         			
                         			<div class="col-xs-12 col-sm-3 text-center" >
                             		<a class="btn cartbutton tenpxtop" href="buyNow-{{x.productId}}" data-toggle="tooltip" data-placement="bottom" title="Buy Now!"><i class="fa fa-credit-card" aria-hidden="true"></i></a>
                         			</div>
-                        			
+                        			</div>
+                        			<div ng-if="x.productStock == 0">
+                        			<div class="col-xs-12 col-sm-9 text-center" >
+                            		<a class="btn cartbutton tenpxtop"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                            		 OUT OF STOCK</a>
+                        			</div>
+                        			</div>
                         			<div class="col-xs-12 col-sm-3 text-center" >
-                            		<a class="btn cartbutton tenpxtop" href="" data-toggle="tooltip" data-placement="bottom" title="Add To Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                            		<a class="btn cartbutton tenpxtop" href="wishlist-{{x.productId}}" data-toggle="tooltip" data-placement="bottom" title="Add To Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>
                         			</div>
                     			</div>
                             </div>
@@ -90,76 +113,7 @@
                     
                    
 
-         <div class="row" style="margin-top:10px;">
-<div class="col-xs-12"><h3>On Sale Products</h3>
-             
-             </div></div><hr>
-                    <div class="col-xs-12 col-sm-4 col-md-3">
-                        <div class="thumbnail">
-                            <img src="resources/images/altimg.png" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$84.99</h4>
-                                <h4><a href="#">Fourth Product</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">6 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-4 col-md-3">
-                        <div class="thumbnail">
-                            <img src="resources/images/altimg.png" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$94.99</h4>
-                                <h4><a href="#">Fifth Product</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">18 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-3">
-                        <div class="thumbnail">
-                            <img src="resources/images/altimg.png" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$94.99</h4>
-                                <h4><a href="#">Fifth Product</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">18 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-          </div> 
+ 
           
 <script>
 
@@ -171,6 +125,8 @@
 var app = angular.module('Caller', ['angularUtils.directives.dirPagination']);
 app.controller('CallerController', function($scope) {
   $scope.getProduct = ${productFullViewEnabledJson};
+ 
+  $scope.Math = window.Math;
 });
 </script>          
 <!--    PRODUCT ELEMENTS END  -->

@@ -4,8 +4,8 @@
 </div>
 
 <div class="container pushfooter">
-<center>
-<img src="resources/images/troll-face.png" style="width:300px; height:300px;"></center>
+
+<h3 class="text-center color">Please Login With A Valid Account.</h3>
 </div>
 <%@include file="Footer.jsp" %>	
 <script>

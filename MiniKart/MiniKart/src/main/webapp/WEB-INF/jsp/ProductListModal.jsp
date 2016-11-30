@@ -74,10 +74,12 @@
             <td>{{x.enabled}}</td>
             <td><a href="viewfullprod-{{x.productId}}"><i class="fa fa-television largetxt" style="color:#f65819" title="View"></i></a></td>
             <td><a href="editprod-{{x.productId}}"><i class="fa fa-edit largetxt" style="color:#f65819" title="Edit"></i></a></td> 
-            <td><a href="deleteprod-{{x.productId}}"><i class="fa fa-trash largetxt" style="color:#f65819" title="Delete"></i></a></td>
+            
             <td><a href="productspec-{{x.productId}}"><i class="fa fa-folder-o largetxt" style="color:#f65819" title="Add Product Info"></i></a></td> 
             <td><a href="editprodspec-{{x.productId}}"><i class="fa fa-folder-open-o largetxt" style="color:#f65819" title="Edit Product Info"></i></a></td>
             
+            <sec:authorize access="!hasRole('ROLE_SUPPLIER')">
+            <td><a href="deleteprod-{{x.productId}}"><i class="fa fa-trash largetxt" style="color:#f65819" title="Delete"></i></a></td>
             <td><a href="toggleproduct-{{x.productId}}">
             <div ng-if="x.enabled == true">
             <i class="fa fa-toggle-on largetxt" title="Disable"></i>
@@ -86,6 +88,7 @@
             <i class="fa fa-toggle-off largetxt" title="Enable" ></i>
             </div>
             </a></td>
+            </sec:authorize>
             
             
             </tr>

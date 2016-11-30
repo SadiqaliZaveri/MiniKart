@@ -4,6 +4,8 @@
 
 ${sessionScope.Error}
 <c:set var="Error" value="" scope="session" />
+<c:set var="pageFrom" value="admin" scope="session" />
+
 <blockquote>
   <h3>Admin Panel </h3></blockquote>
   
@@ -212,7 +214,7 @@ window.scrollTo(0, getCookie("scroll"));
 //MODULE AND CONTROLLER - ANGULARJS - RETRIEVAL OF DATA VIA JSON LISTS
 var app = angular.module('Caller', ['angularUtils.directives.dirPagination']).filter('totalSumPriceQty', function () {
     return function (data, key1, key2) {
-        debugger;
+       
         if (typeof (data) === 'undefined' && typeof (key1) === 'undefined' && typeof (key2) === 'undefined') {
             return 0;
         }
