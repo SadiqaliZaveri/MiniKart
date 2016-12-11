@@ -47,5 +47,9 @@ public List<CartItem> listCartItemViaUserId(int userId) {
 public List<CartItem> listOrderedItemViaUserId(int userId) {
 	return cartItemDAOImplementation.listOrderedItemViaUserId(userId);
 }
-
+@Transactional
+public List<CartItem> listReceiptItemViaCartItemId(int cartItemId)
+{
+	return cartItemDAOImplementation.listReceiptItemViaCartItemId(cartItemId);
+}
 }

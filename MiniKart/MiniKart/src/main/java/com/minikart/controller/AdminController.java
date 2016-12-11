@@ -25,7 +25,9 @@ public class AdminController {
 	@Autowired
 	private UserService userService;
 	@Autowired
-	private ProductSpecificationService productSpecificationService;
+	private CategoryService categoryService;
+	@Autowired
+	private SubCategoryService subCategoryService;
 	
 	
 	@RequestMapping("/admin")
@@ -34,40 +36,32 @@ public class AdminController {
 		
 		
 //		Creating New Category
-		model.addAttribute("category", new Category());		
-		
+		model.addAttribute("category", new Category());				
 //		Creating New SubCategory
 		model.addAttribute("subCategory", new SubCategory());
-
 //		Creating New Supplier
-		model.addAttribute("supplier", new Supplier());
-		
+		model.addAttribute("supplier", new Supplier());		
 //		Creating New Product
 		model.addAttribute("product", new Product());
-
+//		Creating New User
 		model.addAttribute("user", new User());
-
 //		Creating New TodaysMessage
-		model.addAttribute("todaysMessage", new TodaysMessage());
+		model.addAttribute("todaysMessage", new TodaysMessage());	
 		
+//		Retrieving Category Data through GsontoJson Conversion 
+		model.addAttribute("categoryListJson",this.categoryService.listCategoryViaJson());	
+//		Retrieving SubCategory Data through GsontoJson Conversion
+		model.addAttribute("subCategoryListJson",this.subCategoryService.listSubCategoryViaJson());		
 //		Retrieving User Data through GsontoJson Conversion
 		model.addAttribute("userListJson",this.userService.listUserViaJson());
-		
-
-//		Retrieving Supplier Data through List
-		model.addAttribute("supplierListNormal",this.supplierService.listSupplier());
 //		Retrieving Supplier Data through GsontoJson Conversion
-		model.addAttribute("supplierListJson",this.supplierService.listSupplierViaJson());
-		
-//		Retrieving Product Data through List
-		model.addAttribute("productListNormal",this.productService.listProduct());
+		model.addAttribute("supplierListJson",this.supplierService.listSupplierViaJson());		
 //		Retrieving Product Data through GsontoJson Conversion
 		model.addAttribute("productListJson",this.productService.listProductViaJson());
-		
+//		Retrieving TodaysMessage Data through GsontoJson Conversion		
 		model.addAttribute("todaysMessageListJson",this.todaysMessageService.listTodaysMessageViaJson());
 
-//		Retrieving ProductSpecification Data through GsontoJson Conversion
-		model.addAttribute("productSpecificationListJson",this.productSpecificationService.listProductSpecificationViaJson());
+
 
 
 		return "Admin";		

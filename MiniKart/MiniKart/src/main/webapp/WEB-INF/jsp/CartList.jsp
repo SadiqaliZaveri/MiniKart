@@ -58,9 +58,9 @@
               <td><a href="deleteCartItem={{x.cartItemId}}"><i class="fa fa-trash-o fa-2x" style="color:red;" data-toggle="tooltip" title="Delete"></i></a></td>
               <td>
                 <div class="thumbnail shadowbox">
-                  <div class="imgholder" style="max-height: 150px; max-width:150px; width:150px; min-height: 150px;">
-                    <a href="viewfullprod-{{x.productId}}"><img class="img-responsive center-block" style="width:100%; max-height:200px" src="resources/images/product{{x.productId}}.jpg" alt=""></a>
-                  </div>
+                  <div class="imgholder" style="max-height: 150px; max-width:150px; width:150px; max-height: 150px; height: 150px;">
+                           <a href="viewfullprod-{{x.productId}}"><img class="img-responsive center-block" style="width:auto; max-height: 150px;"  src="resources/images/product{{x.productId}}.jpg" alt=""></a>
+                            </div>
                 </div>
               </td>
 
@@ -73,7 +73,8 @@
               <td>Grand Total :</td>
               <td>Rs. {{resultvalue | totalSumPriceQty:'productQuantity':'productPrice':'productDiscountPrice'}}</td>
               <td></td>
-              <td><a href="checkout" class="btn btn-lg cartbutton pull-right"><span class="glyphicon glyphicon-log-out"></span> Checkout</a></td>
+           
+              <td> <div ng-if="resultvalue != ''"><a href="checkout" class="btn btn-lg cartbutton pull-right"><span class="glyphicon glyphicon-log-out"></span> Checkout</a>  </div></td>
 
             </tr>
             
@@ -121,15 +122,7 @@ app.controller('CallerController', function($scope) {
 		    $scope.reverse = !$scope.reverse; //if true make it false and vice versa
 		  };
 	  
-	  $scope.getTotal = function(){
-		  var total = 0;
-		  for(var i = 0; i<$scope.cartItem.length; i++)
-			  {
-			   var product = $scope.cartItem[i];
-			   total += (product.productPrice * product.productQuantity);
-			  }
-		  return total;
-	  };
+	  
 
 	});
 

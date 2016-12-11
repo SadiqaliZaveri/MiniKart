@@ -25,7 +25,7 @@
 						<intercept-url pattern="/" access="permitAll"/>
 						<intercept-url pattern="/viewfullprod**" access="permitAll"/>
 						<intercept-url pattern="/filter**" access="permitAll"/>
-						
+						<intercept-url pattern="/getTags**" access="permitAll"/>
 						
 						<intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
 						

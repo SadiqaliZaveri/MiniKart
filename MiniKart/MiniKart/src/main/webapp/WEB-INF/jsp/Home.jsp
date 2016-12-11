@@ -7,7 +7,7 @@
           
           
 <!--    MAIN SLIDER   -->         
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <div id="myCarousel" class="carousel slide animated zoomIn" data-ride="carousel">
           <!-- Indicators -->
           <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -50,11 +50,11 @@
 <div class="col-xs-12"><h3>Featured Products</h3>
              
     </div></div><hr>
-                    <div ng-repeat="x in getProduct" class="col-xs-12 col-sm-4 col-md-3 preview">
-                        <div class="thumbnail shadowbox" >
+                    <div ng-repeat="x in getProduct" class="col-xs-12 col-sm-4 col-md-3 preview ">
+                        <div class="thumbnail shadowbox " >
                         <div class="imgholder">
                         <div ng-if="x.categoryName == 'Mobiles' ||  x.categoryName == 'Mobile Accessories' ">
-                       <a href="viewfullprod-{{x.productId}}"><img class="img-responsive center-block" style="width:30%; max-height:30%"  src="resources/images/product{{x.productId}}.jpg" alt=""></a>
+                      <a href="viewfullprod-{{x.productId}}"><img class="img-responsive center-block" style="width:30%; max-height:200px; max-width:100px;"  src="resources/images/product{{x.productId}}.jpg" alt=""></a>
                            </div>
                            
                            <div ng-if="x.categoryName != 'Mobiles' &&  x.categoryName != 'Mobile Accessories'">
@@ -88,8 +88,8 @@
                         			</div>
                         			
                         			<div ng-if="x.productStock != 0">
-                        			<div class="col-xs-12 col-sm-6 text-center" >
-                            		<a class="btn cartbutton tenpxtop" href="AddToCart-{{x.productId}}"><i class="fa fa-shopping-cart hidden-md" aria-hidden="true"></i> Add to cart</a>
+                        			<div class="col-xs-12 col-sm-5 col-md-6 text-center" >
+                            		<a class="btn cartbutton tenpxtop" href="AddToCart-{{x.productId}}-1"><i class="fa fa-shopping-cart hidden-md" aria-hidden="true"></i> <span class="hidden-sm">Add to cart</span></a>
                         			</div>
                         			
                         			<div class="col-xs-12 col-sm-3 text-center" >

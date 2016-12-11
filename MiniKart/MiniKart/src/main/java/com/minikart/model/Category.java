@@ -1,5 +1,6 @@
 package com.minikart.model;
 
+import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,8 +13,12 @@ import com.google.gson.annotations.Expose;
 
 
 @Entity
-public class Category {
+public class Category implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Expose
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

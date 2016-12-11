@@ -46,10 +46,12 @@
                         
                         
                        
-                        <td><div class="thumbnail shadowbox"  >
-                        <div class="imgholder" style="max-height: 150px; max-width:150px; width:150px; min-height: 150px;">
-                           <a href="viewfullprod-{{x.productId}}"><img class="img-responsive center-block" style="width:100%; max-height:200px"  src="resources/images/product{{x.productId}}.jpg" alt=""></a>
-                            </div></div>
+                        <td>
+                        <div class="thumbnail shadowbox"  >
+                        	<div class="imgholder" style="max-height: 150px; max-width:150px; width:150px; max-height: 150px; height: 150px;">
+                           <a href="viewfullprod-{{x.productId}}"><img class="img-responsive center-block" style="width:auto; max-height: 150px;"  src="resources/images/product{{x.productId}}.jpg" alt=""></a>
+                            </div>
+                        </div>
                         </td>
                         
 		</tr>

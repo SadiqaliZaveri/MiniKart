@@ -14,5 +14,6 @@ public interface CartItemDAO {
 	public void UpdateCartItemFlag(int cartItemId);
 	public List<CartItem> listCartItemViaUserId(int userId);
 	public List<CartItem> listOrderedItemViaUserId(int userId);
+	public List<CartItem> listReceiptItemViaCartItemId(int cartItemId);
 	
 }

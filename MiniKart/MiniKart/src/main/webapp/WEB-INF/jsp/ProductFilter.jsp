@@ -15,7 +15,7 @@
 
 
 <div class="col-xs-12 tenpxtop" style="border:1px solid #f65819; background-color: #263238; color:white;">
-<div ng-repeat="k in getProduct | orderBy: 'categoryName' | filter: lel | unique: 'categoryName'" >
+<div ng-repeat="k in getProduct  | filter: lel | unique: 'subCategoryName' | orderBy: 'categoryName'" >
 <div class="checkbox col-sm-3 col-xs-6" >
 <label><input type="checkbox" ng-init="chk == lel" ng-click="myNewFilter(k.subCategoryName)"/> {{k.subCategoryName}} ({{k.categoryName}})</label>
 </div>
@@ -23,15 +23,16 @@
 </div>
              
     </div></div><hr>
+    <div ng-if=""><H1>AWWW</H1></div>
                     <div ng-repeat="x in  getProduct | filter: lel | filter:nextFilter | orderBy:sortKey:reverse " class="col-xs-12 col-sm-4 col-md-3 preview">
                     
                         <div class="thumbnail">
                         <div class="imgholder">
                         <div ng-if="x.categoryName == 'Mobiles' ||  x.categoryName == 'Mobile Accessories'">
-                       <a href="viewfullprod-{{x.productId}}"><img class="img-responsive center-block" style="width:30%; max-height:30%;"  src="resources/images/product{{x.productId}}.jpg" alt=""></a>
+                       <a href="viewfullprod-{{x.productId}}"><img class="img-responsive center-block" style="width:25%; max-height:200px; max-width:100px;"  src="resources/images/product{{x.productId}}.jpg" alt=""></a>
                            </div>
                            <div ng-if="x.categoryName != 'Mobiles' &&  x.categoryName != 'Mobile Accessories'">
-                           <a href="viewfullprod-{{x.productId}}"><img class="img-responsive center-block" style="width:100%; max-height:200px"  src="resources/images/product{{x.productId}}.jpg" alt=""></a>
+                           <a href="viewfullprod-{{x.productId}}"><img class="img-responsive center-block" style="width:100%; max-width:300px; max-height:200px"  src="resources/images/product{{x.productId}}.jpg" alt=""></a>
                            </div>
                             </div>
                             <div class="caption">
@@ -60,7 +61,7 @@
                         			</div>
                         			<div ng-if="x.productStock != 0">
                         			<div class="col-xs-12 col-sm-6 text-center" >
-                            		<a class="btn cartbutton tenpxtop" href="AddToCart-{{x.productId}}"><i class="fa fa-shopping-cart hidden-md" aria-hidden="true"></i> Add to cart</a>
+                            		<a class="btn cartbutton tenpxtop" href="AddToCart-{{x.productId}}-1"><i class="fa fa-shopping-cart hidden-md" aria-hidden="true"></i> Add to cart</a>
                         			</div>
                         			
                         			<div class="col-xs-12 col-sm-3 text-center" >
@@ -104,6 +105,7 @@ app.controller('CallerController', function($scope, $http, $location) {
 	  };
 	  
 	  $scope.myFilter = [];
+	  
 	    
 	    $scope.myNewFilter = function(subCategoryName) {
 	        var i = $.inArray(subCategoryName, $scope.myFilter);
@@ -117,8 +119,13 @@ app.controller('CallerController', function($scope, $http, $location) {
 	    $scope.nextFilter = function(getProduct) {
 	        if ($scope.myFilter.length > 0) {
 	            if ($.inArray(getProduct.subCategoryName, $scope.myFilter) < 0)
+	            	{
 	                return;
+	            	}
+	            
 	        }
+	        
+	        
 	        
 	        return getProduct;
 	    }

@@ -54,12 +54,12 @@ public String listProductEnabledViaJson() {
 	return productDAOImplementation.listProductEnabledViaJson();
 }
 @Transactional
-public void updateProductMinus(int productId) {
-	productDAOImplementation.updateProductMinus(productId);
+public void updateProductMinus(int productId, int productQuantity) {
+	productDAOImplementation.updateProductMinus(productId,productQuantity);
 }
 @Transactional
-public void updateProductPlus(int productId) {
-	productDAOImplementation.updateProductPlus(productId);
+public void updateProductPlus(int productId, int productQuantity) {
+	productDAOImplementation.updateProductPlus(productId,productQuantity);
 }
 
 

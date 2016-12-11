@@ -1,11 +1,12 @@
 <%@include file="Header.jsp" %>
+
+
+<div class="container pushfooter text-center">
+<a href="home"><img class="animated infinite bounce tenpxtop" alt="Logo" src="resources/images/logo.png" width="175" height="150"></a>
+<div class="row"><a href="home"><div class="btn cartbutton tenpxtop">Back To Home</div></a></div>
 <div class="container">
-<h1 class="text-center blink_me color">Error 404. Oops you've have encountered an error.</h1>
+<h1 class="text-center blink_me color">Error 404. Resource Not Found.</h1>
 </div>
-
-<div class="container pushfooter">
-
-<h3 class="text-center color"><a href="home">Back To Home</a></h3>
 </div>
 <%@include file="Footer.jsp" %>	
 <script>

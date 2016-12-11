@@ -16,38 +16,46 @@
 
 <div class="col-xs-12">
                     	
-				<div class="col-xs-12  col-sm-6 color" style="border-left:2px solid; border-right:2px solid;">
-						<div class="imgholder color" style="max-width:400px; height:400px;">
-						<div ng-if="getProduct.categoryName == 'Mobiles' ||  getProduct.categoryName == 'Mobile Accessories'">
-							<img class="img-responsive center-block "  style="width:45%; height:45%"  id="item-display" src="resources/images/product{{getProduct.productId}}.jpg" alt=""></img>
+				<div  class="col-xs-12  col-sm-6 color" style="border-left:2px solid; border-right:2px solid;">
+						<div  class="imgholder color" style="max-width:400px; height:400px;" >
+						<div  ng-if="getProduct.categoryName == 'Mobiles' ||  getProduct.categoryName == 'Mobile Accessories'">
+							<img class="img-responsive center-block "  style="width:45%; height:100%; max-height:400px; "  id="item-display" src="resources/images/product{{getProduct.productId}}.jpg" alt="" ></img>
 							</div>
 						<div ng-if="getProduct.categoryName != 'Mobiles' &&  getProduct.categoryName != 'Mobile Accessories'">
-							<img class="img-responsive center-block "  style="width:100%; max-height:400px"  id="item-display" src="resources/images/product{{getProduct.productId}}.jpg" alt=""></img>
+							<img class="img-responsive center-block "  style="width:100%; max-height:400px"  id="item-display" src="resources/images/product{{getProduct.productId}}.jpg" alt=""   ></img>
 							</div>
 						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6">
+					${sessionScope.Error}
+					<c:set var="Error" value="" scope="session" />
 					</div>
 				<div class="col-xs-12 col-sm-6">
 				
 				<h2 class="extrapadding" style="border-top: 1px solid #f65819; border-bottom: 1px solid #f65819; text-align: center;"><i class="fa fa-inr" aria-hidden="true"></i> {{getProduct.productPrice}}</h2>
 				<div class="col-sm-6 col-sm-offset-4">
 				<div ng-if="getProduct.productStock != 0">
+				
 				<a href="buyNow-{{getProduct.productId}}" class="btn btn-md cartbutton tenpxtop " style="width:100px; height:100px; border-radius:100px; line-height: 6; border:2px solid #263238">BUY NOW</a>
-				<a href="AddToCart-{{getProduct.productId}}" class="btn btn-md cartbutton tenpxtop " data-toggle="tooltip" data-placement="bottom" title="Add To Cart" style="width:100px; height:100px; border-radius:100px; line-height: 7; border:2px solid #263238"><span class="glyphicon glyphicon-shopping-cart" style="font-size:30px;"></span></a>
+				
+				<a id="quantityUrl" onclick="redirect()" dummyhref="AddToCart-{{getProduct.productId}}-" class="btn btn-md cartbutton tenpxtop " data-toggle="tooltip" data-placement="bottom" title="Add To Cart" style="width:100px; height:100px; border-radius:100px; line-height: 7; border:2px solid #263238"><span class="glyphicon glyphicon-shopping-cart" style="font-size:30px;"></span></a>
 				</div>
 				<div ng-if="getProduct.productStock == 0">
-				<a href="buyNow-{{getProduct.productId}}" class="btn btn-md cartbutton tenpxtop"><span class="glyphicon glyphicon-forward"></span> BUY NOW</a>
-				<a href="AddToCart-{{getProduct.productId}}" class="btn btn-md cartbutton tenpxtop"><span class="glyphicon glyphicon-shopping-cart"></span> ADD TO CART</a>
+				<div class="btn cartbutton"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> PRODUCT IS OUT OF STOCK</div>
 				</div>
 				</div>
+				<div class="col-xs-12 col-sm-2 col-sm-offset-5 tenpxtop"><div ng-if="getProduct.productStock != 0"><input id="quantity" class="form-control" type="number" min="1" max="3" value="1"></div></div>
 				<div class="col-xs-12 tenpxtop" style="color:#f65819;">
 				<ul class="list-group">
 				  
 				  <li class="list-group-item ">Stock : <span class="tabs" style="color:white; background-color:#f65819; min-width:50px; ">{{getProduct.productStock}}</span></li>
 				  <li class="list-group-item ">Shipping : <span class="tabs" style="color:white; background-color:#f65819; min-width:50px; ">Free!</span></li>
+				  <div ng-if="getProduct.productWarranty == ''">
 				  <li class="list-group-item ">Warranty : <span class="tabs" style="color:white; background-color:#f65819; min-width:50px; ">{{getProduct.productWarranty}}</span></li>
+				  </div>
 				  <li class="list-group-item ">Supplier : <span class="tabs" style="color:white; background-color:#263238; min-width:50px; ">{{getProduct.supplierName}}</span></li>
 				  
-				  <li class="list-group-item ">Payment Methods : <span class="tabs" style="color:white; background-color:#263238; min-width:50px; ">Cod / Credit / Debit</span></li>
+				  <li class="list-group-item ">Payment Methods : <span class="tabs" style="color:white; background-color:#263238; min-width:50px; ">Credit / Debit</span></li>
 				</ul>
 				</div>
 				</div>					
@@ -189,6 +197,16 @@
 
 <script>
 $("#wrapper").toggleClass("toggled");
+
+
+
+ 
+
+function redirect()
+{
+	window.location.href = document.getElementById('quantityUrl').getAttribute("dummyhref")+""+document.getElementById('quantity').value;
+};
+
 
 //MODULE AND CONTROLLER - ANGULARJS - RETRIEVAL OF DATA VIA JSON LISTS
 var app = angular.module('Caller', ['angularUtils.directives.dirPagination']);

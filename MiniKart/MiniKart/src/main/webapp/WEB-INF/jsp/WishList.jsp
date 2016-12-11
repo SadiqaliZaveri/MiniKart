@@ -36,15 +36,17 @@
 		<tr dir-paginate="x in resultvalue=(wishItem | filter: test) | orderBy:sortKey:reverse |itemsPerPage: maxsize" pagination-id="Product">
 						<td style="max-width:150px;"><a href="viewfullprod-{{x.productId}}">{{x.productName}}</a></td>
                         <td>{{x.productPrice}}</td>
-                      	 <td><a data-toggle="tooltip" title="Add To Cart" class="btn cartbutton" href="AddToCart-{{x.productId}}"><i class="fa fa-shopping-cart hidden-md"  aria-hidden="true"></i></a></td>  
+                      	 <td><a data-toggle="tooltip" title="Add To Cart" class="btn cartbutton" href="AddToCart-{{x.productId}}-1"><i class="fa fa-shopping-cart hidden-md"  aria-hidden="true"></i></a></td>  
                         <td><a href ="deleteWishList-{{x.wishItemId}}"><i class="fa fa-trash-o fa-2x" style="color:red;" data-toggle="tooltip" title="Delete"></i></a></td>
                       
                         
                        
-                        <td><div class="thumbnail shadowbox"  >
-                        <div class="imgholder" style="max-height: 150px; max-width:150px; width:150px; min-height: 150px;">
-                           <a href="viewfullprod-{{x.productId}}"><img class="img-responsive center-block" style="width:100%; max-height:200px"  src="resources/images/product{{x.productId}}.jpg" alt=""></a>
-                            </div></div>
+                        <td>
+                        <div class="thumbnail shadowbox"  >
+                        <div class="imgholder" style="max-height: 150px; max-width:150px; width:150px; max-height: 150px; height: 150px;">
+                           <a href="viewfullprod-{{x.productId}}"><img class="img-responsive center-block" style="width:auto; max-height: 150px;"  src="resources/images/product{{x.productId}}.jpg" alt=""></a>
+                            </div>
+                            </div>
                         </td>
                         
 		</tr>

@@ -1,12 +1,11 @@
 package com.minikart.controller;
 
 import java.util.Date;
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.h2.engine.Session;
-import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -39,21 +38,13 @@ public class CartItemController {
 	
 	
 	
-//	@RequestMapping(value="/deleteCartItem")
-//	public String deleteCartItem(HttpSession session)
-//	{
-//		   int productId = (Integer)session.getAttribute("buyNowProductId"+session.getAttribute("cartItemId"));
-//		   productService.updateProductPlus(productId);
-//		   cartItemService.deleteCartItem((Integer)session.getAttribute("cartItemId"));
-//		  
-//		return "redirect:/home";
-//	}
+
 	
 	@RequestMapping(value="/deleteCartItem={cartItemId}",method=RequestMethod.GET)
 	public String deleteCartItem(@PathVariable("cartItemId") int cartItemId,HttpSession session)
 	{
 		   int productId = (Integer)session.getAttribute("buyNowProductId"+cartItemId);
-		   productService.updateProductPlus(productId);
+		   productService.updateProductPlus(productId,cartItemService.listCartItem(cartItemId).getProductQuantity());
 		   cartItemService.deleteCartItem(cartItemId);
 		  
 		return "redirect:/cartList";
@@ -83,7 +74,7 @@ public class CartItemController {
 		cartItem.setOrderDate(sysdate);
 		cartItemService.addCartItem(cartItem);
 		session.setAttribute("buyNowProductId"+cartItem.getCartItemId(), cartItem.getProductId());
-		productService.updateProductMinus(productId);
+		productService.updateProductMinus(productId,1);
 		session.setAttribute("cartItemId", cartItem.getCartItemId());
 		
 		return "redirect:/buyNowList-"+cartItem.getCartItemId();
@@ -97,9 +88,12 @@ public class CartItemController {
 	{
 		session.setAttribute("checkoutfrom", "buyNow");
 		CartItem p = cartItemService.listCartItem(cartItemId);
+		List<CartItem> m = cartItemService.listReceiptItemViaCartItemId(cartItemId);
+		session.setAttribute("listReceiptItemViaCartItemId", m);
 		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		String j = gson.toJson(p);
 		model.addAttribute("cartItemBuyNow",j);
+		
 		return "BuyNow";
 	}
 	
@@ -119,6 +113,7 @@ public class CartItemController {
 	public String updateCartFlag(HttpSession session)
 	{
 		List<CartItem> k =  (List<CartItem>) session.getAttribute("cartItemList");
+	
 		if(k == null || session.getAttribute("checkoutfrom")=="buyNow")
 		{
 			 cartItemService.UpdateCartItemFlag((Integer)session.getAttribute("cartItemId"));
@@ -131,11 +126,37 @@ public class CartItemController {
 			}
 		
 		}
-		 return "redirect:/home";
+		 return "redirect:/orderPlaced";
 	}
 	
-	
-	
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/orderPlaced")
+	public String orderReceipt(HttpSession session, Model model)
+	{
+		
+		
+		
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		if(session.getAttribute("checkoutfrom")=="buyNow")
+		{
+			
+//			CartItem p =  cartItemService.listCartItem((Integer)session.getAttribute("cartItemId"));
+			List<CartItem> l =  (List<CartItem>) session.getAttribute("listReceiptItemViaCartItemId");
+			String k = gson.toJson(l);
+			model.addAttribute("orderReceipt",k);
+		}
+		else
+		{
+			List<CartItem> l =  (List<CartItem>) session.getAttribute("cartItemList");
+			String j = gson.toJson(l);
+			model.addAttribute("orderReceipt",j);
+		}
+		
+		
+		
+		
+		return "OrderPlaced";
+	}
 	// CART 
 	
 	
@@ -177,19 +198,25 @@ public class CartItemController {
 	}
 	
 	
-	@RequestMapping(value="/AddToCart-{productId}")
-	public String addToCart(@ModelAttribute("cartItem") CartItem cartItem, @PathVariable("productId") int productId, Model model, HttpSession session )
+	@RequestMapping(value="/AddToCart-{productId}-{productQuantity}")
+	public String addToCart(@ModelAttribute("cartItem") CartItem cartItem, @PathVariable("productId") int productId,@PathVariable("productQuantity") int productQuantity ,Model model, HttpSession session )
 	{
-		if(productService.getIdFromId(productId).getProductStock()<=0)
+		if(productQuantity > productService.getIdFromId(productId).getProductStock() || productService.getIdFromId(productId).getProductStock()<=0 || productQuantity>3)
 		{
-			return "redirect:/home";
+			if(productQuantity>3)
+			{
+				session.setAttribute("Error", "<div class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a> Maximum Amount of Quantity can only be 3 per product. </div>");
+				return "redirect:/viewfullprod-"+productId;
+			}
+			else
+			{
+			session.setAttribute("Error", "<div class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a> Not Enough Stock To Supply. </div>");
+			return "redirect:/viewfullprod-"+productId;
+			}
 		}
 		
-		if(cartItem.getProductQuantity()>3)
-		{
-			session.setAttribute("quantityLimit", "Maximum Amount of Quantity can be 3 only per product.");
-			return "viewfullprod-"+productId;
-		}
+		
+		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String user = authentication.getName();
 		int userId = userService.getUserDetailsFromName(user).getUserId();
@@ -206,12 +233,16 @@ public class CartItemController {
 		{
 		cartItem.setProductQuantity(1);
 		}
+		else
+		{
+			cartItem.setProductQuantity(productQuantity);
+		}
 		
 		Date sysdate = new Date();
 		cartItem.setOrderDate(sysdate);
 		cartItemService.addCartItem(cartItem);
 		session.setAttribute("buyNowProductId"+cartItem.getCartItemId(), cartItem.getProductId());
-		productService.updateProductMinus(productId);
+		productService.updateProductMinus(productId,cartItem.getProductQuantity());
 		session.setAttribute("cartItemId", cartItem.getCartItemId());
 		
 		return "redirect:/cartList";

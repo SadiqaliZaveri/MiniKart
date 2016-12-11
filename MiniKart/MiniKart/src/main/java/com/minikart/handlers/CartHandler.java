@@ -102,44 +102,8 @@ public class CartHandler
 	}
 
  
- public String addShippingDetails(BuyNow buyNow, ShippingAddress shippingaddress)
- {
-	 
- 	this.shippingAddress.setAddress(shippingaddress.getAddress());
- 	this.shippingAddress.setCity(shippingaddress.getCity());
- 	this.shippingAddress.setDistrict(shippingaddress.getDistrict());
- 	this.shippingAddress.setLandmark(shippingaddress.getLandmark());
- 	this.shippingAddress.setPinCode(shippingaddress.getPinCode());
- 	this.shippingAddress.setState(shippingaddress.getState());
- 	 String add=this.shippingAddress.getAddress();
-	 System.out.println("sadiqali"+add);
- 	return "success";
- 	
- }
- public String addBillingDetails(BuyNow buyNow, BillingAddress billingAddress)
- {
- 	this.billingAddress.setAddress(billingAddress.getAddress());
- 	this.billingAddress.setCity(billingAddress.getCity());
- 	this.billingAddress.setDistrict(billingAddress.getDistrict());
- 	this.billingAddress.setLandmark(billingAddress.getLandmark());
- 	this.billingAddress.setPinCode(billingAddress.getPinCode());
- 	this.billingAddress.setState(billingAddress.getState());
- 	return "success";
- 	
- }
+
  
- public String addBillingDetailsAsShipping(BuyNow buyNow, BillingAddress billingAddress, ShippingAddress shippingAddress)
- {
-	 String add=this.shippingAddress.getAddress();
-	 System.out.println("sadiqali"+add);
- 	this.billingAddress.setAddress(this.shippingAddress.getAddress());
- 	this.billingAddress.setCity(this.shippingAddress.getCity());
- 	this.billingAddress.setDistrict(this.shippingAddress.getDistrict());
- 	this.billingAddress.setLandmark(this.shippingAddress.getLandmark());
- 	this.billingAddress.setPinCode(this.shippingAddress.getPinCode());
- 	this.billingAddress.setState(this.shippingAddress.getState());
- 	return "success";
- 	
- }
+
  
 }

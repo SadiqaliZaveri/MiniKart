@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.minikart.model.SubCategory;
+
 import com.minikart.model.Supplier;
 import com.minikart.service.SupplierService;
 
@@ -24,22 +24,7 @@ public class SupplierController {
 @Autowired
 private SupplierService supplierService;
 
-@RequestMapping("/suppliers")
-private String supplier(Model model)
-{
-	
-//	Creating New SubCategory
-	model.addAttribute("subCategory", new SubCategory());
-	
-//	Retrieving Supplier Data through List
-	model.addAttribute("supplierListNormal",this.supplierService.listSupplier());
-	
-//	Retrieving Supplier Data through GsontoJson Conversion
-	model.addAttribute("supplierListJson",this.supplierService.listSupplierViaJson());
-	
-	return "admin";
-	
-}
+
 
 
 @RequestMapping(value="/add/suppliers", method = RequestMethod.POST)

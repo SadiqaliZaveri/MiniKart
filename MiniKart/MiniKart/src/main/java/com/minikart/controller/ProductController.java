@@ -23,7 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.minikart.model.CartItem;
+
 import com.minikart.model.Category;
 import com.minikart.model.Product;
 import com.minikart.model.ProductFullView;

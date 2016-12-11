@@ -31,14 +31,7 @@ public class CategoryController {
 	private CategoryService categoryService;
 
 
-	@RequestMapping("/categories")
-	public String categories(Model model) 
-	{
-		model.addAttribute("category", new Category());
-		model.addAttribute("categoriesjson",this.categoryService.listCategory());
-		model.addAttribute("listCategory",this.categoryService.listCategoryViaJson());
-		return "admin";
-	}
+	
 
 	
 	@RequestMapping(value="/add/categories", method=RequestMethod.POST)

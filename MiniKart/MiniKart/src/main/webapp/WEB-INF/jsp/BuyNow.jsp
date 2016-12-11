@@ -27,7 +27,7 @@
                         
                         <td><a href ="deleteCartItem={{cartItem.cartItemId}}"><i class="fa fa-trash-o fa-2x" style="color:red;" data-toggle="tooltip" title="Delete"></i></a></td>
                         <td><div class="thumbnail shadowbox"  >
-                        <div class="imgholder" style="max-height: 200px; max-width:200px; width:200px; min-height: 100px; height:auto;">
+                        <div class="imgholder" style="max-height: 150px; max-width:150px; width:150px; min-height: 150px;">
                            <a href="viewfullprod-{{cartItem.productId}}"><img class="img-responsive center-block" style="width:100%; max-height:200px"  src="resources/images/product{{cartItem.productId}}.jpg" alt=""></a>
                             </div></div>
                         </td>

@@ -126,7 +126,7 @@ public String validateDetails(UserDetails userDetails,MessageContext messageCont
 public String validateShipping(UserDetails userDetails, ShippingAddress shippingAddress, MessageContext messageContext ){
 	String status = "success";
 	
-	if(shippingAddress.getAddress().isEmpty() || shippingAddress.getAddress().length()<20 && !shippingAddress.getAddress().isEmpty()){
+	if(shippingAddress.getAddress().isEmpty()){
 		messageContext.addMessage(new MessageBuilder().error().source("address").defaultText(" Please Fill Address").build());
 		
 		status = "failure";

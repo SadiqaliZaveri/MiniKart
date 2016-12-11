@@ -25,20 +25,7 @@ public class SubCategoryController {
 	@Autowired
 	private SubCategoryService subCategoryService;
 
-	@RequestMapping("/subcategories")
-	private String subcategory(Model model)
-	{
-		
-//		Creating New SubCategory
-		model.addAttribute("subCategory", new SubCategory());
-//		Retrieving SubCategory Data through List 
-		model.addAttribute("subCategoryListNormal", this.subCategoryService.listSubCategory());		
-//		Retrieving SubCategory Data through GsontoJson Conversion
-		model.addAttribute("subCategoryListJson",this.subCategoryService.listSubCategoryViaJson());
-		
-		return "admin";
-		
-	}
+	
 	
 	//SUBCATEGORIES ADD ACTION
 		@RequestMapping(value= "/add/subcategories", method = RequestMethod.POST)

@@ -1,6 +1,6 @@
 package com.minikart.daoimplementation;
 
-import java.util.Date;
+
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -65,4 +65,12 @@ public List<CartItem> listOrderedItemViaUserId(int userId) {
 	return list;
 	
 }
+@SuppressWarnings("unchecked")
+public List<CartItem> listReceiptItemViaCartItemId(int cartItemId) 
+{
+	String query = "from CartItem where cartItemId="+cartItemId;
+	
+	List<CartItem> list = sessionFactory.getCurrentSession().createQuery(query).getResultList();
+	return list;
+	}
 }

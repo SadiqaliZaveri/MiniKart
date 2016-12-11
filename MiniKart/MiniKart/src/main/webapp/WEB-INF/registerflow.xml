@@ -110,6 +110,12 @@
 
 	<end-state id="success" view="externalRedirect:contextRelative:/regsuccess"/>
 	<end-state id="cancel" view="externalRedirect:contextRelative:/home"/>
-	
+	<end-state id="error" view="externalRedirect:contextRelative:/404"/>
+
+
+
+<global-transitions>
+        <transition on-exception="java.lang.Exception" to="error" />
+</global-transitions>
 
 </flow>

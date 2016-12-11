@@ -2,6 +2,7 @@ package com.minikart.controller;
 
 
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.minikart.service.CartItemService;
@@ -18,7 +20,7 @@ import com.minikart.service.SubCategoryService;
 import com.minikart.service.TodaysMessageService;
 import com.minikart.service.UserService;
 
-@ControllerAdvice(basePackages={"com.minikart.controller"})
+@ControllerAdvice
 public class GlobalController {
 
 	@Autowired
@@ -35,21 +37,17 @@ public class GlobalController {
 	private UserService userService;
 	
 	
-	
+// Global ModelAttributes for the whole website	
 	@ModelAttribute
 	public void globalAttribute(Model model, HttpSession session)
 	{
-
+        
 //		Retrieving Category Data through List
 		model.addAttribute("categoryListNormal", this.categoryService.listCategory());		
-//		Retrieving Category Data through GsontoJson Conversion 
-		model.addAttribute("categoryListJson",this.categoryService.listCategoryViaJson());
-		
+	
 //		Retrieving SubCategory Data through List 
 		model.addAttribute("subCategoryListNormal", this.subCategoryService.listSubCategory());		
-//		Retrieving SubCategory Data through GsontoJson Conversion
-		model.addAttribute("subCategoryListJson",this.subCategoryService.listSubCategoryViaJson());
-		
+	
 //		Retrieving TodaysMessage through list
 		model.addAttribute("todaysMessageListNormal",this.todaysMessageService.listTodaysMessage());
 		
@@ -67,5 +65,13 @@ public class GlobalController {
 		{
 			session.setAttribute("cartListNo",0);
 		}
+	}
+	
+// Catches all Exceptions thrown by the website and sends to 404.	
+	@ExceptionHandler(Exception.class)
+	public String catchall(Exception e)
+	{
+		
+		return "redirect:/404";
 	}
 }

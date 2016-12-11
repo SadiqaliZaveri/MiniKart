@@ -9,19 +9,21 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="resources/js/jquery-3.1.1.min.js"></script>
+    <script src="resources/js/jquery-3.1.1.min.js"></script> 
     <script src="resources/js/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
-    <script src="resources/js/jquery.autocomplete.min.js"></script>	
+    <script src="resources/js/jquery.autocomplete.min.js"></script>
+    	
     <link href="resources/css/bootstrap.min.css" rel="stylesheet" />
     <script src="resources/js/bootstrap.min.js"></script>   
-    <script src="resources/js/dirPagination.js"></script>
+     <script src="resources/js/dirPagination.js"></script>
     
- 
-    <link id="sidebarcss" href="resources/css/simple-sidebar.css" rel="stylesheet">
+ 	
+    <link href="resources/css/simple-sidebar.css" rel="stylesheet"/>
     <link href="resources/css/footer-distributed-with-address-and-phones.css" rel="stylesheet" />
     <link href="resources/css/megamenu.css" rel="stylesheet" />  
     <link href="resources/css/Main.css" rel="stylesheet" />
+    <link href="resources/css/animate.css" rel="stylesheet"/>
     <link rel="icon" href="resources/images/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>MiniKart</title>
@@ -32,7 +34,7 @@
   <!--    NAVIGATION BAR TOP   -->
 
 
-  <body ng-app="Caller" ng-controller="CallerController">
+  <body ng-app="Caller" ng-controller="CallerController" >
 <div class="se-pre-con"></div>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -42,7 +44,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="home"><i class="glyphicon glyphicon-shopping-cart"> </i> MiniKart</a>
+          <a class="navbar-brand animated tada" href="home"><i class="glyphicon glyphicon-shopping-cart"> </i> MiniKart</a>
           <a class="navbar-brand" href="#" id="menu-toggle"><i class="glyphicon glyphicon-resize-full"></i></a>
         </div>
         
@@ -54,7 +56,7 @@
           
 
     <li  class="dropdown mega-dropdown hidden-xs " style="width:230px; text-align:center; background-color:#263238; letter-spacing: 2px;">
-      <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gears" style="font-size:19px"></i> ELECTRONICS <i class="fa fa-unsorted" style="font-size:15px"></i></a>
+      <a class="dropdown-toggle animated fadeIn" data-toggle="dropdown"><i class="fa fa-gears" style="font-size:19px"></i> ELECTRONICS <i class="fa fa-unsorted" style="font-size:15px"></i></a>
       <div class="dropdown-menu mega-dropdown-menu " role="menu">
         <div class="container-fluid">
         <hr>
@@ -83,7 +85,7 @@
           <ul class="nav navbar-nav navbar-right">
            <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ANONYMOUS')">
             <li class="cart">
-              <a href="cartList"><img alt="Logo" src="resources/images/logo.png" width="25" height="15"> Your Cart <button type="button" class="btn btn-warning btn-circle-micro pull-right labelspace"> ${sessionScope.cartListNo}</button></a>
+              <a href="cartList"><img alt="Logo" src="resources/images/logo.png" width="25" height="15"> Your Cart <button type="button" class="btn btn-warning btn-circle-micro pull-right labelspace animated infinite tada" style="border:1px solid black;"> ${sessionScope.cartListNo}</button></a>
             </li>
             </sec:authorize>
              <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -111,7 +113,7 @@
 
             <c:if test="${pageContext.request.userPrincipal.name != null}">
 
-              <li class="dropdown hidden-xs">
+              <li class="dropdown hidden-xs" style="margin-right:10px;">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">${pageContext.request.userPrincipal.name}<span class="glyphicon glyphicon-user pull-right"> </span></a>
                 <ul class="dropdown-menu">
                 <sec:authorize access="hasRole('ROLE_USER')">
@@ -131,8 +133,8 @@
               </li>
             </c:if>
             <c:if test="${pageContext.request.userPrincipal.name == null}">
-              <li><a href="register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-              <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+              <li><a href="register"><span class="glyphicon glyphicon-user "></span> Sign Up</a></li>
+              <li style="margin-right:10px;"><a href="login" ><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </c:if>
           </ul>
         </div>

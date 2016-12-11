@@ -82,12 +82,12 @@ public class ProductDAOImplementation implements ProductDAO {
 		
 	}
 
-	public void updateProductMinus(int productId) {
-       sessionFactory.getCurrentSession().createQuery("update Product set productStock = productStock - 1 where productId="+productId).executeUpdate();		
+	public void updateProductMinus(int productId, int productQuantity) {
+       sessionFactory.getCurrentSession().createQuery("update Product set productStock = productStock - "+productQuantity+" where productId="+productId).executeUpdate();		
 	}
 
-	public void updateProductPlus(int productId) {
-		sessionFactory.getCurrentSession().createQuery("update Product set productStock = productStock + 1 where productId="+productId).executeUpdate();
+	public void updateProductPlus(int productId, int productQuantity) {
+		sessionFactory.getCurrentSession().createQuery("update Product set productStock = productStock + "+productQuantity+" where productId="+productId).executeUpdate();
 		
 	}
 	

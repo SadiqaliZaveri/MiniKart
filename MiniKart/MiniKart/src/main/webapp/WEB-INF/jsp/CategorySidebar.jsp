@@ -13,7 +13,7 @@
           <div class="panel panel-default">
             <a data-toggle="collapse" href="#collapse${category.categoryId}">
               <div class="panel-heading" >
-                <h4 class="panel-title" >
+                <h4 class="panel-title " >
           			<c:out value="${category.categoryName}"/>
           		</h4>
               </div>
